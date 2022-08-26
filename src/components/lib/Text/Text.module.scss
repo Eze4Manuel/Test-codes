@@ -1,0 +1,15 @@
+.body1 {
+  @apply font-lato text-sm md:text-base;
+}
+
+.body2 {
+  @apply font-lato text-base md:text-lg;
+}
+
+.subheading {
+  @apply font-lato text-base md:text-xl;
+}
+
+.caption {
+  @apply font-lato text-xs md:text-sm;
+}

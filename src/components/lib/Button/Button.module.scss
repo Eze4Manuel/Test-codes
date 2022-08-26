@@ -1,0 +1,34 @@
+.base {
+  @apply rounded-xl font-lato font-bold transition-all 
+  disabled:hover:cursor-not-allowed;
+}
+
+.size {
+  &__small {
+    @apply min-h-[30px] min-w-[90px] px-3 py-2 text-sm lg:min-h-[35px] 
+    lg:min-w-[100px] lg:py-3;
+  }
+
+  &__medium {
+    @apply min-h-[30px] min-w-[120px] px-5 py-2 text-base 
+    lg:min-h-[38px] lg:min-w-[170px];
+  }
+
+  &__large {
+    @apply min-h-[40px] min-w-[250px] px-3 py-2 text-lg lg:min-h-[45px] 
+    lg:min-w-[350px];
+  }
+}
+
+.variant {
+  &__solid {
+    @apply bg-cci-black text-white hover:bg-cci-black/70 
+    disabled:bg-gray-300 disabled:text-gray-500;
+  }
+
+  &__outline {
+    @apply border-2 border-cci-black bg-transparent text-cci-black
+    hover:border-primary-main/30 hover:bg-primary-main/10 
+    disabled:border-gray-500 disabled:text-gray-500;
+  }
+}

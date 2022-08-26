@@ -1,0 +1,17 @@
+.auth {
+  &__container {
+    @apply flex h-screen w-screen overflow-hidden;
+  }
+
+  &__main {
+    @apply relative h-full w-full xl:w-[35vw] xl:max-w-[450px] 2xl:max-w-none;
+  }
+
+  &__figure {
+    @apply flex h-24 w-52 items-center justify-center;
+
+    & img {
+      @apply h-full w-full object-contain;
+    }
+  }
+}
