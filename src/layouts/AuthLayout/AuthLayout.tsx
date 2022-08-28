@@ -1,6 +1,5 @@
 import type { FC, PropsWithChildren } from 'react';
 
-import styles from './Auth.module.scss';
 import type AuthLayoutProps from './AuthLayout.props';
 
 const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
@@ -10,9 +9,9 @@ const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
     <>
       {meta}
 
-      <div className={styles.auth__container}>
+      <div className="flex h-screen w-screen overflow-hidden">
         {/* TODO: SideNav / Mobile Sidedrawwer */}
-        <main className={styles.auth__main}>
+        <main className="relative h-full w-full xl:w-[35vw] xl:max-w-[450px] 2xl:max-w-none">
           {/* TODO: Navbar */}
 
           {children}
