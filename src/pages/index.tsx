@@ -5,6 +5,7 @@ import Dropdown from '@/components/lib/Dropdown';
 import Heading from '@/components/lib/Heading';
 import Input from '@/components/lib/Input';
 import Text from '@/components/lib/Text';
+// import Meta from '@/templates/Meta';
 
 const Index = () => {
   const [name, setName] = useState('');
@@ -64,6 +65,21 @@ const Index = () => {
         </div>
       </div>
     </main>
+    // =======
+    //     <>
+    //       <Meta title="Welcome to CCI CGOP" description="Welcome to the CCI CGOP" />
+    //       <main className="relative flex h-screen w-full flex-col items-center justify-center gap-10 text-center">
+    //         <Heading variant="h1">Hello, Welcome to CCI CGOP</Heading>
+    //         <Text variant="body2">This is supposed to be the welcome page.</Text>
+
+    //         <Link href="/member/profile">
+    //           <Button size="medium" variant="outline">
+    //             Click Me!
+    //           </Button>
+    //         </Link>
+    //       </main>
+    //     </>
+    // >>>>>>> dc8310237e17641090bf971cb7e25a34a0a6e977
   );
 };
 
