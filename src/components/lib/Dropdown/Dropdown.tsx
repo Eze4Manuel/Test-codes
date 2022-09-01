@@ -1,8 +1,8 @@
+import { Icon } from '@iconify/react';
 import type { FC } from 'react';
 import React, { useEffect, useRef, useState } from 'react';
 
-import { arrowDown, arrowUp } from '@/public/assets/icons/inputs/arrows';
-
+// import { arrowDown, arrowUp } from '@/public/assets/icons/inputs/arrows';
 import styles from './Dropdown.module.scss';
 import type DropdownProps from './Dropdown.props';
 
@@ -55,6 +55,7 @@ const Dropdown: FC<DropdownProps> = ({
   };
 
   const handleKeyListDown = (e: any) => {
+    // for accessibility
     switch (e.key) {
       case 'Escape':
         e.preventDefault();
@@ -88,7 +89,11 @@ const Dropdown: FC<DropdownProps> = ({
         onKeyDown={handleKeyListDown}
       >
         {currentValue}
-        {openDropdown ? <span>{arrowUp}</span> : <span>{arrowDown}</span>}
+        {openDropdown ? (
+          <Icon className="text-2xl" icon="ep:arrow-up" />
+        ) : (
+          <Icon className="text-2xl" icon="ep:arrow-down" />
+        )}
       </div>
 
       {openDropdown && (
