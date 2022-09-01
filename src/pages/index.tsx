@@ -8,7 +8,6 @@ import Text from '@/components/lib/Text';
 
 const Index = () => {
   const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
   const [gender, setGender] = useState('Select an option');
   const [maritalStatus, setMaritalStatus] = useState('Select an option');
 
@@ -43,19 +42,6 @@ const Index = () => {
             variant="normal"
             textOpacity="normal"
             onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-
-        <div className="my-6">
-          <Input
-            type={'text'}
-            labelText={'Address'}
-            name={'address'}
-            required={false}
-            value={address}
-            variant="normal"
-            textOpacity="normal"
-            onChange={(e) => setAddress(e.target.value)}
           />
         </div>
 

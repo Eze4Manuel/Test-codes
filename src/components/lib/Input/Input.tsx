@@ -14,7 +14,7 @@ const Input: FC<InputProps> = ({
   onChange,
   textOpacity = 'normal',
   variant = 'normal',
-  doubleInput,
+  ...rest
 }) => {
   const InputVariant = match(textOpacity, {
     normal: styles.variant__normalText,
@@ -28,37 +28,6 @@ const Input: FC<InputProps> = ({
     default: '',
   });
 
-  if (doubleInput) {
-    return (
-      <div className="grid w-full grid-cols-2 gap-x-6">
-        <label htmlFor={name}>
-          <div className={`${LabelVariant}`}>{labelText}</div>
-          <input
-            type={type}
-            name={name}
-            id={name}
-            required={required}
-            className={`${styles.base} ${InputVariant}`}
-            onChange={onChange}
-            value={value}
-          />
-        </label>
-        <label htmlFor={name}>
-          <div className={`${LabelVariant}`}>{labelText}</div>
-          <input
-            type={type}
-            name={name}
-            id={name}
-            required={required}
-            className={`${styles.base} ${InputVariant}`}
-            onChange={onChange}
-            value={value}
-          />
-        </label>
-      </div>
-    );
-  }
-
   return (
     <label htmlFor={name} className="w-full">
       <div className={`${LabelVariant}`}>{labelText}</div>
@@ -70,6 +39,7 @@ const Input: FC<InputProps> = ({
         required={required}
         onChange={onChange}
         value={value}
+        {...rest}
       />
     </label>
   );

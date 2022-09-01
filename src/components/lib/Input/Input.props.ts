@@ -1,6 +1,6 @@
 import type React from 'react';
 
-interface InputProps {
+export default interface InputProps extends React.HTMLProps<HTMLInputElement> {
   type: string;
   labelText: string;
   name: string;
@@ -10,7 +10,4 @@ interface InputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   textOpacity?: 'normal' | 'dim';
   variant?: 'normal' | 'bold';
-  doubleInput?: boolean;
 }
-
-export default InputProps;
