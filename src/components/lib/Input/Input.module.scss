@@ -1,0 +1,25 @@
+.base {
+  @apply block w-full border-0 border-b border-cci-grey px-0 pb-1 font-lato text-cci-grey focus:border-b-2 focus:border-b-cci-grey focus:outline-0;
+}
+
+.label {
+  @apply pb-2;
+}
+
+.variant {
+  &__normal {
+    @apply font-[500] text-cci-black;
+  }
+
+  &__bold {
+    @apply font-[700]  text-cci-black;
+  }
+
+  &__dimText {
+    @apply text-cci-grey-dim;
+  }
+
+  &__normalText {
+    @apply text-cci-grey;
+  }
+}
