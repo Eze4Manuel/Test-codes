@@ -30,7 +30,7 @@ const Input: FC<InputProps> = ({
 
   return (
     <label htmlFor={name} className="w-full">
-      <div className={`${LabelVariant}`}>{labelText}</div>
+      <div className={`${LabelVariant} ${styles.label}`}>{labelText}</div>
       <input
         type={type}
         name={name}

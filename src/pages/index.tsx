@@ -2,29 +2,38 @@ import { useState } from 'react';
 
 import Button from '@/components/lib/Button';
 import Dropdown from '@/components/lib/Dropdown';
+import type { Option } from '@/components/lib/Dropdown/Dropdown.props';
 import Heading from '@/components/lib/Heading';
 import Input from '@/components/lib/Input';
 import Text from '@/components/lib/Text';
 import Meta from '@/templates/Meta';
+// import { Option } from '@/components/lib/Dropdown/Dropdown.props';
 
 const Index = () => {
   const [name, setName] = useState('');
-  const [gender, setGender] = useState('Select an option');
-  const [maritalStatus, setMaritalStatus] = useState('Select an option');
 
-  const handleClick = (e: React.MouseEvent<HTMLLIElement>) => {
-    const { textContent } = e.target as HTMLLIElement;
-    if (textContent !== null) {
-      setGender(textContent);
-    }
-  };
+  const maritalStatus = [
+    { value: 'married', label: 'Married' },
+    { value: 'single', label: 'Single' },
+    { value: 'divorced', label: 'Divorced' },
+  ];
 
-  const handleClick2 = (e: React.MouseEvent<HTMLLIElement>) => {
-    const { textContent } = e.target as HTMLLIElement;
-    if (textContent !== null) {
-      setMaritalStatus(textContent);
-    }
-  };
+  const sex = [
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+  ];
+
+  const [selectedOptionMS, setSelectedOptionMS] = useState({
+    value: '',
+    label: 'Marital Status',
+  });
+
+  const [selectedOptionSex, setSelectedOptionSex] = useState({
+    value: '',
+    label: 'Gender',
+  });
+
+  console.log(selectedOptionMS, selectedOptionSex);
 
   return (
     <>
@@ -42,7 +51,7 @@ const Index = () => {
               name={'name'}
               required={false}
               value={name}
-              variant="normal"
+              variant="bold"
               textOpacity="normal"
               onChange={(e) => setName(e.target.value)}
             />
@@ -50,19 +59,23 @@ const Index = () => {
 
           <div className="my-6">
             <Dropdown
-              currentValue={gender}
-              list={['Select an option', 'Male', 'Female']}
-              labelText="Gender"
-              onClick={(e) => handleClick(e)}
+              label="Marital Status"
+              options={maritalStatus}
+              defaultValue={selectedOptionMS}
+              onChange={(selectedOption) =>
+                setSelectedOptionMS(selectedOption as Option)
+              }
             />
           </div>
 
           <div className="my-6">
             <Dropdown
-              currentValue={maritalStatus}
-              list={['Select an option', 'Married', 'Single']}
-              labelText="Marital Status"
-              onClick={(e) => handleClick2(e)}
+              label="Gender"
+              options={sex}
+              defaultValue={selectedOptionSex}
+              onChange={(selectedOption) =>
+                setSelectedOptionSex(selectedOption as Option)
+              }
             />
           </div>
         </div>
