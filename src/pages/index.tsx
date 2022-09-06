@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import Button from '@/components/lib/Button';
 import Heading from '@/components/lib/Heading';
+import Text from '@/components/lib/Text';
 import Meta from '@/templates/Meta';
 
 import logo from '../../public/assets/images/logo-mobile.png';
@@ -26,10 +27,10 @@ const Index = () => {
             </Heading>
           </div>
 
-          <Heading className="my-14 text-center font-lato text-[0.875em] font-medium">
+          <Text className="my-14 text-center text-[0.875em] font-medium">
             This portal is exclusively for members of Celebration Church
             International (CCI).
-          </Heading>
+          </Text>
 
           <Button
             className="my-4 block w-full md:mx-auto md:w-[60%] lg:w-[50%] xl:w-[30%]"
@@ -45,10 +46,10 @@ const Index = () => {
             Request for a member account
           </Button>
 
-          <Heading className="mt-12 text-center font-lato text-[0.875em] font-medium">
+          <Text className="mt-12 text-center text-[0.875em] font-medium">
             Click <span className="font-black">HERE</span> to view the official
             website of Celebration Church.
-          </Heading>
+          </Text>
         </section>
       </HomeBg>
     </>

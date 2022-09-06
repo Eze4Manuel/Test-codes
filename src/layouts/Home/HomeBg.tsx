@@ -1,9 +1,8 @@
-import type { FC } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 
-import type HomeBgProps from './Home.props';
 import styles from './HomeBg.module.scss';
 
-const HomeBg: FC<HomeBgProps> = ({ children }) => {
+const HomeBg: FC<PropsWithChildren> = ({ children }) => {
   return <main className={styles.main}>{children}</main>;
 };
 
