@@ -15,7 +15,7 @@
   }
 
   &__large {
-    @apply min-h-[40px] min-w-[250px] px-3 py-2 text-lg lg:min-h-[45px] 
+    @apply min-h-[45px] min-w-[250px] px-3 py-2 text-base lg:min-h-[45px] 
     lg:min-w-[350px];
   }
 }
