@@ -53,7 +53,7 @@ const Index = () => {
               value={name}
               variant="bold"
               textOpacity="normal"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setName(e.currentTarget.value)}
             />
           </div>
 
