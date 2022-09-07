@@ -6,12 +6,8 @@ import styles from './Input.module.scss';
 import type InputProps from './Input.props';
 
 const Input: FC<InputProps> = ({
-  type,
   labelText,
   name,
-  required,
-  value,
-  onChange,
   textOpacity = 'normal',
   variant = 'normal',
   ...rest
@@ -32,13 +28,9 @@ const Input: FC<InputProps> = ({
     <label htmlFor={name} className="w-full">
       <div className={`${LabelVariant} ${styles.label}`}>{labelText}</div>
       <input
-        type={type}
         name={name}
         id={name}
         className={`${styles.base} ${InputVariant}`}
-        required={required}
-        onChange={onChange}
-        value={value}
         {...rest}
       />
     </label>
