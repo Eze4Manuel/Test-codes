@@ -23,6 +23,7 @@ module.exports = {
     extend: {
       colors: {
         'cci-black': '#101318',
+        'cci-black-dim': 'rgba(16, 19, 24, 0.6)',
         'cci-grey': '#686868',
         'cci-grey-dim': '#686868CC',
 

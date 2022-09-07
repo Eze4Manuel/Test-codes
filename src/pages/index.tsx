@@ -1,85 +1,57 @@
-import { useState } from 'react';
+import Image from 'next/image';
 
 import Button from '@/components/lib/Button';
-import Dropdown from '@/components/lib/Dropdown';
-import type { Option } from '@/components/lib/Dropdown/Dropdown.props';
 import Heading from '@/components/lib/Heading';
-import Input from '@/components/lib/Input';
 import Text from '@/components/lib/Text';
 import Meta from '@/templates/Meta';
-// import { Option } from '@/components/lib/Dropdown/Dropdown.props';
+
+import logo from '../../public/assets/images/logo-mobile.png';
+import HomeBg from '../layouts/Home/index';
 
 const Index = () => {
-  const [name, setName] = useState('');
-
-  const maritalStatus = [
-    { value: 'married', label: 'Married' },
-    { value: 'single', label: 'Single' },
-    { value: 'divorced', label: 'Divorced' },
-  ];
-
-  const sex = [
-    { value: 'male', label: 'Male' },
-    { value: 'female', label: 'Female' },
-  ];
-
-  const [selectedOptionMS, setSelectedOptionMS] = useState({
-    value: '',
-    label: 'Marital Status',
-  });
-
-  const [selectedOptionSex, setSelectedOptionSex] = useState({
-    value: '',
-    label: 'Gender',
-  });
-
-  console.log(selectedOptionMS, selectedOptionSex);
-
   return (
     <>
       <Meta title="Welcome to CCI CGOP" description="Welcome to the CCI CGOP" />
-      <main className="relative flex h-screen w-full flex-col items-center justify-center gap-10">
-        <Heading variant="h1">Hello, Welcome to CCI CGOP</Heading>
-        <Text variant="body2">This is supposed to be the welcome page.</Text>
-        <Button size="large">Chike</Button>
-
-        <div className="w-full px-4 md:w-[80%] lg:w-[70%] xl:w-[50%]">
-          <div className="my-6">
-            <Input
-              type={'text'}
-              labelText={'Name'}
-              name={'name'}
-              required={false}
-              value={name}
-              variant="bold"
-              textOpacity="normal"
-              onChange={(e) => setName(e.currentTarget.value)}
-            />
+      <HomeBg>
+        <section className="absolute top-1/2 left-1/2 mx-auto w-[90%] -translate-y-1/2 -translate-x-1/2 text-[16px] md:text-[20px] lg:text-[22px] xl:text-[24px]">
+          <div className="pb-8 text-center">
+            <Image src={logo} alt="logo" priority />
           </div>
 
-          <div className="my-6">
-            <Dropdown
-              label="Marital Status"
-              options={maritalStatus}
-              defaultValue={selectedOptionMS}
-              onChange={(selectedOption) =>
-                setSelectedOptionMS(selectedOption as Option)
-              }
-            />
+          <div className="mx-auto grid w-max grid-cols-3">
+            <Heading className="col-span-3 mt-2 text-[2.125em] font-semibold">
+              Celebration Church{' '}
+            </Heading>
+            <Heading className="col-start-2 col-end-4 -mt-3 text-right text-[20px] font-normal text-cci-black-dim ">
+              Membership Portal
+            </Heading>
           </div>
 
-          <div className="my-6">
-            <Dropdown
-              label="Gender"
-              options={sex}
-              defaultValue={selectedOptionSex}
-              onChange={(selectedOption) =>
-                setSelectedOptionSex(selectedOption as Option)
-              }
-            />
-          </div>
-        </div>
-      </main>
+          <Text className="my-14 text-center text-[0.875em] font-medium">
+            This portal is exclusively for members of Celebration Church
+            International (CCI).
+          </Text>
+
+          <Button
+            className="my-4 block w-full md:mx-auto md:w-[60%] lg:w-[50%] xl:w-[30%]"
+            size="medium"
+          >
+            Log in to your account
+          </Button>
+          <Button
+            className="my-4 block w-full md:mx-auto md:w-[60%] lg:w-[50%] xl:w-[30%]"
+            variant="outline"
+            size="medium"
+          >
+            Request for a member account
+          </Button>
+
+          <Text className="mt-12 text-center text-[0.875em] font-medium">
+            Click <span className="font-black">HERE</span> to view the official
+            website of Celebration Church.
+          </Text>
+        </section>
+      </HomeBg>
     </>
   );
 };
