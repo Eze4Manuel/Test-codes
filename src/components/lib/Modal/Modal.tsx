@@ -4,14 +4,16 @@ import styles from './Modal.module.scss';
 import type ModalProps from './Modal.props';
 
 const Modal: FC<PropsWithChildren<ModalProps>> = ({
-  open = false,
+  open = true,
   children,
   ...rest
 }) => {
-  return (
-    <div className={`${styles.bg} ${open ? 'block' : 'hidden'}`} {...rest}>
+  return open ? (
+    <div className={styles.bg} {...rest}>
       <div className={styles.modal}>{children}</div>
     </div>
+  ) : (
+    <></>
   );
 };
 export default Modal;

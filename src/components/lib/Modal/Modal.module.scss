@@ -1,7 +1,8 @@
 .bg {
-  @apply z-10 bg-[#101318B2] bg-opacity-70 fixed w-screen h-screen
+  @apply fixed top-0 left-0 z-[100] flex h-screen w-screen items-center 
+  justify-center bg-[#101318B2] bg-opacity-70
 }
 
 .modal {
-  @apply z-10 container m-auto bg-white w-[400px] min-h-[300px] relative top-[300px] text-center rounded-[5px]
+  @apply min-h-[300px] w-[90%] max-w-[400px] bg-white text-center rounded-[5px]
 }
