@@ -24,6 +24,8 @@ module.exports = {
       colors: {
         'cci-black': '#101318',
         'cci-black-dim': 'rgba(16, 19, 24, 0.6)',
+        'cci-black-dim2': 'rgba(16, 19, 24, 0.02)',
+        'cci-border': 'rgba(16, 19, 24, 0.15)',
         'cci-grey': '#686868',
         'cci-grey-dim': '#686868CC',
 
