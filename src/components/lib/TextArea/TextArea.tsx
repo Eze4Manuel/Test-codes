@@ -11,19 +11,19 @@ const TextArea: FC<TextAreaProps> = ({
   value,
   onChange,
   className,
+  required,
   ...rest
 }) => {
   return (
     <label htmlFor={name}>
-      {label && (
-        <span className={`${styles.label} ${className || ''}`}>{label}</span>
-      )}
+      {label && <span className={styles.label}>{label}</span>}
       <textarea
         id={name}
-        className={styles.textarea}
+        className={`${styles.textarea} ${className || ''}`}
         rows={rows}
         cols={cols}
         value={value}
+        required={required}
         onChange={onChange}
         {...rest}
       ></textarea>
