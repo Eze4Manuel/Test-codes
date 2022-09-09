@@ -10,3 +10,21 @@ export const memberLinks = [
     url: '/member/feedback',
   },
 ];
+
+export const followUpLeadLinks = [
+  {
+    icon: 'ant-design:user-outlined',
+    title: 'Profile',
+    url: '/follow-up-lead/profile',
+  },
+  {
+    icon: 'bi:people',
+    title: 'Follow-up Unit',
+    url: '/follow-up-lead/unit',
+  },
+  {
+    icon: 'ic:outline-feedback',
+    title: 'Give Feedback',
+    url: '/follow-up-lead/feedback',
+  },
+];
