@@ -31,10 +31,10 @@ const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
       <div className="relative flex h-screen w-screen">
         <SideNav isOpen={sideNavIsOpen} onClose={toggleSideNav} links={links} />
 
-        <main className="relative flex h-full flex-1 flex-col overflow-y-auto overflow-x-hidden">
+        <main className="relative flex h-full w-full flex-1 flex-col overflow-y-auto overflow-x-hidden">
           <NavBar openSideNav={toggleSideNav} />
 
-          <div className="flex-1 p-5 pt-5 lg:p-10">{children}</div>
+          <div className="w-full flex-1 p-5 pt-5 lg:p-10">{children}</div>
         </main>
       </div>
     </>
