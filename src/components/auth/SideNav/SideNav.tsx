@@ -39,6 +39,7 @@ const SideNav: FC<SideNavProps> = ({ isOpen, onClose, links }) => {
               className="h-full w-full object-cover"
               src="/assets/icons/Logo.svg"
               alt="CCI Logo"
+              priority
             />
           </figure>
         </div>
