@@ -2,24 +2,8 @@ import { useRouter } from 'next/router';
 import type { FC } from 'react';
 import { useCallback } from 'react';
 
-import Button from '../Button';
-import Heading from '../Heading';
-import Text from '../Text';
 import styles from './TabView.module.scss';
 import type TabViewProps from './TabView.props';
-import type { InvalidTabProps } from './TabView.props';
-
-const InvalidTab: FC<InvalidTabProps> = ({ onClick }) => (
-  <div className={styles.empty__tab}>
-    <Heading>Oops!</Heading>
-    <Text>
-      You have entered an invalid url. Click the button below to go to fix that!
-    </Text>
-    <Button onClick={onClick} size="medium">
-      Proceed
-    </Button>
-  </div>
-);
 
 const TabView: FC<TabViewProps> = ({
   tabs,
@@ -34,15 +18,6 @@ const TabView: FC<TabViewProps> = ({
     router.push(`${router.pathname}?tab=${id}`);
   };
 
-  const handleNavigateToDefaultScreen = () => {
-    if (tabs[0]) {
-      router.push(`${router.pathname}?tab=${tabs[0]?.id}`);
-      return;
-    }
-
-    router.push(`/`);
-  };
-
   const renderContent = useCallback(() => {
     const activeTabObject = tabs.find((tab) => tab.id === activeTab);
 
@@ -50,7 +25,7 @@ const TabView: FC<TabViewProps> = ({
       return activeTabObject.component;
     }
 
-    return <InvalidTab onClick={handleNavigateToDefaultScreen} />;
+    return <></>;
   }, [router.query?.tab]);
 
   return (

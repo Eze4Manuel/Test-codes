@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import type { FC, PropsWithChildren } from 'react';
 import { useEffect, useState } from 'react';
 
@@ -6,15 +7,27 @@ import SideNav from '@/components/auth/SideNav';
 import { useMediaQuery } from '@/hooks';
 
 import type AuthLayoutProps from './AuthLayout.props';
-import { memberLinks } from './data';
+import { followUpLeadLinks, memberLinks } from './data';
 
 const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
   const [sideNavIsOpen, setSideNavIsOpen] = useState(false);
   const largeScreen = useMediaQuery('(min-width: 1200px)');
 
-  // TODO: use a switch to conditionally render links based on the role
-  // of the logged in user. The "links" below is hardcoded.
-  const links = memberLinks;
+  const router = useRouter();
+  const role = router.pathname.split('/')[1];
+
+  const getLinks = () => {
+    switch (role) {
+      case 'member':
+        return memberLinks;
+
+      case 'follow-up-lead':
+        return followUpLeadLinks;
+
+      default:
+        return [];
+    }
+  };
 
   useEffect(() => {
     setSideNavIsOpen(false);
@@ -29,7 +42,11 @@ const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
       {meta}
 
       <div className="relative flex h-screen w-screen">
-        <SideNav isOpen={sideNavIsOpen} onClose={toggleSideNav} links={links} />
+        <SideNav
+          isOpen={sideNavIsOpen}
+          onClose={toggleSideNav}
+          links={getLinks()}
+        />
 
         <main className="relative flex h-full w-full flex-1 flex-col overflow-y-auto overflow-x-hidden">
           <NavBar openSideNav={toggleSideNav} />
