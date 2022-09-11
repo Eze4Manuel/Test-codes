@@ -6,15 +6,19 @@ import SideNav from '@/components/auth/SideNav';
 import { useMediaQuery } from '@/hooks';
 
 import type AuthLayoutProps from './AuthLayout.props';
-import { memberLinks } from './data';
+// import { memberLinks } from './data';
 
-const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
+const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({
+  meta,
+  children,
+  links,
+}) => {
   const [sideNavIsOpen, setSideNavIsOpen] = useState(false);
   const largeScreen = useMediaQuery('(min-width: 1200px)');
 
   // TODO: use a switch to conditionally render links based on the role
   // of the logged in user. The "links" below is hardcoded.
-  const links = memberLinks;
+  // const links = memberLinks;
 
   useEffect(() => {
     setSideNavIsOpen(false);
