@@ -28,21 +28,3 @@ export const followUpLeadLinks = [
     url: '/follow-up-lead/feedback',
   },
 ];
-
-export const serviceUnitLinks = [
-  {
-    icon: 'ant-design:user-outlined',
-    title: 'Profile',
-    url: '/member/profile',
-  },
-  {
-    icon: 'bi:people',
-    title: 'Servive Unit',
-    url: '/service-unit',
-  },
-  {
-    icon: 'ic:outline-feedback',
-    title: 'Give Feedback',
-    url: '/member/feedback',
-  },
-];

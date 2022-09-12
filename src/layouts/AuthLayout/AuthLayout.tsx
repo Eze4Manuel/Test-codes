@@ -7,7 +7,7 @@ import SideNav from '@/components/auth/SideNav';
 import { useMediaQuery } from '@/hooks';
 
 import type AuthLayoutProps from './AuthLayout.props';
-import { followUpLeadLinks, memberLinks, serviceUnitLinks } from './data';
+import { followUpLeadLinks, memberLinks } from './data';
 
 const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
   const [sideNavIsOpen, setSideNavIsOpen] = useState(false);
@@ -23,9 +23,6 @@ const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
 
       case 'follow-up-lead':
         return followUpLeadLinks;
-
-      case 'service-unit':
-        return serviceUnitLinks;
 
       default:
         return [];
