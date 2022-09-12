@@ -11,19 +11,6 @@ import AuthLayout from '@/layouts/AuthLayout';
 import { sendCheck } from '@/public/assets/icons/emoji/sendCheck';
 import Meta from '@/templates/Meta';
 
-const links = [
-  {
-    icon: 'ant-design:user-outlined',
-    title: 'Profile',
-    url: '/member/profile',
-  },
-  {
-    icon: 'ic:outline-feedback',
-    title: 'Give Feedback',
-    url: '/member/feedback',
-  },
-];
-
 const Feedback = () => {
   const [emoji, setEmoji] = useState<string>('');
   const [ratings, setRatings] = useState<string>('');
@@ -36,10 +23,7 @@ const Feedback = () => {
 
   return (
     <>
-      <AuthLayout
-        meta={<Meta title="Feedback" description="Give Feedback" />}
-        links={links}
-      >
+      <AuthLayout meta={<Meta title="Feedback" description="Give Feedback" />}>
         <section className="rounded-[10px] border-[1.5px] border-cci-border bg-cci-black-dim2 px-4 py-6 text-[14px] md:mx-auto md:w-[85%] md:p-8 md:text-[16px] lg:mx-0 lg:w-[90%] lg:p-12 lg:text-[20px]">
           <Heading
             variant="h3"

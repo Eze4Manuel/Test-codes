@@ -9,10 +9,10 @@
 
 .overflow {
   &__wrapper {
-    @apply relative flex flex-1 overflow-x-hidden;
+    @apply relative order-2 flex w-full flex-1 overflow-x-hidden md:order-1 md:w-auto;
   }
   &__container {
-    @apply relative order-2 w-full overflow-x-auto md:order-1 md:w-auto;
+    @apply relative w-full overflow-x-auto  md:w-auto;
 
     &__border {
       @apply absolute bottom-0 left-0 h-1 w-full bg-cci-grey-dim/20;

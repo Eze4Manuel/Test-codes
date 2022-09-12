@@ -10,24 +10,6 @@ import AuthLayout from '@/layouts/AuthLayout';
 import { sendCheck } from '@/public/assets/icons/emoji/sendCheck';
 import Meta from '@/templates/Meta';
 
-const links = [
-  {
-    icon: 'ant-design:user-outlined',
-    title: 'Profile',
-    url: '/member/profile',
-  },
-  {
-    icon: 'bi:people',
-    title: 'Servive Unit',
-    url: '/service-unit',
-  },
-  {
-    icon: 'ic:outline-feedback',
-    title: 'Give Feedback',
-    url: '/member/feedback',
-  },
-];
-
 const Feedback = () => {
   const [sendTo, setSendTo] = useState('');
   const [feedback, setFeedback] = useState('');
@@ -42,8 +24,12 @@ const Feedback = () => {
   return (
     <>
       <AuthLayout
-        meta={<Meta title="Feedback" description="Give Feedback" />}
-        links={links}
+        meta={
+          <Meta
+            title="Feedback"
+            description="Feedback form unit for service unit CCI"
+          />
+        }
       >
         <section className="rounded-[10px] border-[1.5px] border-cci-border bg-cci-black-dim2 px-4 py-6 md:mx-auto md:w-[85%] md:p-10 lg:w-full">
           <form onSubmit={handleSubmit}>

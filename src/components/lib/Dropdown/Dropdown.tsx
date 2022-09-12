@@ -16,6 +16,7 @@ const Dropdown: FC<DropdownProps> = ({
       outline: 'none',
       border: 'none',
       borderBottom: '1px solid #686868',
+      backgroundColor: 'transparent',
     }),
 
     control: (provided: any) => ({
@@ -23,6 +24,7 @@ const Dropdown: FC<DropdownProps> = ({
       outline: 'none',
       border: 'none',
       boxShadow: 'none',
+      backgroundColor: 'transparent',
     }),
 
     valueContainer: (provided: any) => ({
