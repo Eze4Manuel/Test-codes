@@ -1,7 +1,7 @@
 import TabView from '@/components/lib/TabView';
 import type { Tab } from '@/components/lib/TabView/TabView.props';
-import CCIInfo from '@/components/members/CCIInfo';
-import PersonalProfile from '@/components/members/PersonalProfile';
+import CCIInfo from '@/components/roles/members/CCIInfo';
+import PersonalProfile from '@/components/roles/members/PersonalProfile';
 import AuthLayout from '@/layouts/AuthLayout';
 import Meta from '@/templates/Meta';
 
