@@ -1,14 +1,35 @@
-import Heading from '@/components/lib/Heading';
-import Text from '@/components/lib/Text';
+import TabView from '@/components/lib/TabView';
+import type { Tab } from '@/components/lib/TabView/TabView.props';
+import CCIInfo from '@/components/members/CCIInfo';
+import PersonalProfile from '@/components/members/PersonalProfile';
 import AuthLayout from '@/layouts/AuthLayout';
 import Meta from '@/templates/Meta';
 
+const tabs: Tab[] = [
+  {
+    title: 'Personal Info',
+    id: 'personal-info',
+    component: <PersonalProfile />,
+  },
+  {
+    title: 'CCI Info',
+    id: 'cci-info',
+    component: <CCIInfo />,
+  },
+];
+
 const Profile = () => {
   return (
-    <AuthLayout meta={<Meta title="Profile" description="Your Profile" />}>
-      <div className="h-500 grid place-items-center gap-5">
-        <Heading>Profile screen</Heading>
-        <Text>This is the profile screen!</Text>
+    <AuthLayout
+      meta={
+        <Meta
+          title="Profile | Service Unit Lead - Follow-up unit"
+          description="Your profile as the service unit lead of the follow-up unit"
+        />
+      }
+    >
+      <div className="grid w-full gap-10">
+        <TabView tabs={tabs} showActionButton />
       </div>
     </AuthLayout>
   );
