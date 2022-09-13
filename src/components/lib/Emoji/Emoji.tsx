@@ -49,7 +49,9 @@ const Emoji: FC<EmojiProps> = ({ setEmoji }) => {
         <div
           key={index}
           onClick={() => handleClick(index)}
-          className={styles.emojiContainer}
+          className={`${styles.emojiContainer} ${
+            activeEmoji === index && 'border-[1.8px] border-cci-black'
+          }`}
         >
           {activeEmoji === index ? (
             <div className="mx-auto w-[32px]">{emoji.iconActive}</div>
