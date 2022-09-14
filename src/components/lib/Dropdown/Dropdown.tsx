@@ -9,6 +9,7 @@ const Dropdown: FC<DropdownProps> = ({
   label,
   defaultValue,
   onChange,
+  disabled = false,
 }) => {
   const customStyles = {
     container: (provided: any) => ({
@@ -48,6 +49,7 @@ const Dropdown: FC<DropdownProps> = ({
     <div>
       <label className={styles.label}>{label}</label>
       <Select
+        isDisabled={disabled}
         options={options}
         styles={customStyles}
         onChange={onChange}

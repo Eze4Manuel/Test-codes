@@ -26,11 +26,16 @@ const Input: FC<InputProps> = ({
 
   return (
     <label htmlFor={name} className="w-full">
-      <div className={`${LabelVariant} ${styles.label}`}>{labelText}</div>
+      {labelText && (
+        <div className={`${LabelVariant} ${styles.label}`}>{labelText}</div>
+      )}
+
       <input
         name={name}
         id={name}
-        className={`${styles.base} ${InputVariant}`}
+        className={`${styles.base} ${InputVariant} ${
+          variant === 'contained' ? styles.variant__contained : ''
+        }`}
         {...rest}
       />
     </label>

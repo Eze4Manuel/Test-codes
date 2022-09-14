@@ -38,7 +38,7 @@ const NavBar: FC<NavBarProps> = ({ openSideNav }) => {
       </button>
 
       <div className="flex w-full flex-col items-center gap-3 lg:flex-row">
-        <Avatar className="h-20 w-20" image="https://picsum.photos/200" />
+        <Avatar className="h-20 w-20" image="https://loremflickr.com/100/100" />
 
         <div className="flex flex-col items-center text-center lg:items-start">
           <Text

@@ -1,0 +1,51 @@
+export const members = [
+  {
+    id: 1,
+    first_name: 'Okeke',
+    last_name: 'Juliet Olufunke',
+    gender: 'Female',
+    phone_number: '08108264231',
+  },
+  {
+    id: 2,
+    first_name: 'Babatunde',
+    last_name: 'Feranmi Kayode',
+    gender: 'Female',
+    phone_number: '08108264231',
+  },
+  {
+    id: 3,
+    first_name: 'Ofili',
+    last_name: 'Oluwaseun Kayode',
+    gender: 'Male',
+    phone_number: '08108264231',
+  },
+  {
+    id: 4,
+    first_name: 'Durojaye',
+    last_name: 'Tolani Bosede',
+    gender: 'Female',
+    phone_number: '08108264231',
+  },
+  {
+    id: 5,
+    first_name: 'Okeke',
+    last_name: 'Juliet Olufunke',
+    gender: 'Female',
+    phone_number: '08108264231',
+  },
+  {
+    id: 6,
+    first_name: 'Olalekan',
+    last_name: 'Kayode Bodunde',
+    gender: 'Male',
+    phone_number: '08108264231',
+  },
+  {
+    id: 7,
+    first_name: 'Enarho',
+    last_name: 'Edward Tunmise',
+    gender: 'Male',
+    phone_number: '08108264231',
+  },
+];

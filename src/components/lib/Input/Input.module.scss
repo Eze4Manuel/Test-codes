@@ -22,4 +22,8 @@
   &__normalText {
     @apply text-cci-grey;
   }
+
+  &__contained {
+    @apply rounded-md border border-cci-grey-dim/50 px-4 py-2 focus:border focus:border-cci-grey-dim;
+  }
 }

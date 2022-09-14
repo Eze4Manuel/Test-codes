@@ -9,5 +9,6 @@ export default interface DropdownProps {
   options: Option[];
   label: string;
   defaultValue?: Option;
-  onChange: (value: SingleValue<Option>, action: ActionMeta<Option>) => void;
+  disabled?: boolean;
+  onChange?: (value: SingleValue<Option>, action: ActionMeta<Option>) => void;
 }

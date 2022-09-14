@@ -21,11 +21,11 @@
 }
 .tab {
   &__container {
-    @apply flex w-full items-center gap-10;
+    @apply flex w-full items-center gap-10 lg:gap-16;
   }
 
-  @apply mb-0 flex min-w-[50px] flex-nowrap items-center justify-center whitespace-nowrap border-b-4 
-  border-transparent py-1 px-1 font-josefinSans font-bold lg:min-w-[100px];
+  @apply mb-0 flex w-auto flex-nowrap items-center justify-center whitespace-nowrap border-b-4 
+  border-transparent py-1 px-1 font-josefinSans font-bold;
 
   &__active {
     @apply border-b-primary-main;
