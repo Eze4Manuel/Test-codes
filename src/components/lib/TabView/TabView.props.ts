@@ -1,9 +1,6 @@
-import type { ReactNode } from 'react';
-
 export interface Tab {
-  id: string;
   title: string;
-  component: ReactNode;
+  url: string;
 }
 
 export default interface TabViewProps {

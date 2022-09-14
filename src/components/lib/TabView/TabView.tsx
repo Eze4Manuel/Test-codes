@@ -1,48 +1,36 @@
 import { useRouter } from 'next/router';
-import type { FC } from 'react';
-import { useCallback } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 
 import styles from './TabView.module.scss';
 import type TabViewProps from './TabView.props';
 
-const TabView: FC<TabViewProps> = ({
+const TabView: FC<PropsWithChildren<TabViewProps>> = ({
   tabs,
   showActionButton = false,
   actionButtonTitle,
   onActionButtonClicked,
+  children,
 }) => {
   const router = useRouter();
-  const activeTab = router.query?.tab || '';
 
-  const onTabClicked = (id: string) => {
-    router.push(`${router.pathname}?tab=${id}`);
+  const onTabClicked = (url: string) => {
+    router.push(`${url}#active`);
   };
-
-  const renderContent = useCallback(() => {
-    const activeTabObject = tabs.find((tab) => tab.id === activeTab);
-
-    if (activeTabObject) {
-      return activeTabObject.component;
-    }
-
-    return <></>;
-  }, [router.query?.tab]);
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.overflow__wrapper}>
-          <div
-            className={`no-scrollbar scroll-smooth ${styles.overflow__container}`}
-          >
+          <div className={`no-scrollbar ${styles.overflow__container}`}>
             <div className={`${styles.tab__container}`}>
               {tabs.map((tab, index) => (
                 <button
+                  id={router.pathname.startsWith(tab.url) ? 'active' : ''}
                   key={index}
                   className={`${styles.tab} ${
-                    activeTab === tab.id && styles.tab__active
+                    router.pathname.startsWith(tab.url) && styles.tab__active
                   }`}
-                  onClick={() => onTabClicked(tab.id)}
+                  onClick={() => onTabClicked(tab.url)}
                 >
                   {tab.title}
                 </button>
@@ -65,7 +53,7 @@ const TabView: FC<TabViewProps> = ({
         )}
       </div>
 
-      <div className={styles.content}>{renderContent()}</div>
+      <div className={styles.content}>{children}</div>
     </div>
   );
 };

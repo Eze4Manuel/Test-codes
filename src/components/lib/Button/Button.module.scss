@@ -11,23 +11,23 @@
 
   &__medium {
     @apply min-h-[30px] min-w-[120px] px-5 py-2 text-base 
-    lg:min-h-[38px] lg:min-w-[170px];
+    lg:min-h-[38px] lg:min-w-[170px] lg:py-3;
   }
 
   &__large {
     @apply min-h-[45px] min-w-[250px] px-3 py-2 text-base lg:min-h-[45px] 
-    lg:min-w-[350px];
+    lg:min-w-[350px] lg:py-3;
   }
 }
 
 .variant {
   &__solid {
-    @apply border-2 border-transparent bg-cci-black text-white hover:bg-cci-black/70 
+    @apply border border-transparent bg-cci-black text-white hover:bg-cci-black/70 
     disabled:bg-gray-300 disabled:text-gray-500;
   }
 
   &__outline {
-    @apply border-2 border-cci-black bg-transparent text-cci-black
+    @apply border border-cci-black bg-transparent text-cci-black
     hover:border-primary-main/30 hover:bg-primary-main/10 
     disabled:border-gray-500 disabled:text-gray-500;
   }

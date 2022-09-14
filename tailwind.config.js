@@ -28,6 +28,7 @@ module.exports = {
         'cci-border': 'rgba(16, 19, 24, 0.15)',
         'cci-grey': '#686868',
         'cci-grey-dim': '#686868CC',
+        'cci-green': '#00B232',
 
         primary: {
           main: '#b20000',

@@ -1,0 +1,29 @@
+.wrapper {
+  @apply my-4 flex gap-4;
+}
+
+.container {
+  @apply flex items-center;
+}
+
+.page {
+  @apply flex h-10 w-10 items-center justify-center font-lato text-xs;
+}
+
+.active__page {
+  @apply flex h-10 w-10 items-center justify-center bg-cci-black 
+  font-lato text-xs text-white;
+}
+
+.navigator {
+  @apply flex h-10 cursor-pointer items-center justify-center border 
+  border-cci-grey-dim px-2 text-cci-grey-dim disabled:cursor-not-allowed;
+
+  &__previous {
+    @apply rounded-l-md;
+  }
+
+  &__next {
+    @apply rounded-r-md;
+  }
+}
