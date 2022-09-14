@@ -20,7 +20,7 @@ const MembersTable: FC<MembersTableProps> = ({
   const router = useRouter();
 
   return (
-    <div className="flex w-full flex-col gap-3">
+    <div className="flex w-full flex-col gap-3 overflow-x-hidden">
       <Table>
         <TableHeader
           items={['SN', 'Full Name', 'Gender', 'Phone Number', 'Action']}
