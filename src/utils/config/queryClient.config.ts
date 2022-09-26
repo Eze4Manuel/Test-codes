@@ -1,11 +1,6 @@
-import toaster from 'react-hot-toast';
 import type { QueryClientConfig } from 'react-query';
 
-const throwError = (error: any) => {
-  toaster.error(
-    error?.response?.data?.message || 'Something went wrong, try again later.'
-  );
-};
+import { throwError } from '../response/error';
 
 export const queryClientConfig: QueryClientConfig = {
   defaultOptions: {
