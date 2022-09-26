@@ -19,6 +19,7 @@ const Avatar: FC<AvatarProps> = ({ name, image, className }) => {
         {name.length > 3
           ? name
               .split(' ')
+              .splice(0, 2)
               .map((item) => item.charAt(0))
               .join('')
           : name}

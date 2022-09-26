@@ -2,13 +2,19 @@ import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import type { FC } from 'react';
 
-import { useMediaQuery } from '@/hooks';
+import { useAppDispatch, useMediaQuery } from '@/hooks';
+import { logout } from '@/store/slices/userSlice';
 
 import type SideNavProps from './SideNav.props';
 import SideNavLink from './SideNavLink';
 
 const SideNav: FC<SideNavProps> = ({ isOpen, onClose, links }) => {
+  const dispatch = useAppDispatch();
   const smallScreen = useMediaQuery('(max-width:1200px)');
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <>
@@ -52,7 +58,8 @@ const SideNav: FC<SideNavProps> = ({ isOpen, onClose, links }) => {
           <SideNavLink
             icon="icon-park-outline:logout"
             title="Logout"
-            url="/logout"
+            url="/login"
+            onClick={handleLogout}
           />
         )}
       </aside>

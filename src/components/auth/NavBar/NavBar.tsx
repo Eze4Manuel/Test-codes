@@ -1,17 +1,21 @@
 import { Icon } from '@iconify/react';
+import { useRouter } from 'next/router';
 import type { FC } from 'react';
 import { useState } from 'react';
 import { usePopper } from 'react-popper';
 
 import Avatar from '@/components/lib/Avatar';
 import Text from '@/components/lib/Text';
+import { useAppDispatch, useAppSelector } from '@/hooks';
+import { logout } from '@/store/slices/userSlice';
+import { processRole } from '@/utils/misc';
 
 import type NavBarProps from './NavBar.props';
 
 const NavBar: FC<NavBarProps> = ({ openSideNav }) => {
-  // TODO: Get user name, role and image from the user store
-  const name = 'Ogulu Franchesca Damini ';
-  const role = 'member';
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const { user } = useAppSelector((state) => state.user);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [referenceElement, setReferenceElement] =
     useState<HTMLButtonElement | null>(null);
@@ -31,6 +35,11 @@ const NavBar: FC<NavBarProps> = ({ openSideNav }) => {
     setMenuIsOpen(false);
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push('/login');
+  };
+
   return (
     <nav className="flex w-full flex-col items-start justify-between gap-5 p-5 lg:flex-row lg:items-center lg:p-10">
       <button onClick={openSideNav} className=" lg:hidden">
@@ -38,16 +47,22 @@ const NavBar: FC<NavBarProps> = ({ openSideNav }) => {
       </button>
 
       <div className="flex w-full flex-col items-center gap-3 lg:flex-row">
-        <Avatar className="h-20 w-20" image="https://loremflickr.com/100/100" />
+        <Avatar
+          className="h-20 w-20"
+          name={`${user?.first_name} ${user?.last_name}`}
+          image={user?.profile_picture}
+        />
 
         <div className="flex flex-col items-center text-center lg:items-start">
           <Text
             variant="subheading"
             className="-mb-1 font-josefinSans font-bold capitalize"
           >
-            {name}
+            {user?.first_name} {user?.last_name}
           </Text>
-          <Text className="capitalize text-gray-500">{role}</Text>
+          <Text className="capitalize text-gray-500">
+            {processRole(user?.role || '').longForm}
+          </Text>
         </div>
       </div>
 
@@ -67,7 +82,10 @@ const NavBar: FC<NavBarProps> = ({ openSideNav }) => {
           onMouseLeave={onCloseMenu}
           {...attributes.popper}
         >
-          <div className="cursor-pointer text-sm hover:text-primary-main">
+          <div
+            className="cursor-pointer text-sm hover:text-primary-main"
+            onClick={handleLogout}
+          >
             <Text className="font-semibold">Log Out</Text>
           </div>
         </div>

@@ -5,4 +5,6 @@ export default interface InputProps extends HTMLProps<HTMLInputElement> {
   icon?: boolean;
   textOpacity?: 'normal' | 'dim';
   variant?: 'normal' | 'bold' | 'contained';
+  error?: boolean;
+  helperText?: string;
 }

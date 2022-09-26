@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import Button from '@/components/lib/Button';
 import Heading from '@/components/lib/Heading';
@@ -32,12 +33,14 @@ const Index = () => {
             International (CCI).
           </Text>
 
-          <Button
-            className="my-4 block w-full md:mx-auto md:w-[60%] lg:w-[50%] xl:w-[30%]"
-            size="medium"
-          >
-            Log in to your account
-          </Button>
+          <Link href="/login">
+            <Button
+              className="my-4 block w-full md:mx-auto md:w-[60%] lg:w-[50%] xl:w-[30%]"
+              size="medium"
+            >
+              Log in to your account
+            </Button>
+          </Link>
           <Button
             className="my-4 block w-full md:mx-auto md:w-[60%] lg:w-[50%] xl:w-[30%]"
             variant="outline"
