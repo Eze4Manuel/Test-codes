@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import { useState } from 'react';
 
 import {
   Amazing,
@@ -18,9 +17,7 @@ import Text from '../Text';
 import styles from './Emoji.module.scss';
 import type EmojiProps from './Emoji.props';
 
-const Emoji: FC<EmojiProps> = ({ setEmoji }) => {
-  const [activeEmoji, setActiveEmoji] = useState(-1);
-
+const Emoji: FC<EmojiProps> = ({ activeEmoji, setEmoji, setActiveEmoji }) => {
   const emojis = [
     { icon: Terrible, iconActive: TerribleActive, text: 'Terrible' },
     { icon: Bad, iconActive: BadActive, text: 'Bad' },
