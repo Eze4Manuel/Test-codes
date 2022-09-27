@@ -1,5 +1,6 @@
 import type { FormEvent } from 'react';
 import { useState } from 'react';
+import { useMutation } from 'react-query';
 
 import Button from '@/components/lib/Button';
 import Heading from '@/components/lib/Heading';
@@ -8,7 +9,9 @@ import Text from '@/components/lib/Text';
 import TextArea from '@/components/lib/TextArea';
 import AuthLayout from '@/layouts/AuthLayout';
 import { sendCheck } from '@/public/assets/icons/emoji/sendCheck';
+import { serviceUnitFeedback } from '@/services/feedbacks';
 import Meta from '@/templates/Meta';
+import { processResponse } from '@/utils/response/processResponse';
 
 const Feedback = () => {
   const [sendTo, setSendTo] = useState('');
@@ -16,9 +19,26 @@ const Feedback = () => {
   const [suggestions, setSuggestions] = useState('');
   const [successModal, setSuccessModal] = useState(false);
 
+  const { mutate, isLoading } = useMutation(serviceUnitFeedback, {
+    onSuccess(response) {
+      const data = processResponse(response);
+
+      if (data) {
+        setSuccessModal(true);
+        setSendTo('');
+        setFeedback('');
+        setSuggestions('');
+      }
+    },
+  });
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSuccessModal(true);
+    mutate({
+      send_to: sendTo,
+      service_experience: feedback,
+      suggestions,
+    });
   };
 
   return (
@@ -66,6 +86,7 @@ const Feedback = () => {
             <Button
               size="medium"
               className="block w-full md:mx-auto md:w-[60%] lg:mx-0 lg:w-[25%]"
+              loading={isLoading}
             >
               Submit
             </Button>

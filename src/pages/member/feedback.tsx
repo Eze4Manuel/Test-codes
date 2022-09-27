@@ -1,5 +1,6 @@
 import type { FormEvent } from 'react';
 import { useState } from 'react';
+import { useMutation } from 'react-query';
 
 import Button from '@/components/lib/Button';
 import Emoji from '@/components/lib/Emoji';
@@ -9,16 +10,40 @@ import Text from '@/components/lib/Text';
 import TextArea from '@/components/lib/TextArea';
 import AuthLayout from '@/layouts/AuthLayout';
 import { sendCheck } from '@/public/assets/icons/emoji/sendCheck';
+import { memberFeedback } from '@/services/feedbacks';
 import Meta from '@/templates/Meta';
+import { processResponse } from '@/utils/response/processResponse';
+
+enum ServiceExperience {
+  TERRIBLE = 'TERRIBLE',
+  GOOD = 'GOOD',
+  BAD = 'BAD',
+  AMAZING = 'AMAZING',
+  OKAY = 'OKAY',
+}
 
 const Feedback = () => {
   const [emoji, setEmoji] = useState<string>('');
-  const [ratings, setRatings] = useState<string>('');
+  const [activeEmoji, setActiveEmoji] = useState(-1);
+  const [reason, setReason] = useState<string>('');
   const [successModal, setSuccessModal] = useState(false);
+
+  const { mutate, isLoading } = useMutation(memberFeedback, {
+    onSuccess(response) {
+      const data = processResponse(response);
+
+      if (data) {
+        setSuccessModal(true);
+        setReason('');
+        setEmoji('');
+        setActiveEmoji(-1);
+      }
+    },
+  });
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSuccessModal(true);
+    mutate({ satisfaction: ServiceExperience.GOOD, reason });
   };
 
   return (
@@ -36,24 +61,30 @@ const Feedback = () => {
           </Text>
 
           <form onSubmit={handleSubmit}>
-            <Emoji value={emoji} setEmoji={setEmoji} />
+            <Emoji
+              value={emoji}
+              setEmoji={setEmoji}
+              activeEmoji={activeEmoji}
+              setActiveEmoji={setActiveEmoji}
+            />
 
             <Text className="mb-3 block text-center text-[1em] lg:text-left lg:text-[0.8em]">
               What are the main reasons for your rating?
             </Text>
             <TextArea
-              name="ratings"
+              name="reason"
               className="text-[1em] lg:text-[0.8em]"
               rows={8}
-              value={ratings}
+              value={reason}
               required={true}
-              onChange={(e) => setRatings(e.target.value)}
+              onChange={(e) => setReason(e.target.value)}
             />
 
             <Button
               type="submit"
               size="medium"
               className="my-6 mb-0 block w-full text-[1em] md:mx-auto md:w-[45%] lg:mx-0 lg:w-[28%] lg:text-[0.8em]"
+              loading={isLoading}
             >
               Submit
             </Button>
