@@ -10,6 +10,8 @@ const Input: FC<InputProps> = ({
   name,
   textOpacity = 'normal',
   variant = 'normal',
+  error,
+  helperText,
   ...rest
 }) => {
   const InputVariant = match(textOpacity, {
@@ -25,20 +27,25 @@ const Input: FC<InputProps> = ({
   });
 
   return (
-    <label htmlFor={name} className="w-full">
-      {labelText && (
+    <div className="w-full">
+      <label htmlFor={name} className="w-full">
         <div className={`${LabelVariant} ${styles.label}`}>{labelText}</div>
-      )}
+        <input
+          name={name}
+          id={name}
+          className={`${styles.base} ${InputVariant} ${
+            error ? 'border-red-500' : ''
+          }`}
+          {...rest}
+        />
+      </label>
 
-      <input
-        name={name}
-        id={name}
-        className={`${styles.base} ${InputVariant} ${
-          variant === 'contained' ? styles.variant__contained : ''
-        }`}
-        {...rest}
-      />
-    </label>
+      {helperText && (
+        <span className={`text-sm ${error ? 'text-red-500' : ''}`}>
+          {helperText}
+        </span>
+      )}
+    </div>
   );
 };
 

@@ -1,15 +1,20 @@
 interface IUser {
-  _id: string;
-  first_name: string;
-  last_name: string;
-  full_name?: string;
-  account_type: string;
+  id: string;
+  active?: boolean;
+  ccid?: string;
+  created_at?: string;
   dob?: string;
-  phone?: string;
+  email_address?: string;
+  first_name?: string;
+  last_name?: string;
   gender?: string;
-  email: string;
-  remember_token?: string;
-  is_activated: boolean;
+  home_address?: string;
+  is_active?: boolean;
+  marital_status?: string;
+  membership_class?: boolean;
+  phone_number?: string;
+  profile_picture?: string;
+  role?: string;
 }
 
 export default IUser;
