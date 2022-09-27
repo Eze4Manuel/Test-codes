@@ -1,22 +1,19 @@
-import { useRouter } from 'next/router';
 import type { FC, PropsWithChildren } from 'react';
 import { useEffect, useState } from 'react';
 
 import NavBar from '@/components/auth/NavBar';
 import SideNav from '@/components/auth/SideNav';
-import { useAppDispatch, useAppSelector, useMediaQuery } from '@/hooks';
-import { setUserData } from '@/store/slices/userSlice';
+import { useAppSelector, useCheckAuth, useMediaQuery } from '@/hooks';
 import { processRole } from '@/utils/misc';
 
 import type AuthLayoutProps from './AuthLayout.props';
 import { followUpLeadLinks, memberLinks } from './data';
 
 const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
-  const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
-  const router = useRouter();
   const [sideNavIsOpen, setSideNavIsOpen] = useState(false);
   const largeScreen = useMediaQuery('(min-width: 1200px)');
+  const { isAuthenticated } = useCheckAuth();
 
   const getLinks = () => {
     switch (processRole(user?.role || '')?.urlForm) {
@@ -35,22 +32,11 @@ const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
     setSideNavIsOpen(false);
   }, [largeScreen]);
 
-  useEffect(() => {
-    const userData = localStorage.getItem('user');
-
-    if (!userData) {
-      router.push('/login');
-    } else {
-      const parsedData = JSON.parse(userData);
-      dispatch(setUserData(parsedData));
-    }
-  }, []);
-
   const toggleSideNav = () => {
     setSideNavIsOpen((prevState) => !prevState);
   };
 
-  return (
+  return isAuthenticated ? (
     <>
       {meta}
 
@@ -68,6 +54,8 @@ const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
         </main>
       </div>
     </>
+  ) : (
+    <></>
   );
 };
 
