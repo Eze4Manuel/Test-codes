@@ -1,5 +1,5 @@
 export interface MemberFeedbackPayload {
-  satisfaction: string;
+  satisfaction: string | null;
   reason: string;
 }
 

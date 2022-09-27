@@ -41,9 +41,26 @@ const Feedback = () => {
     },
   });
 
+  const handleEmoji = (selectedEmoji: string) => {
+    switch (selectedEmoji) {
+      case 'Good':
+        return ServiceExperience.GOOD;
+      case 'Okay':
+        return ServiceExperience.OKAY;
+      case 'Amazing':
+        return ServiceExperience.AMAZING;
+      case 'Terrible':
+        return ServiceExperience.TERRIBLE;
+      case 'Bad':
+        return ServiceExperience.BAD;
+      default:
+        return null;
+    }
+  };
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutate({ satisfaction: ServiceExperience.GOOD, reason });
+    mutate({ satisfaction: handleEmoji(emoji), reason });
   };
 
   return (
