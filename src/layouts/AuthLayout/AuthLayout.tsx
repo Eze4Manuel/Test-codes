@@ -9,24 +9,24 @@ import { processRole } from '@/utils/misc';
 import type AuthLayoutProps from './AuthLayout.props';
 import { followUpLeadLinks, memberLinks } from './data';
 
+const getLinks = (role: string) => {
+  switch (role) {
+    case 'member':
+      return memberLinks;
+
+    case 'follow-up-lead':
+      return followUpLeadLinks;
+
+    default:
+      return [];
+  }
+};
+
 const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
   const { user } = useAppSelector((state) => state.user);
   const [sideNavIsOpen, setSideNavIsOpen] = useState(false);
   const largeScreen = useMediaQuery('(min-width: 1200px)');
   const { isAuthenticated } = useCheckAuth();
-
-  const getLinks = () => {
-    switch (processRole(user?.role || '')?.urlForm) {
-      case 'member':
-        return memberLinks;
-
-      case 'follow-up-lead':
-        return followUpLeadLinks;
-
-      default:
-        return [];
-    }
-  };
 
   useEffect(() => {
     setSideNavIsOpen(false);
@@ -44,7 +44,7 @@ const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
         <SideNav
           isOpen={sideNavIsOpen}
           onClose={toggleSideNav}
-          links={getLinks()}
+          links={getLinks(processRole(user?.role || '')?.urlForm)}
         />
 
         <main className="relative flex h-full w-full flex-1 flex-col overflow-y-auto overflow-x-hidden">
