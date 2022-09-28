@@ -2,9 +2,12 @@ import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import type { FC, PropsWithChildren } from 'react';
+import { useEffect } from 'react';
 
 import Heading from '@/components/lib/Heading';
 import Text from '@/components/lib/Text';
+import { useAppSelector, useCheckAuth } from '@/hooks';
+import { processRole } from '@/utils/misc';
 
 import type OnboardingLayoutProps from './OnboardingLayout.props';
 
@@ -16,6 +19,16 @@ const OnboardingLayout: FC<PropsWithChildren<OnboardingLayoutProps>> = ({
   children,
 }) => {
   const router = useRouter();
+  const { user } = useAppSelector((state) => state.user);
+  const { isAuthenticated } = useCheckAuth({
+    disableRedirect: true,
+  });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push(`/${processRole(user?.role || '').urlForm}/profile`);
+    }
+  }, [isAuthenticated]);
 
   return (
     <>
