@@ -7,16 +7,20 @@ import type DropdownProps from './Dropdown.props';
 const Dropdown: FC<DropdownProps> = ({
   options,
   label,
-  defaultValue,
-  onChange,
   disabled = false,
+  error,
+  helperText,
+  onChange,
+  ...rest
 }) => {
   const customStyles = {
     container: (provided: any) => ({
       ...provided,
       outline: 'none',
       border: 'none',
-      borderBottom: '1px solid #686868',
+      borderBottom: error
+        ? '1px solid rgb(239, 68, 68, 1)'
+        : '1px solid #686868',
       backgroundColor: 'transparent',
     }),
 
@@ -46,15 +50,24 @@ const Dropdown: FC<DropdownProps> = ({
   };
 
   return (
-    <div>
+    <div className="w-full">
       <label className={styles.label}>{label}</label>
       <Select
         isDisabled={disabled}
         options={options}
         styles={customStyles}
-        onChange={onChange}
-        defaultValue={defaultValue}
+        onChange={(value: any, action: any) => {
+          if (onChange) {
+            onChange(value, action);
+          }
+        }}
+        {...rest}
       />
+      {helperText && (
+        <span className={`text-sm ${error ? 'text-red-500' : ''}`}>
+          {helperText}
+        </span>
+      )}
     </div>
   );
 };
