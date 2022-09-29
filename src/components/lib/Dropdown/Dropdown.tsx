@@ -29,7 +29,7 @@ const Dropdown: FC<DropdownProps> = ({
       outline: 'none',
       border: 'none',
       boxShadow: 'none',
-      backgroundColor: 'transparent',
+      backgroundColor: disabled ? 'rgb(243, 244, 246, 1)' : 'transparent',
     }),
 
     valueContainer: (provided: any) => ({

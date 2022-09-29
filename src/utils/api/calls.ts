@@ -8,6 +8,11 @@ export const postRequest = async ({
   data: any;
 }) => {
   const response = await baseAxiosMethod.post(url, data);
+
+  if (url === '/user/login') {
+    console.log(response);
+  }
+
   return response?.data || response;
 };
 

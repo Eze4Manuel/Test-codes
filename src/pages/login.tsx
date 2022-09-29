@@ -42,6 +42,7 @@ export const Login = () => {
       if (data) {
         const userData = {
           id: data?.id,
+          ccid: data?.ccid,
           email_address: data?.email_address,
           first_name: data?.first_name,
           last_name: data?.last_name,
