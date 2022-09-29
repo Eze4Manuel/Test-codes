@@ -1,11 +1,13 @@
 import type { FormEvent } from 'react';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useMutation, useQuery } from 'react-query';
 import type { SingleValue } from 'react-select';
 
 import Button from '@/components/lib/Button';
 import Dropdown from '@/components/lib/Dropdown';
 import type { Option } from '@/components/lib/Dropdown/Dropdown.props';
+import FullPageLoader from '@/components/lib/FullPageLoader';
 import Input from '@/components/lib/Input';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import AuthLayout from '@/layouts/AuthLayout';
@@ -52,22 +54,36 @@ const PersonalInfo = () => {
     search_option: user?.email_address,
   };
 
-  useQuery([queryKeys.getMemberInfo], () => fetchUser(query), {
-    onSuccess(response) {
-      const data = processResponse(response);
+  const { isFetching: infoLoading } = useQuery(
+    [queryKeys.getMemberInfo],
+    () => fetchUser(query),
+    {
+      onSuccess(response) {
+        const data = processResponse(response);
 
-      if (data) {
-        setMember(data);
-      }
-    },
-    enabled: !!user?.email_address,
-  });
+        if (data) {
+          setMember(data);
+          setGender(
+            genders.find((item) => item.value === data?.gender) || option
+          );
+          setMaritalStatus(
+            maritalStatuses.find(
+              (item) => item.value === data?.marital_status
+            ) || option
+          );
+        }
+      },
+      enabled: !!user?.email_address,
+    }
+  );
 
   const { mutate, isLoading } = useMutation(updateUser, {
     onSuccess(response) {
       const data = processResponse(response);
 
       if (data) {
+        toast.success('Profile updated successfully!');
+
         const userData = {
           id: data?.id,
           email_address: data?.email_address,
@@ -77,8 +93,6 @@ const PersonalInfo = () => {
           profile_picture: data?.profile_picture,
           role: data?.role,
         };
-
-        setGender(data?.gender);
 
         localStorage.setItem('user', JSON.stringify(userData));
         dispatch(setUserData(userData));
@@ -222,6 +236,7 @@ const PersonalInfo = () => {
           <Input
             labelText="No. of children (if any)"
             type="number"
+            value="0"
             disabled={!isEditting}
           />
 
@@ -236,6 +251,8 @@ const PersonalInfo = () => {
           )}
         </div>
       </TabViewLayout>
+
+      {infoLoading && <FullPageLoader />}
     </AuthLayout>
   );
 };

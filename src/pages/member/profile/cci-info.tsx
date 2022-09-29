@@ -1,11 +1,13 @@
 import type { FormEvent } from 'react';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useMutation, useQuery } from 'react-query';
 import type { SingleValue } from 'react-select';
 
 import Button from '@/components/lib/Button';
 import Dropdown from '@/components/lib/Dropdown';
 import type { Option } from '@/components/lib/Dropdown/Dropdown.props';
+import FullPageLoader from '@/components/lib/FullPageLoader';
 import Input from '@/components/lib/Input';
 import { useAppSelector } from '@/hooks';
 import AuthLayout from '@/layouts/AuthLayout';
@@ -30,41 +32,54 @@ const CCIProfile = () => {
     membership_class: '',
   };
 
-  const option = {
-    label: '',
-    value: '',
-  };
-
   const [CCIInfo, setCCIInfo] = useState(CCIState);
   const [errors, setErrors] = useState(CCIState);
   const [isEditting, setIsEditting] = useState(false);
-  const [serviceUnit, setSeviceUnit] = useState<SingleValue<Option>>(option);
-  const [memberClass, setMemberClass] = useState<SingleValue<Option>>(option);
-  const [mapGrop, setMapGroup] = useState<SingleValue<Option>>(option);
-  const [cciCampus, setCCICampus] = useState<SingleValue<Option>>(option);
+  const [serviceUnit, setSeviceUnit] = useState<SingleValue<Option>>({
+    value: '',
+    label: 'None',
+  });
+  const [memberClass, setMemberClass] = useState<SingleValue<Option>>({
+    value: '',
+    label: 'Not Completed',
+  });
+  const [mapGrop, setMapGroup] = useState<SingleValue<Option>>({
+    value: '',
+    label: 'Not Selected',
+  });
+  const [cciCampus, setCCICampus] = useState<SingleValue<Option>>({
+    value: '',
+    label: 'Not Selected',
+  });
 
   const { user } = useAppSelector((state) => state.user);
 
   const query = {
-    search_type: 'EMAIL',
-    search_option: user?.email_address,
+    search_type: 'CCID',
+    search_option: user?.ccid,
   };
 
-  useQuery([queryKeys.getMemberInfo], () => fetchUser(query), {
-    onSuccess(response) {
-      const data = processResponse(response);
+  const { isFetching: infoLoading } = useQuery(
+    [queryKeys.getMemberCCIInfo],
+    () => fetchUser(query),
+    {
+      onSuccess(response) {
+        const data = processResponse(response);
 
-      if (data) {
-        setCCIInfo(data);
-      }
-    },
-  });
+        if (data) {
+          setCCIInfo(data);
+        }
+      },
+      enabled: !!user?.ccid,
+    }
+  );
 
   const { mutate, isLoading } = useMutation(updateUser, {
     onSuccess(response) {
       const data = processResponse(response);
       if (data) {
         setCCIInfo(data);
+        toast.success('Profile updated successfully!');
       }
     },
   });
@@ -112,7 +127,7 @@ const CCIProfile = () => {
             name="first_name"
             value={CCIInfo.ccid}
             onChange={handleChange}
-            disabled={!isEditting}
+            disabled
             error={!isEmpty(errors.ccid)}
             helperText={errors.ccid}
           />
@@ -148,7 +163,7 @@ const CCIProfile = () => {
           <Dropdown
             label="Membership Class"
             value={memberClass}
-            disabled={!isEditting}
+            disabled
             options={membershipClasses}
             onChange={(value) => {
               setMemberClass(value);
@@ -186,6 +201,8 @@ const CCIProfile = () => {
           )}
         </div>
       </TabViewLayout>
+
+      {infoLoading && <FullPageLoader />}
     </AuthLayout>
   );
 };
