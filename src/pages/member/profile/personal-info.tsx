@@ -19,35 +19,34 @@ import Meta from '@/templates/Meta';
 import queryKeys from '@/utils/api/queryKeys';
 import { genders, maritalStatuses } from '@/utils/constants';
 import { processResponse } from '@/utils/response/processResponse';
-import { validateUserInputs } from '@/utils/validators';
+import { validatePersonalInfoInputs } from '@/utils/validators';
 import { isEmpty } from '@/utils/validators/helpers';
 
+const memberState = {
+  first_name: '',
+  last_name: '',
+  email_address: '',
+  phone_number: '',
+  home_address: '',
+  marital_status: '',
+  dob: '',
+  gender: '',
+};
+
+const option = {
+  label: '',
+  value: '',
+};
+
 const PersonalInfo = () => {
-  const memberState = {
-    first_name: '',
-    last_name: '',
-    email_address: '',
-    phone_number: '',
-    home_address: '',
-    marital_status: '',
-    dob: '',
-    gender: '',
-  };
-
-  const option = {
-    label: '',
-    value: '',
-  };
-
   const dispatch = useAppDispatch();
   const [member, setMember] = useState(memberState);
   const [errors, setErrors] = useState(memberState);
+  const { user } = useAppSelector((state) => state.user);
   const [isEditting, setIsEditting] = useState(false);
   const [maritalStatus, setMaritalStatus] =
     useState<SingleValue<Option>>(option);
   const [gender, setGender] = useState<SingleValue<Option>>(option);
-
-  const { user } = useAppSelector((state) => state.user);
 
   const query = {
     search_type: 'EMAIL',
@@ -62,7 +61,16 @@ const PersonalInfo = () => {
         const data = processResponse(response);
 
         if (data) {
-          setMember(data);
+          setMember({
+            first_name: data?.first_name,
+            last_name: data?.last_name,
+            email_address: data?.email_address,
+            phone_number: data?.phone_number,
+            home_address: data?.home_address,
+            marital_status: data?.marital_status,
+            dob: data?.dob,
+            gender: data?.gender,
+          });
           setGender(
             genders.find((item) => item.value === data?.gender) || option
           );
@@ -86,6 +94,7 @@ const PersonalInfo = () => {
 
         const userData = {
           id: data?.id,
+          ccid: data?.ccid,
           email_address: data?.email_address,
           first_name: data?.first_name,
           last_name: data?.last_name,
@@ -109,10 +118,15 @@ const PersonalInfo = () => {
 
   const handleSubmit = () => {
     setErrors(memberState);
-    const { errors: validateErrors, valid } = validateUserInputs(member);
+
+    const { errors: validateErrors, valid } =
+      validatePersonalInfoInputs(member);
 
     if (valid) {
-      mutate(member);
+      mutate({
+        id: user?.id as string,
+        data: member,
+      });
     } else {
       setErrors(validateErrors);
     }

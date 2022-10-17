@@ -23,15 +23,15 @@ import {
   serviceUnits,
 } from '@/utils/constants';
 import { processResponse } from '@/utils/response/processResponse';
-import { validateUserInputs } from '@/utils/validators';
+import { validateCCIInfoInputs } from '@/utils/validators';
 import { isEmpty } from '@/utils/validators/helpers';
 
-const CCIProfile = () => {
-  const CCIState = {
-    ccid: '',
-    membership_class: '',
-  };
+const CCIState = {
+  ccid: '',
+  membership_class: '',
+};
 
+const CCIProfile = () => {
   const [CCIInfo, setCCIInfo] = useState(CCIState);
   const [errors, setErrors] = useState(CCIState);
   const [isEditting, setIsEditting] = useState(false);
@@ -67,7 +67,10 @@ const CCIProfile = () => {
         const data = processResponse(response);
 
         if (data) {
-          setCCIInfo(data);
+          setCCIInfo({
+            ccid: data?.ccid,
+            membership_class: data?.membership_class,
+          });
         }
       },
       enabled: !!user?.ccid,
@@ -78,7 +81,6 @@ const CCIProfile = () => {
     onSuccess(response) {
       const data = processResponse(response);
       if (data) {
-        setCCIInfo(data);
         toast.success('Profile updated successfully!');
       }
     },
@@ -93,10 +95,13 @@ const CCIProfile = () => {
 
   const handleSubmit = () => {
     setErrors(CCIState);
-    const { errors: validateErrors, valid } = validateUserInputs(CCIInfo);
+    const { errors: validateErrors, valid } = validateCCIInfoInputs(CCIInfo);
 
     if (valid) {
-      mutate(CCIInfo);
+      mutate({
+        id: user?.id as string,
+        data: CCIInfo,
+      });
     } else {
       setErrors(validateErrors);
     }

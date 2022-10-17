@@ -39,22 +39,22 @@ export const Login = () => {
     onSuccess(response) {
       const data = processResponse(response);
 
-      if (data) {
+      if (data?.user) {
         const userData = {
-          id: data?.id,
-          ccid: data?.ccid,
-          email_address: data?.email_address,
-          first_name: data?.first_name,
-          last_name: data?.last_name,
-          gender: data?.gender,
-          profile_picture: data?.profile_picture,
-          role: data?.role,
+          id: data?.user?.id,
+          ccid: data?.user?.ccid,
+          email_address: data?.user?.email_address,
+          first_name: data?.user?.first_name,
+          last_name: data?.user?.last_name,
+          gender: data?.user?.gender,
+          profile_picture: data?.user?.profile_picture,
+          role: data?.user?.role,
         };
 
-        localStorage.setItem('token', data?.auth_token);
+        localStorage.setItem('token', response?.token);
         localStorage.setItem('user', JSON.stringify(userData));
         dispatch(setUserData(userData));
-        router.push(`/${processRole(data?.role || '').urlForm}/profile`);
+        router.push(`/${processRole(data?.user?.role || '').urlForm}/profile`);
       }
     },
   });
