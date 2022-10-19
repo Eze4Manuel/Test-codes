@@ -1,6 +1,6 @@
 import { isEmail, isEmpty, isValid } from './helpers';
 
-export const validateUserInputs = ({
+export const validatePersonalInfoInputs = ({
   first_name,
   last_name,
   email_address,
@@ -9,19 +9,15 @@ export const validateUserInputs = ({
   marital_status,
   dob,
   gender,
-  ccid,
-  membership_class,
 }: {
-  first_name?: string;
-  last_name?: string;
-  email_address?: string;
-  phone_number?: string;
-  home_address?: string;
-  marital_status?: string;
-  dob?: string;
-  gender?: string;
-  ccid?: string;
-  membership_class?: string;
+  first_name: string;
+  last_name: string;
+  email_address: string;
+  phone_number: string;
+  home_address: string;
+  marital_status: string;
+  dob: string;
+  gender: string;
 }) => {
   const errors = {
     first_name: '',
@@ -32,15 +28,11 @@ export const validateUserInputs = ({
     marital_status: '',
     dob: '',
     gender: '',
-    ccid: '',
-    membership_class: '',
   };
 
-  if (email_address) {
-    if (isEmpty(email_address)) errors.email_address = 'Email cannot be empty';
-    else if (!isEmail(email_address))
-      errors.email_address = 'Invalid email address';
-  }
+  if (isEmpty(email_address)) errors.email_address = 'Email cannot be empty';
+  else if (!isEmail(email_address))
+    errors.email_address = 'Invalid email address';
 
   if (isEmpty(first_name)) errors.first_name = 'First Name cannot be empty';
 
@@ -59,10 +51,28 @@ export const validateUserInputs = ({
 
   if (isEmpty(gender)) errors.gender = 'Gender cannot be empty';
 
-  if (isEmpty(ccid)) errors.ccid = 'CCI ID cannot be empty';
+  return {
+    valid: isValid(errors),
+    errors,
+  };
+};
+
+export const validateCCIInfoInputs = ({
+  ccid,
+  membership_class,
+}: {
+  ccid: string;
+  membership_class: string;
+}) => {
+  const errors = {
+    ccid: '',
+    membership_class: '',
+  };
+
+  if (isEmpty(ccid)) errors.ccid = 'CCID cannot be empty';
 
   if (isEmpty(membership_class))
-    errors.membership_class = 'Membership Class cannot be empty';
+    errors.membership_class = 'Please select an option';
 
   return {
     valid: isValid(errors),

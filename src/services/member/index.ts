@@ -14,9 +14,9 @@ const fetchUser = (query: FetchUserQuery) => {
   });
 };
 
-const updateUser = (data: UserPayload) => {
+const updateUser = ({ data, id }: { data: UserPayload; id: string }) => {
   return patchRequest({
-    url: '/user/update-profile',
+    url: `/user/update-profile/${id}`,
     data,
   });
 };
