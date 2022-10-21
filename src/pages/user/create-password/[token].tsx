@@ -38,7 +38,7 @@ export const CreatePassword = () => {
         const data = processResponse(response);
 
         if (data) {
-          toaster.success('Passwor created successfully!');
+          toaster.success('Password created successfully!');
           router.push('/login');
           localStorage.removeItem('token');
         }
