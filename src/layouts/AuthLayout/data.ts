@@ -28,3 +28,31 @@ export const followUpLeadLinks = [
     url: '/follow-up-lead/feedback',
   },
 ];
+
+export const leadPastorLinks = [
+  {
+    icon: 'bi:people',
+    title: 'Attendance',
+    url: '/lead-pastor/attendance',
+  },
+  {
+    icon: 'teenyicons:wallet-alt-outline',
+    title: 'Cash Offerings',
+    url: '/lead-pastor/cash-offerings',
+  },
+  {
+    icon: 'bi:people',
+    title: 'Member Database',
+    url: '/lead-pastor/member-database',
+  },
+  {
+    icon: 'bi:people',
+    title: 'Workers',
+    url: '/lead-pastor/workers',
+  },
+  {
+    icon: 'ant-design:user-outlined',
+    title: 'Profile',
+    url: '/lead-pastor/profile/index',
+  },
+];
