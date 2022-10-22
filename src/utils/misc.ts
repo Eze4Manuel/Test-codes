@@ -15,6 +15,12 @@ export const processRole: (role: string) => {
         longForm: 'Service Unit Lead - Follow-up Unit',
       };
 
+    case 'LEAD-PASTOR':
+      return {
+        urlForm: 'lead-pastor',
+        longForm: 'Lead Pastor',
+      };
+
     default:
       return {
         urlForm: '',

@@ -7,7 +7,7 @@ import { useAppSelector, useCheckAuth, useMediaQuery } from '@/hooks';
 import { processRole } from '@/utils/misc';
 
 import type AuthLayoutProps from './AuthLayout.props';
-import { followUpLeadLinks, memberLinks } from './data';
+import { followUpLeadLinks, leadPastorLinks, memberLinks } from './data';
 
 const getLinks = (role: string) => {
   switch (role) {
@@ -16,6 +16,9 @@ const getLinks = (role: string) => {
 
     case 'follow-up-lead':
       return followUpLeadLinks;
+
+    case 'lead-pastor':
+      return leadPastorLinks;
 
     default:
       return [];
