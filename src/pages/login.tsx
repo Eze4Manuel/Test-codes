@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import type { FormEvent } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMutation } from 'react-query';
 
 import Button from '@/components/lib/Button';
 import Input from '@/components/lib/Input';
 import Text from '@/components/lib/Text';
-import { useAppDispatch } from '@/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import OnboardingLayout from '@/layouts/OnboardingLayout';
 import { login } from '@/services/auth';
 import { setUserData } from '@/store/slices/userSlice';
@@ -24,16 +24,16 @@ const initialsState = {
 
 export const Login = () => {
   const dispatch = useAppDispatch();
-  // const { user } = useAppSelector((state) => state.user);
+  const { user } = useAppSelector((state) => state.user);
   const [payload, setPayload] = useState(initialsState);
   const [errors, setErrors] = useState(initialsState);
   const router = useRouter();
 
-  // useEffect(() => {
-  //   if (user) {
-  //     router.push(`/${processRole(user?.role || '').urlForm}/profile`);
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user) {
+      router.push(`/${processRole(user?.role || '').urlForm}/profile`);
+    }
+  }, [user]);
 
   const { mutate, isLoading } = useMutation(login, {
     onSuccess(response) {
