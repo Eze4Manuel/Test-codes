@@ -61,3 +61,8 @@ export const serviceUnits = [
     value: 'follow-up',
   },
 ];
+
+export const cciCampuses = [
+  { value: 'CCI Global', label: 'CCI Global' },
+  { value: 'CCI Ikeja', label: 'CCI Ikeja' },
+];

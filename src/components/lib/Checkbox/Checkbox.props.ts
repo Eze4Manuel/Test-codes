@@ -5,4 +5,6 @@ export default interface CheckboxProps
   label?: string;
   error?: string;
   helperText?: string;
+  checked?: boolean;
+  theme?: 'wine' | 'darkBlack';
 }

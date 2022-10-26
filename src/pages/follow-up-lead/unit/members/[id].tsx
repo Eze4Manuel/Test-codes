@@ -34,6 +34,7 @@ const Member = () => {
 
               <div className="hidden md:block">
                 <Checkbox
+                  theme="wine"
                   label="Remove from unit"
                   checked={checked}
                   onChange={toggleChecked}

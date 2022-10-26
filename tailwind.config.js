@@ -29,6 +29,8 @@ module.exports = {
         'cci-grey': '#686868',
         'cci-grey-dim': '#686868CC',
         'cci-green': '#00B232',
+        'cci-green2': ' #02C94F',
+        'cci-red': '#b20000',
 
         primary: {
           main: '#b20000',
