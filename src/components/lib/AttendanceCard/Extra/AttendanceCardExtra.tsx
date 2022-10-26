@@ -26,11 +26,11 @@ const allData = [
 
 const AttendanceCardExtra = () => {
   return (
-    <div className="grid h-[238.97px] grid-cols-3 gap-3 md:flex md:overflow-x-scroll lg:grid lg:w-full lg:grid-cols-3 lg:gap-6 lg:overflow-auto">
+    <div className="flex h-auto min-h-[238.97px] flex-col flex-wrap gap-3 sm:flex-row lg:w-full lg:gap-6">
       {allData.map((data, index) => (
         <div key={index} className={styles.card_container}>
-          <div className="h-[12px] rounded-t-[24px] bg-cci-black"></div>
-          <div className="absolute top-[50%] -translate-y-1/2">
+          <div className="h-[12px] w-full rounded-t-[24px] bg-cci-black"></div>
+          <div className="py-5">
             <div className={styles.date_container}>{data.date}</div>
             <div>
               <span className="mb-[0.5em] flex justify-center text-[28px]">

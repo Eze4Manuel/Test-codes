@@ -25,7 +25,7 @@ const Attendance = () => {
         <div className="lg:flex lg:justify-between">
           <Dropdown2 options={cciCampuses} />
 
-          <div className="my-4 flex gap-[4em] lg:my-0">
+          <div className="my-4 flex flex-col gap-3 sm:flex-row md:gap-[4em] lg:my-0">
             <Checkbox theme="darkBlack" label="Sunday Service" />
             <Checkbox theme="darkBlack" label="MDWK Service" />
             <Checkbox theme="darkBlack" label="Other" />
@@ -33,7 +33,7 @@ const Attendance = () => {
         </div>
 
         <section>
-          <div className="my-[2em] md:flex md:items-center md:gap-3 lg:gap-6">
+          <div className="my-[2em] flex flex-col md:gap-3 lg:gap-6 xl:flex-row">
             <AttendanceCard />
             <AttendanceCardExtra />
           </div>
