@@ -10,6 +10,7 @@ const TabViewLayout: FC<PropsWithChildren<TabViewLayoutProps>> = ({
   showActionButton,
   actionButtonTitle,
   onActionButtonClicked,
+  rightComponent,
 }) => {
   return (
     <TabView
@@ -17,6 +18,7 @@ const TabViewLayout: FC<PropsWithChildren<TabViewLayoutProps>> = ({
       showActionButton={showActionButton}
       actionButtonTitle={actionButtonTitle}
       onActionButtonClicked={onActionButtonClicked}
+      rightComponent={rightComponent}
     >
       {children}
     </TabView>

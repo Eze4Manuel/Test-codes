@@ -51,7 +51,7 @@ const Dropdown: FC<DropdownProps> = ({
 
   return (
     <div className="w-full">
-      <label className={styles.label}>{label}</label>
+      {label && <label className={styles.label}>{label}</label>}
       <Select
         isDisabled={disabled}
         options={options}

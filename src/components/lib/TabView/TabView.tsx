@@ -9,6 +9,7 @@ const TabView: FC<PropsWithChildren<TabViewProps>> = ({
   showActionButton = false,
   actionButtonTitle,
   onActionButtonClicked,
+  rightComponent,
   children,
 }) => {
   const router = useRouter();
@@ -19,38 +20,42 @@ const TabView: FC<PropsWithChildren<TabViewProps>> = ({
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <div className={styles.overflow__wrapper}>
-          <div className={`no-scrollbar ${styles.overflow__container}`}>
-            <div className={`${styles.tab__container}`}>
-              {tabs.map((tab, index) => (
-                <button
-                  id={router.pathname.startsWith(tab.url) ? 'active' : ''}
-                  key={index}
-                  className={`${styles.tab} ${
-                    router.pathname.startsWith(tab.url) && styles.tab__active
-                  }`}
-                  onClick={() => onTabClicked(tab.url)}
-                >
-                  {tab.title}
-                </button>
-              ))}
+      <div className={`${styles.wrapper} ${rightComponent ? 'gap-5' : ''}`}>
+        <div className={styles.header}>
+          <div className={styles.overflow__wrapper}>
+            <div className={`${styles.overflow__container}`}>
+              <div className={`${styles.tab__container}`}>
+                {tabs.map((tab, index) => (
+                  <button
+                    id={router.pathname.startsWith(tab.url) ? 'active' : ''}
+                    key={index}
+                    className={`${styles.tab} ${
+                      router.pathname.startsWith(tab.url) && styles.tab__active
+                    }`}
+                    onClick={() => onTabClicked(tab.url)}
+                  >
+                    {tab.title}
+                  </button>
+                ))}
+              </div>
             </div>
+
+            <div className={styles.overflow__container__border} />
           </div>
 
-          <div className={styles.overflow__container__border} />
+          {showActionButton && (
+            <button
+              className={styles.action__button}
+              onClick={() => {
+                if (onActionButtonClicked) onActionButtonClicked();
+              }}
+            >
+              {actionButtonTitle || 'Edit info'}
+            </button>
+          )}
         </div>
 
-        {showActionButton && (
-          <button
-            className={styles.action__button}
-            onClick={() => {
-              if (onActionButtonClicked) onActionButtonClicked();
-            }}
-          >
-            {actionButtonTitle || 'Edit info'}
-          </button>
-        )}
+        {rightComponent && <div>{rightComponent}</div>}
       </div>
 
       <div className={styles.content}>{children}</div>
