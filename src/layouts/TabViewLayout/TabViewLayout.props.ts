@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import type { Tab } from '@/components/lib/TabView/TabView.props';
 
 export default interface TabViewLayout {
@@ -5,4 +7,5 @@ export default interface TabViewLayout {
   showActionButton?: boolean;
   actionButtonTitle?: string;
   onActionButtonClicked?: () => void;
+  rightComponent?: ReactNode;
 }
