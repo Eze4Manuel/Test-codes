@@ -1,12 +1,9 @@
-// import { useQuery } from 'react-query';
-
 import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useQuery } from 'react-query';
 
 import Dropdown2 from '@/components/lib/Dropdown2';
 import Loader from '@/components/lib/Loader';
-// import Loader from '@/components/lib/Loader';
 import WorkersCard from '@/components/lib/WorkersCard/WorkersCard';
 import WorkersTable from '@/components/lib/WorkersTable/WorkersTable';
 import AuthLayout from '@/layouts/AuthLayout';
@@ -39,9 +36,6 @@ const Workers = () => {
 
   const handlePageClick = (event: any) => {
     const newOffset = (event.selected * 10) % data.data.data.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
     setItemOffset(newOffset);
   };
 
@@ -55,20 +49,24 @@ const Workers = () => {
       }
     >
       <section>
-        <TabViewLayout tabs={leadPastorWorkersTabs}>
-          <section className="w-full">
+        <TabViewLayout
+          tabs={leadPastorWorkersTabs}
+          rightComponent={
             <div className="md:py-2 lg:absolute lg:top-[1.25rem] lg:right-[1.25rem] lg:py-0">
               <Dropdown2 options={cciCampuses} />
             </div>
+          }
+        >
+          <section className="w-full">
             <div className="md:flex md:justify-between">
-              <div className="my-4 flex items-center justify-between gap-3 md:basis-[40%] lg:basis-[30%]">
+              <div className="my-4 flex w-full items-center justify-between gap-3 md:basis-[40%] lg:basis-[30%]">
                 <span className="font-[700] text-cci-black">Show:</span>
                 <select className="w-[80%] rounded-[5px] border-[1.5px] border-cci-grey-dim2 bg-inherit p-1 px-2 focus:border-cci-grey-dim2 md:w-[80%]">
                   <option value="">All units</option>
                 </select>
               </div>
 
-              <div className="my-4 flex items-center justify-between gap-3 md:basis-[40%] lg:basis-[30%]">
+              <div className="my-4 flex w-full items-center justify-between gap-3 md:basis-[40%] lg:basis-[30%]">
                 <span className="font-[700] text-cci-black">Search:</span>
                 <input className="w-[80%] rounded-[5px] border-[1.5px] border-cci-grey-dim2 bg-inherit p-1 px-2 outline-none focus:border-cci-grey-dim2 md:w-[80%]" />
               </div>
@@ -84,8 +82,8 @@ const Workers = () => {
                   tableData={currentItems}
                   itemOffset={itemOffset}
                 />
-                <div className="my-4 flex items-center justify-between">
-                  <span className="text-[12px] text-cci-black md:text-base">
+                <div className="my-4 md:my-6 md:flex md:items-center md:justify-between">
+                  <span className="mb-4 block text-sm text-cci-black md:mb-0 md:text-base">
                     Showing {itemOffset >= 10 ? itemOffset + 1 : 1} to{' '}
                     {itemOffset + currentItems.length} of{' '}
                     {data.data.data.length} entries
@@ -94,7 +92,7 @@ const Workers = () => {
                   <div>
                     <ReactPaginate
                       breakLabel="..."
-                      className="item-center flex cursor-pointer rounded-[5px] border border-[#68686880] px-2 text-sm text-[#10131866] md:text-base"
+                      className="item-center flex w-max cursor-pointer rounded-[5px] border border-[#68686880] px-2 text-sm text-[#10131866] md:text-base"
                       activeClassName="bg-cci-black text-white py-1 px-2 lg:p-2"
                       previousClassName="p-1 lg:p-2"
                       nextClassName="p-1 lg:p-2"
