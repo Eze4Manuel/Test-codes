@@ -64,7 +64,6 @@ const CCIProfile = () => {
     >
       <TabViewLayout
         tabs={leadPastorProfileTabs}
-        showActionButton
         onActionButtonClicked={toggleIsEditting}
         actionButtonTitle={isEditting ? 'Cancel' : 'Edit Info'}
       >

@@ -7,7 +7,7 @@ export interface Option {
 
 export default interface DropdownProps extends Omit<Props, 'onChange'> {
   options: Option[];
-  label: string;
+  label?: string;
   defaultValue?: Option;
   disabled?: boolean;
   error?: boolean;
