@@ -1,18 +1,21 @@
-import './Dropdown2.module.scss';
-
 import type { FC } from 'react';
 import Select from 'react-select';
 
 import type Dropdown2Props from './Dropdown2.props';
 
-const Dropdown2: FC<Dropdown2Props> = ({ options }) => {
+const Dropdown2: FC<Dropdown2Props> = ({
+  options,
+  textColor = 'white',
+  border = '1.43745px solid rgba(104, 104, 104, 0.5)',
+  background = '#101318',
+}) => {
   const customStyles = {
     control: (provided: any) => ({
       ...provided,
-      backgroundColor: '#101318',
+      backgroundColor: `${background}`,
       color: 'white',
       outline: 'none',
-      border: ' 1.43745px solid rgba(104, 104, 104, 0.5);',
+      border: `${border}`,
       boxShadow: 'none',
       cursor: 'pointer',
       borderRadius: '47.915px',
@@ -26,7 +29,7 @@ const Dropdown2: FC<Dropdown2Props> = ({ options }) => {
 
     singleValue: (provided: any) => ({
       ...provided,
-      color: 'white',
+      color: `${textColor}`,
       textAlign: 'center',
     }),
 
@@ -59,12 +62,12 @@ const Dropdown2: FC<Dropdown2Props> = ({ options }) => {
   };
 
   return (
-    <div className="w-max md:w-[220px]">
+    <div className="w-max text-[12px] md:w-[220px] md:text-base">
       <Select
         options={options}
         styles={customStyles}
         placeholder={
-          <span className="mx-auto flex w-max items-center">Select Campus</span>
+          <span className="mx-auto flex items-center">Select Campus</span>
         }
       />
     </div>

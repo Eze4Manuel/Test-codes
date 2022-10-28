@@ -7,6 +7,7 @@ export default interface TabViewProps {
   tabs: Tab[];
   showActionButton?: boolean;
   actionButtonTitle?: string;
+  dropdown?: boolean;
   onActionButtonClicked?: () => void;
 }
 
