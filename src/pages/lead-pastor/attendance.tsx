@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 
 import AttendanceCardExtra from '@/components/lib/AttendanceCard/Extra/AttendanceCardExtra';
-import AttendanceCard from '@/components/lib/AttendanceCard/Main';
+import AttendanceCard from '@/components/lib/AttendanceCard/Main/index';
 import BarChart from '@/components/lib/BarChart/BarChart';
 import ChartLabel from '@/components/lib/ChartLabel/ChartLabel';
 import Checkbox from '@/components/lib/Checkbox';
@@ -17,7 +17,7 @@ const Attendance = () => {
       meta={
         <Meta
           title="Attendance | Lead Pastor"
-          description="Financial information for the follow up unit."
+          description="Member Attendance for the lead pastor."
         />
       }
     >

@@ -66,3 +66,13 @@ export const cciCampuses = [
   { value: 'CCI Global', label: 'CCI Global' },
   { value: 'CCI Ikeja', label: 'CCI Ikeja' },
 ];
+
+export const allUnits = [
+  { name: 'Pastors', size: 600, color: '#101318' },
+  { name: 'Protocol', size: 600, color: '#B20000' },
+  { name: 'Celeb Kids', size: 600, color: '#686868' },
+  { name: 'Choir', size: 500, color: '#D37028' },
+  { name: 'Media', size: 500, color: ' #007DB2' },
+  { name: 'Ambience', size: 500, color: '#00B232' },
+  { name: 'Follow-up', size: 500, color: '#B17DDA' },
+];
