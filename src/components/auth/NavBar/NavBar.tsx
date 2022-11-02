@@ -58,7 +58,7 @@ const NavBar: FC<NavBarProps> = ({ openSideNav }) => {
             variant="subheading"
             className="-mb-1 font-josefinSans font-bold capitalize"
           >
-            {user?.first_name} {user?.last_name}
+            Emmanuel Iren
           </Text>
           <Text className="capitalize text-gray-500">
             {processRole(user?.role || '').longForm}
