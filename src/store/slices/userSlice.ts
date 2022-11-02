@@ -13,7 +13,6 @@ const userSlice = createSlice({
   reducers: {
     setUserData(state, action: PayloadAction<IUser>) {
       localStorage.setItem('user', JSON.stringify(action.payload));
-
       state.user = action.payload;
     },
     logout(state) {
