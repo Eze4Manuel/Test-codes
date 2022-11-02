@@ -75,7 +75,8 @@ const Members = () => {
               <>
                 <Avatar
                   className="h-20 w-20"
-                  image="https://loremflickr.com/100/100"
+                  // image="https://loremflickr.com/100/100"
+                  image={true}
                 />
                 <Text variant="subheading">
                   Linda Isime Yolanda | <span className="italic">CCI00110</span>

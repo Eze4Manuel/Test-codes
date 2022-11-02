@@ -50,7 +50,7 @@ const NavBar: FC<NavBarProps> = ({ openSideNav }) => {
         <Avatar
           className="h-20 w-20"
           name={`${user?.first_name} ${user?.last_name}`}
-          image={user?.profile_picture}
+          image={true}
         />
 
         <div className="flex flex-col items-center text-center lg:items-start">
