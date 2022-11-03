@@ -26,7 +26,7 @@ const allData = [
 
 const AttendanceCardExtra = () => {
   return (
-    <div className="flex h-auto min-h-[238.97px] flex-col flex-wrap gap-3 sm:flex-row lg:w-full lg:gap-6">
+    <div className="flex h-auto min-h-[238.97px] gap-3  overflow-x-scroll sm:flex-row lg:w-full lg:gap-6 lg:overflow-x-auto">
       {allData.map((data, index) => (
         <div key={index} className={styles.card_container}>
           <div className="h-[12px] w-full rounded-t-[24px] bg-cci-black"></div>
