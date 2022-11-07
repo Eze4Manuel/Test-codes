@@ -7,7 +7,7 @@ import UnitFinanceChart from './UnitFinanceChart/UnitFinanceChart';
 import UnitFinanceData from './UnitFinanceData/UnitFinanceData';
 
 const UnitFinance = () => {
-  const [activeID, setActiveID] = useState(1);
+  const [activeID, setActiveID] = useState(0);
 
   return (
     <div>
