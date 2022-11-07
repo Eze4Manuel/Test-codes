@@ -11,7 +11,7 @@ const UnitFinanceTable: FC<UnitFinanceTableProps> = ({ tableData }) => {
             <th className="min-w-[20%] border-b border-[#686868] pr-6 text-left">
               S/N
             </th>
-            <th className="col-span-2 min-w-[40%] border-b border-[#686868] pr-6 text-left">
+            <th className="col-span-2 min-w-[20%] border-b border-[#686868] pr-6 text-left">
               Date
             </th>
             <th className="min-w-[30%] border-b  border-[#686868]  pr-6 text-left">
@@ -29,12 +29,12 @@ const UnitFinanceTable: FC<UnitFinanceTableProps> = ({ tableData }) => {
           {tableData.map((item, index) => (
             <tr
               key={index}
-              className="flex text-sm font-[500] text-cci-grey-dim md:grid md:grid-cols-6"
+              className="flex text-xs font-[500] text-cci-grey-dim md:grid md:grid-cols-6"
             >
               <td className="min-w-[20%] border-b border-[#68686880] py-4 text-left">
                 {item.index}
               </td>
-              <td className="col-span-2 min-w-[40%] border-b border-[#68686880] py-4 text-left ">
+              <td className="col-span-2 min-w-[20%] border-b border-[#68686880] py-4 text-left ">
                 {item.date}
               </td>
               <td className="min-w-[30%] border-b border-[#68686880] py-4 text-left capitalize">

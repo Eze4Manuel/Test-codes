@@ -29,8 +29,8 @@ const UnitFinance = () => {
           />
         </div>
       </div>
-      <div className="mt-6 w-full">
-        <Button size="large" variant="outline" className="w-full ">
+      <div className="mt-6 w-full md:w-[30%]   ">
+        <Button size="large" variant="outline" className=" w-full ">
           + Request Weekly Budget
         </Button>
       </div>

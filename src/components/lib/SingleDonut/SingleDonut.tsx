@@ -25,14 +25,15 @@ const SingleDonut = ({ data }: DonutProps) => {
     datasets: [
       {
         data,
-        backgroundColor: ['#00B232', '#F0F2F5'],
-        borderWidth: 1,
+        backgroundColor: ['#00B232', 'rgba(0, 178, 50, 0.12)'],
+        borderWidth: 10,
+        borderColor: '#F0F0F0',
       },
     ],
   };
   return (
     <div>
-      <Doughnut data={donutData} className="w-28" />
+      <Doughnut data={donutData} className="w-28 " options={options} />
     </div>
   );
 };

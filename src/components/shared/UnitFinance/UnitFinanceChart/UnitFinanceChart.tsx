@@ -27,8 +27,9 @@ const UnitFinanceChart = () => {
               <p className="mt-6 text-cci-grey-dim2">{item.subHeader}</p>
             </div>
             {index === 0 && (
-              <div className="hidden xl:block">
+              <div className="relative hidden bg-[#f0f0f0] xl:block">
                 <SingleDonut data={'83%'} />
+                <p className=" absolute bottom-14 left-10">83%</p>
               </div>
             )}
           </div>
