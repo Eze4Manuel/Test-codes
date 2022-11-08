@@ -10,11 +10,11 @@ import { chartCardsData } from '@/data/unitFinance';
 const UnitFinanceChart = () => {
   return (
     <>
-      <div className="justify-between md:flex">
+      <div className="flex flex-wrap justify-between gap-5">
         {chartCardsData.map((item, index) => (
           <div
             key={index}
-            className=" mt-6 flex w-full justify-between rounded-lg border border-cci-grey-dim2 bg-[#F0F0F0] p-4 md:w-[30%]"
+            className="mt-6 flex w-full flex-1 items-center justify-between rounded-lg border border-cci-grey-dim2 bg-[#F0F0F0] p-4"
           >
             <div>
               <h2 className="font-bold">{item.header}</h2>
@@ -27,9 +27,11 @@ const UnitFinanceChart = () => {
               <p className="mt-6 text-cci-grey-dim2">{item.subHeader}</p>
             </div>
             {index === 0 && (
-              <div className="relative hidden bg-[#f0f0f0] xl:block">
+              <div className="relative bg-[#f0f0f0] xl:block">
                 <SingleDonut data={'83%'} />
-                <p className=" absolute bottom-14 left-10">83%</p>
+                <p className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+                  83%
+                </p>
               </div>
             )}
           </div>

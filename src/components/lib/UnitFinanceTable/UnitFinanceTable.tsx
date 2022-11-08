@@ -1,55 +1,63 @@
+import { useRouter } from 'next/router';
 import type { FC } from 'react';
 
+import Pagination from '../Pagination';
+import Table from '../Table';
+import TableBody from '../Table/TableBody';
+import TableCell from '../Table/TableCell';
+import TableHeader from '../Table/TableHeader';
+import TableRow from '../Table/TableRow';
+import Text from '../Text';
 import type UnitFinanceTableProps from './UnitFinanceTable.props';
 
-const UnitFinanceTable: FC<UnitFinanceTableProps> = ({ tableData }) => {
+const UnitFinanceTable: FC<UnitFinanceTableProps> = ({
+  tableData,
+  limit,
+  page,
+  pages,
+}) => {
+  const router = useRouter();
+
   return (
-    <div className="mt-12 w-full lg:mt-14">
-      <table className="block overflow-x-scroll md:overflow-x-hidden">
-        <thead className="block w-full">
-          <tr className="flex h-[40px] text-sm font-[500] md:grid md:grid-cols-6">
-            <th className="min-w-[20%] border-b border-[#686868] pr-6 text-left">
-              S/N
-            </th>
-            <th className="col-span-2 min-w-[20%] border-b border-[#686868] pr-6 text-left">
-              Date
-            </th>
-            <th className="min-w-[30%] border-b  border-[#686868]  pr-6 text-left">
-              Cash inflow
-            </th>
-            <th className="min-w-[30%] border-b  border-[#686868] pr-6 text-left">
-              Expenditure
-            </th>
-            <th className="min-w-[30%] border-b  border-[#686868] pr-6 text-left">
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody className="block w-full">
+    <div className="flex w-full flex-col gap-3 overflow-x-hidden">
+      <Table>
+        <TableHeader
+          items={['SN', 'Full Name', 'Gender', 'Phone Number', 'Action']}
+        />
+        <TableBody>
           {tableData.map((item, index) => (
-            <tr
-              key={index}
-              className="flex text-xs font-[500] text-cci-grey-dim md:grid md:grid-cols-6"
-            >
-              <td className="min-w-[20%] border-b border-[#68686880] py-4 text-left">
-                {item.index}
-              </td>
-              <td className="col-span-2 min-w-[20%] border-b border-[#68686880] py-4 text-left ">
-                {item.date}
-              </td>
-              <td className="min-w-[30%] border-b border-[#68686880] py-4 text-left capitalize">
-                {item.cashInflow}
-              </td>
-              <td className="min-w-[30%] border-b border-[#68686880] py-4 text-left">
-                {item.expenditure}
-              </td>
-              <td className="min-w-[30%] cursor-pointer border-b border-[#68686880] py-4 text-left text-cci-green">
-                {item.action}
-              </td>
-            </tr>
+            <TableRow key={index}>
+              <TableCell>{index + (page - 1) * limit + 1}</TableCell>
+              <TableCell>
+                <Text variant="caption">{item?.date}</Text>
+              </TableCell>
+              <TableCell>
+                <Text variant="caption">
+                  NGN{item?.cashInflow?.toLocaleString()}
+                </Text>
+              </TableCell>
+              <TableCell>
+                <Text variant="caption">
+                  NGN{item?.expenditure?.toLocaleString()}
+                </Text>
+              </TableCell>
+              <TableCell url={`${router.pathname}/${item?.index}`}>
+                <Text variant="caption" className="text-cci-green">
+                  View Details
+                </Text>
+              </TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
+
+      <div className="flex flex-wrap items-center justify-between gap-5 border-none">
+        <Text variant="caption">
+          Showing {(page - 1) * limit + 1} to {limit * page} of{' '}
+          {tableData.length} entries
+        </Text>
+        <Pagination count={pages} page={page} setPage={() => {}} />
+      </div>
     </div>
   );
 };

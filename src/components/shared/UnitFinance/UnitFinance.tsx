@@ -10,9 +10,9 @@ const UnitFinance = () => {
   const [activeID, setActiveID] = useState(0);
 
   return (
-    <div>
+    <div className="grid w-full gap-10">
       <div className="w-full justify-between md:flex">
-        <div className="my-4 flex w-full  items-center gap-3 ">
+        <div className="flex w-full  items-center gap-3 ">
           <span className="whitespace-nowrap font-[700] text-cci-black">
             Search Month
           </span>
@@ -21,20 +21,21 @@ const UnitFinance = () => {
           </select>
         </div>
 
-        <div className="my-4  ">
-          <ToggleTwoStates
-            setActiveID={setActiveID}
-            activeID={activeID}
-            list={['Data', 'Chart']}
-          />
-        </div>
+        <ToggleTwoStates
+          setActiveID={setActiveID}
+          activeID={activeID}
+          list={['Data', 'Chart']}
+        />
       </div>
-      <div className="mt-6 w-full md:w-[30%]   ">
+      <div className="w-full md:w-[30%]">
         <Button size="large" variant="outline" className=" w-full ">
           + Request Weekly Budget
         </Button>
       </div>
-      {activeID === 0 ? <UnitFinanceData /> : <UnitFinanceChart />}
+
+      <div className="w-full overflow-hidden">
+        {activeID === 0 ? <UnitFinanceData /> : <UnitFinanceChart />}
+      </div>
     </div>
   );
 };
