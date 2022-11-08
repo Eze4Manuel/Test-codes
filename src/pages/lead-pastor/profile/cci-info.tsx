@@ -18,7 +18,7 @@ import {
 } from '@/utils/constants';
 
 const CCIState = {
-  ccid: '',
+  ccid: 'CCI001',
   membership_class: '',
 };
 
@@ -26,20 +26,20 @@ const CCIProfile = () => {
   const [CCIInfo, setCCIInfo] = useState(CCIState);
   const [isEditting, setIsEditting] = useState(false);
   const [serviceUnit, setSeviceUnit] = useState<SingleValue<Option>>({
-    value: '',
-    label: 'None',
+    value: 'Pastor',
+    label: 'Pastor',
   });
   const [memberClass, setMemberClass] = useState<SingleValue<Option>>({
-    value: '',
-    label: 'Not Completed',
+    value: 'Yes',
+    label: 'Yes',
   });
-  const [mapGrop, setMapGroup] = useState<SingleValue<Option>>({
-    value: '',
-    label: 'Not Selected',
+  const [mapGroup, setMapGroup] = useState<SingleValue<Option>>({
+    value: 'Magodo',
+    label: 'Magodo',
   });
   const [cciCampus, setCCICampus] = useState<SingleValue<Option>>({
-    value: '',
-    label: 'Not Selected',
+    value: 'Lagos Island',
+    label: 'Lagos Island',
   });
 
   const handleChange = (event: FormEvent<HTMLInputElement>) => {
@@ -92,7 +92,7 @@ const CCIProfile = () => {
 
           <Dropdown
             label="Map Group"
-            value={mapGrop}
+            value={mapGroup}
             disabled={!isEditting}
             options={mapGroups}
             onChange={(value) => {

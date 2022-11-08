@@ -30,18 +30,20 @@ const MembersTable: FC<MembersTableProps> = ({
             <TableRow key={index}>
               <TableCell>{index + (page - 1) * limit + 1}</TableCell>
               <TableCell>
-                <Text>
+                <Text variant="caption">
                   {member?.first_name} {member?.last_name}
                 </Text>
               </TableCell>
               <TableCell>
-                <Text>{member?.gender}</Text>
+                <Text variant="caption">{member?.gender}</Text>
               </TableCell>
               <TableCell>
-                <Text>{member?.phone_number}</Text>
+                <Text variant="caption">{member?.phone_number}</Text>
               </TableCell>
               <TableCell url={`${router.pathname}/${member?.id}`}>
-                <Text className="text-cci-green">View Profile</Text>
+                <Text variant="caption" className="text-cci-green">
+                  View Profile
+                </Text>
               </TableCell>
             </TableRow>
           ))}

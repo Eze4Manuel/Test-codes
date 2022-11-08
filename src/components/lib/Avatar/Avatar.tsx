@@ -1,4 +1,7 @@
+import Image from 'next/image';
 import type { FC } from 'react';
+
+import PastorImage from '@/public/assets/images/pastor.jpg';
 
 import styles from './Avatar.module.scss';
 import type AvatarProps from './Avatar.props';
@@ -6,11 +9,18 @@ import type AvatarProps from './Avatar.props';
 const Avatar: FC<AvatarProps> = ({ name, image, className }) => {
   if (image)
     return (
-      <img
-        className={`${styles.image} ${className || ''}`}
-        src={image}
-        alt=""
-      />
+      <figure
+        className={`${styles.image} ${
+          className || ''
+        } relative overflow-hidden`}
+      >
+        <Image
+          src={PastorImage}
+          alt=""
+          layout="fill"
+          className="h-full w-full object-cover"
+        />
+      </figure>
     );
 
   if (name)

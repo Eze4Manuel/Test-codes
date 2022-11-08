@@ -29,6 +29,7 @@ const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
   const { user } = useAppSelector((state) => state.user);
   const [sideNavIsOpen, setSideNavIsOpen] = useState(false);
   const largeScreen = useMediaQuery('(min-width: 1200px)');
+  // const { isAuthenticated } = useCheckAuth();
   const { isAuthenticated } = { isAuthenticated: true };
 
   useEffect(() => {
