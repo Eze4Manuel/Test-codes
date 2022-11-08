@@ -23,11 +23,6 @@ export const followUpLeadLinks = [
     url: '/follow-up-lead/unit',
   },
   {
-    icon: 'tabler:report-money',
-    title: 'Budget Report',
-    url: '/follow-up-lead/budget-report',
-  },
-  {
     icon: 'ic:outline-feedback',
     title: 'Give Feedback',
     url: '/follow-up-lead/feedback',
