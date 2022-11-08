@@ -9,13 +9,18 @@ import type AvatarProps from './Avatar.props';
 const Avatar: FC<AvatarProps> = ({ name, image, className }) => {
   if (image)
     return (
-      <Image
-        className={`${styles.image} ${className || ''}`}
-        src={PastorImage}
-        alt=""
-        width={100}
-        height={100}
-      />
+      <figure
+        className={`${styles.image} ${
+          className || ''
+        } relative overflow-hidden`}
+      >
+        <Image
+          src={PastorImage}
+          alt=""
+          layout="fill"
+          className="h-full w-full object-cover"
+        />
+      </figure>
     );
 
   if (name)
