@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import NavBar from '@/components/auth/NavBar';
 import SideNav from '@/components/auth/SideNav';
-import { useAppSelector, useMediaQuery } from '@/hooks';
+import { useAppSelector, useCheckAuth, useMediaQuery } from '@/hooks';
 import { processRole } from '@/utils/misc';
 
 import type AuthLayoutProps from './AuthLayout.props';
@@ -29,7 +29,7 @@ const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
   const { user } = useAppSelector((state) => state.user);
   const [sideNavIsOpen, setSideNavIsOpen] = useState(false);
   const largeScreen = useMediaQuery('(min-width: 1200px)');
-  const { isAuthenticated } = { isAuthenticated: true };
+  const { isAuthenticated } = useCheckAuth();
 
   useEffect(() => {
     setSideNavIsOpen(false);

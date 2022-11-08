@@ -50,7 +50,7 @@ const NavBar: FC<NavBarProps> = ({ openSideNav }) => {
         <Avatar
           className="h-20 w-20"
           name={`${user?.first_name} ${user?.last_name}`}
-          image={user?.profile_picture}
+          image={true}
         />
 
         <div className="flex flex-col items-center text-center lg:items-start">
@@ -58,7 +58,7 @@ const NavBar: FC<NavBarProps> = ({ openSideNav }) => {
             variant="subheading"
             className="-mb-1 font-josefinSans font-bold capitalize"
           >
-            {user?.first_name} {user?.last_name}
+            Emmanuel Iren
           </Text>
           <Text className="capitalize text-gray-500">
             {processRole(user?.role || '').longForm}

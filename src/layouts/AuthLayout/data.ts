@@ -53,6 +53,6 @@ export const leadPastorLinks = [
   {
     icon: 'ant-design:user-outlined',
     title: 'Profile',
-    url: '/lead-pastor/profile/index',
+    url: '/lead-pastor/profile/personal-info',
   },
 ];

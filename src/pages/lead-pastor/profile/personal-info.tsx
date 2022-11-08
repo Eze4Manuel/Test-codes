@@ -13,19 +13,19 @@ import Meta from '@/templates/Meta';
 import { genders, maritalStatuses } from '@/utils/constants';
 
 const memberState = {
-  first_name: '',
-  last_name: '',
-  email_address: '',
-  phone_number: '',
-  home_address: '',
+  first_name: 'Emmanuel',
+  last_name: 'Iren',
+  email_address: 'emmanuelIren@gmail.com',
+  phone_number: '08032222222',
+  home_address: '31B Kola Amodu Crescent, Magodo Phase 2, Lagos',
   marital_status: '',
-  dob: '',
-  gender: '',
+  dob: '19/12/1989',
+  gender: 'Male',
 };
 
 const option = {
-  label: '',
-  value: '',
+  label: 'Married',
+  value: 'Married',
 };
 
 const PersonalInfo = () => {
@@ -144,7 +144,7 @@ const PersonalInfo = () => {
           <Input
             labelText="No. of children (if any)"
             type="number"
-            value="0"
+            value="3"
             disabled={!isEditting}
           />
 
