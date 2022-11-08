@@ -2,6 +2,8 @@ import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js';
 import type { FC } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
+import type { AttendanceCardExtraProps } from '../AttendanceCard/types';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
@@ -17,33 +19,32 @@ export const options = {
   tooltips: { enabled: false },
 };
 
-export const data = {
-  labels: ['Men', 'Women', 'Children'],
-  datasets: [
-    {
-      data: [3500, 4000, 1000],
-      backgroundColor: ['#686868', '#F0F2F5', '#F0F2F5'],
-      borderWidth: 5,
-    },
-    {
-      data: [4000, 3500, 1000],
-      backgroundColor: ['#00B232', '#F0F2F5', '#F0F2F5'],
-      borderWidth: 5,
-    },
+const DonutChart: FC<AttendanceCardExtraProps> = ({ donutData }) => {
+  const data = {
+    labels: ['Men', 'Women', 'Children'],
+    datasets: [
+      {
+        data: [donutData?.Men, donutData?.Women, donutData?.Kids],
+        backgroundColor: ['#686868', '#F0F2F5', '#F0F2F5'],
+        borderWidth: 5,
+      },
+      {
+        data: [donutData?.Women, donutData?.Men, donutData?.Kids],
+        backgroundColor: ['#00B232', '#F0F2F5', '#F0F2F5'],
+        borderWidth: 5,
+      },
 
-    {
-      data: [1000, 4000, 3500],
-      backgroundColor: ['#b20000 ', '#F0F2F5', '#F0F2F5'],
-      borderWidth: 5,
-    },
-  ],
-};
-
-const DonutChart: FC = () => {
+      {
+        data: [donutData?.Kids, donutData?.Men, donutData?.Women],
+        backgroundColor: ['#b20000 ', '#F0F2F5', '#F0F2F5'],
+        borderWidth: 5,
+      },
+    ],
+  };
   return (
     <div>
       {' '}
-      <Doughnut data={data} options={options} />
+      <Doughnut data={data} />
     </div>
   );
 };

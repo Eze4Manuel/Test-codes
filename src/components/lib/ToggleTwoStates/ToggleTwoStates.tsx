@@ -1,12 +1,13 @@
 import type { FC } from 'react';
-import { useState } from 'react';
 
 import styles from './ToggleTwoStates.module.scss';
 import type ToggleTwoStatesProps from './ToggleTwoStates.props';
 
-const ToggleTwoStates: FC<ToggleTwoStatesProps> = ({ list }) => {
-  const [activeID, setActiveID] = useState(0);
-
+const ToggleTwoStates: FC<ToggleTwoStatesProps> = ({
+  list,
+  setActiveID,
+  activeID,
+}) => {
   return (
     <div className={styles.base}>
       {list.map((item, index) => (
