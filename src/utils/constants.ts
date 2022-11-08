@@ -76,3 +76,130 @@ export const allUnits = [
   { name: 'Ambience', size: 500, color: '#00B232' },
   { name: 'Follow-up', size: 500, color: '#B17DDA' },
 ];
+
+export const entries = [
+  {
+    entry: 10,
+    value: 10,
+  },
+  {
+    entry: 20,
+    value: 20,
+  },
+  {
+    entry: 50,
+    value: 50,
+  },
+];
+
+export const dummyUnitReports = [
+  {
+    index: 0,
+    date: 'April 1 - April 7 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'Write Report',
+  },
+  {
+    index: 1,
+    date: 'April 7 - April 14 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'Write Report',
+  },
+  {
+    index: 2,
+    date: 'April 1 - April 7 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'Write Report',
+  },
+  {
+    index: 3,
+    date: 'April 7 - April 14 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'Write Report',
+  },
+  {
+    index: 4,
+    date: 'April 1 - April 7 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'Write Report',
+  },
+  {
+    index: 5,
+    date: 'April 7 - April 14 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'Write Report',
+  },
+  {
+    index: 6,
+    date: 'April 1 - April 7 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'Write Report',
+  },
+  {
+    index: 7,
+    date: 'April 7 - April 14 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'Write Report',
+  },
+  {
+    index: 8,
+    date: 'April 1 - April 7 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'Write Report',
+  },
+  {
+    index: 9,
+    date: 'April 7 - April 14 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'View Report',
+  },
+
+  {
+    index: 10,
+    date: 'April 7 - April 14 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'View Report',
+  },
+  {
+    index: 11,
+    date: 'April 7 - April 14 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'View Report',
+  },
+  {
+    index: 12,
+    date: 'April 7 - April 14 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'View Report',
+  },
+  {
+    index: 13,
+    date: 'April 7 - April 14 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'View Report',
+  },
+  {
+    index: 14,
+    date: 'April 7 - April 14 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'View Report',
+  },
+  {
+    index: 15,
+    date: 'April 7 - April 14 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'View Report',
+  },
+  {
+    index: 16,
+    date: 'April 7 - April 14 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'View Report',
+  },
+  {
+    index: 17,
+    date: 'April 7 - April 14 2022',
+    report: 'The team onboarded 20 new members, profile...',
+    action: 'View Report',
+  },
+];
