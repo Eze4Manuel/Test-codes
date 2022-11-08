@@ -1,3 +1,4 @@
+import UnitFinance from '@/components/shared/UnitFinance';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
 import followUpLeadUnitTabs from '@/layouts/TabViewLayout/followUpLead/followUpLeadUnitTabs';
@@ -13,7 +14,9 @@ const Finance = () => {
         />
       }
     >
-      <TabViewLayout tabs={followUpLeadUnitTabs}></TabViewLayout>
+      <TabViewLayout tabs={followUpLeadUnitTabs}>
+        <UnitFinance />
+      </TabViewLayout>
     </AuthLayout>
   );
 };
