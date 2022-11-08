@@ -22,14 +22,14 @@ const BudgetReport = () => {
         <section className="flex flex-col-reverse justify-between md:flex-row">
           <div className="grid w-[350px] justify-between sm:flex">
             <div className="grid w-[200px] sm:flex md:w-[150px]">
-              <span className="relative top-1 mb-3 mr-1 text-cci-black sm:mb-0">
+              <span className="relative top-[7px] mb-3 mr-2 text-cci-black sm:mb-0">
                 From:
               </span>
               <Dropdown3 options={cciCampuses} />
             </div>
 
             <div className="mt-4 grid w-[200px] sm:mt-0 sm:flex md:w-[150px]">
-              <span className="relative top-1 mb-3 mr-1 text-cci-black sm:mb-0">
+              <span className="relative top-[7px] mb-3 mr-2 text-cci-black sm:mb-0">
                 To:
               </span>
               <Dropdown3 options={cciCampuses} />

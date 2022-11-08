@@ -92,7 +92,7 @@ const FollowUpUnitBudgetTable = () => {
                     icon="akar-icons:plus"
                     className="relative top-1 text-[17px]"
                   />
-                  <div className="relative left-1 text-[17px] sm:left-5">
+                  <div className="relative left-1 text-[17px]">
                     Upload JPEG/PDF
                   </div>
                 </div>
