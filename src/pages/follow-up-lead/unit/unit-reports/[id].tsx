@@ -11,7 +11,7 @@ import { Caution } from '@/public/assets/icons/caution';
 import Meta from '@/templates/Meta';
 
 const ActionReport = () => {
-  const [toggleModal, setToggleModal] = useState(true);
+  const [toggleModal, setToggleModal] = useState(false);
 
   return (
     <AuthLayout
