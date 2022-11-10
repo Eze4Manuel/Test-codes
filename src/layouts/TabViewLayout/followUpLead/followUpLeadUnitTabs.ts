@@ -19,6 +19,10 @@ const followUpLeadUnitTabs = [
     title: 'Finance',
     url: '/follow-up-lead/unit/finance',
   },
+  {
+    title: 'Budget Request',
+    url: '/follow-up-lead/unit/budget-request',
+  },
 ];
 
 export default followUpLeadUnitTabs;
