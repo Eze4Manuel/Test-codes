@@ -26,6 +26,11 @@ const Workers = () => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
 
+  const handlePageClick = (event: any) => {
+    const newOffset = (event.selected * 10) % data.data.data.length;
+    setItemOffset(newOffset);
+  };
+
   useEffect(() => {
     if (data) {
       const endOffset = itemOffset + 10;
@@ -33,11 +38,6 @@ const Workers = () => {
       setPageCount(Math.ceil(data.data.data.length / 10));
     }
   }, [itemOffset, data]);
-
-  const handlePageClick = (event: any) => {
-    const newOffset = (event.selected * 10) % data.data.data.length;
-    setItemOffset(newOffset);
-  };
 
   return (
     <AuthLayout

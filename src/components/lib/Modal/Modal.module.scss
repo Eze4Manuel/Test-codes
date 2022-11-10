@@ -1,8 +1,18 @@
 .bg {
   @apply fixed top-0 left-0 z-[100] flex h-screen w-screen items-center 
-  justify-center bg-[#101318B2] bg-opacity-70
+  justify-center bg-[#101318B2] bg-opacity-70;
 }
 
 .modal {
-  @apply min-h-[300px] w-[90%] max-w-[400px] bg-white text-center rounded-[5px]
+  @apply max-w-[400px] rounded-[5px] bg-white text-center;
+}
+
+.variant {
+  &__normal {
+    @apply min-h-[300px] w-[90%];
+  }
+
+  &__small {
+    @apply w-[80%];
+  }
 }
