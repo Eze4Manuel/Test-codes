@@ -1,6 +1,7 @@
+/* eslint-disable tailwindcss/classnames-order */
 import type { FC } from 'react';
 
-import type WorkersTableProps from './WorkersCard.props';
+import type WorkersTableProps from './WorkersTable.props';
 
 const WorkersTable: FC<WorkersTableProps> = ({ tableData, itemOffset }) => {
   return (
