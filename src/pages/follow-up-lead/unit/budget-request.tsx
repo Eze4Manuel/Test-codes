@@ -1,24 +1,24 @@
-import UnitFinance from '@/components/shared/UnitFinance';
+import UnitBudgetRequest from '@/components/shared/UnitBudgetRequest';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
 import followUpLeadUnitTabs from '@/layouts/TabViewLayout/followUpLead/followUpLeadUnitTabs';
 import Meta from '@/templates/Meta';
 
-const Finance = () => {
+const BudgetRequest = () => {
   return (
     <AuthLayout
       meta={
         <Meta
-          title="Finance | Follow-up Unit Lead"
-          description="Financial information for the follow up unit."
+          title="Budget Request | Follow-up Unit Lead"
+          description="Budget Request for the follow up unit."
         />
       }
     >
       <TabViewLayout tabs={followUpLeadUnitTabs}>
-        <UnitFinance />
+        <UnitBudgetRequest />
       </TabViewLayout>
     </AuthLayout>
   );
 };
 
-export default Finance;
+export default BudgetRequest;
