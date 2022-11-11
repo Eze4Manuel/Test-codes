@@ -1,11 +1,12 @@
-import 'react-datepicker/dist/react-datepicker.css';
-
-import { useEffect, useState } from 'react';
+import { Icon } from '@iconify/react';
+import moment from 'moment';
+import { useEffect, useRef, useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import ReactPaginate from 'react-paginate';
 
 import UnitReportsTable from '@/components/lib/Tables/UnitReportsTable/UnitReportsTable';
 import { useMediaQuery } from '@/hooks';
+import { useHandleOutsideClicks } from '@/hooks/useHandleOutsideClicks';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
 import followUpLeadUnitTabs from '@/layouts/TabViewLayout/followUpLead/followUpLeadUnitTabs';
@@ -20,8 +21,10 @@ const UnitReport = () => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
-  const [showDate, setShowDate] = useState(false);
+  const [endDate, setEndDate] = useState(new Date());
+  const calender = useRef<null | HTMLDivElement>(null);
+
+  const [show, setShow] = useState(false);
 
   const handlePageClick = (event: any) => {
     const newOffset = (event.selected * 10) % data.length;
@@ -34,10 +37,6 @@ const UnitReport = () => {
     setEndDate(end);
   };
 
-  const toggleDate = () => {
-    setShowDate(!showDate);
-  };
-
   useEffect(() => {
     if (data) {
       const endOffset = itemOffset + 10;
@@ -45,6 +44,8 @@ const UnitReport = () => {
       setPageCount(Math.ceil(data.length / 10));
     }
   }, [itemOffset, data]);
+
+  useHandleOutsideClicks(calender, () => setShow(false));
 
   return (
     <AuthLayout
@@ -57,7 +58,7 @@ const UnitReport = () => {
     >
       <TabViewLayout tabs={followUpLeadUnitTabs}>
         <div className="md:flex md:justify-between">
-          <div className="my-4 flex w-full items-center justify-between gap-3 md:basis-[40%] xl:basis-[30%]">
+          <div className="my-4 flex w-full items-center justify-between gap-3 md:w-max md:basis-[40%] xl:basis-[30%] 2xl:basis-[25%]">
             <span className="font-[700] text-cci-black">Show:</span>
             <select className="w-[80%] rounded-[5px] border-[1.5px] border-cci-grey-dim2 bg-inherit p-1 px-2 focus:border-cci-grey-dim2 md:w-[80%]">
               {entries.map((item, index) => (
@@ -68,23 +69,36 @@ const UnitReport = () => {
             </select>
           </div>
 
-          <div className="my-4 flex w-full items-center justify-between gap-3 md:basis-[40%] xl:basis-[30%]">
+          <div className="my-4 flex w-full items-center justify-between gap-3 md:w-max">
             <span className="whitespace-nowrap font-[700] text-cci-black">
               {smallScreen ? 'Date:' : 'Search Date:'}
             </span>
             <div
-              onClick={toggleDate}
-              className="relative h-[34.97px] w-[80%] rounded-[5px] border-[1.5px] border-cci-grey-dim2 bg-inherit p-1 px-2 outline-none focus:border-cci-grey-dim2 md:w-[80%]"
+              ref={calender}
+              className="relative h-[34.97px] w-[80%] cursor-pointer rounded-[5px] border-[1.5px] border-cci-grey-dim2 bg-inherit p-1 px-2 outline-none focus:border-cci-grey-dim2 md:w-[80%]"
             >
-              {showDate && (
-                <div className="absolute top-[80%] left-0">
+              <div
+                onClick={() => setShow(!show)}
+                className="flex items-center justify-between gap-2"
+              >
+                <span>{`${moment(startDate).format('MMM DD')} - ${moment(
+                  endDate
+                ).format('MMM DD, YYYY')}`}</span>
+                <span className="flex justify-end">
+                  <Icon
+                    icon="material-symbols:keyboard-arrow-down-rounded"
+                    className="text-2xl"
+                  />
+                </span>
+              </div>
+              {show && (
+                <div className="absolute top-[110%] left-0">
                   <ReactDatePicker
                     selected={startDate}
                     onChange={(date) => handleDateChange(date)}
                     startDate={startDate}
-                    minDate={startDate}
+                    minDate={new Date()}
                     endDate={endDate}
-                    value={`${startDate} - ${endDate}`}
                     selectsRange
                     inline
                   />
@@ -95,7 +109,7 @@ const UnitReport = () => {
         </div>
 
         <div className="w-full">
-          <UnitReportsTable tableData={currentItems} itemOffset={0} />
+          <UnitReportsTable tableData={currentItems} itemOffset={itemOffset} />
           <div className="my-4 md:my-6 md:flex md:items-center md:justify-between">
             <span className="mb-4 block text-sm text-cci-black md:mb-0 md:text-base">
               Showing {itemOffset >= 10 ? itemOffset + 1 : 1} to{' '}
@@ -105,7 +119,7 @@ const UnitReport = () => {
             <div>
               <ReactPaginate
                 breakLabel="..."
-                className="item-center flex w-max cursor-pointer rounded-[5px] px-2 text-sm text-[#10131866] md:text-base"
+                className="item-center flex w-max cursor-pointer rounded-[5px] text-sm text-[#10131866] md:text-base"
                 activeClassName="bg-cci-black text-white py-1 px-2 lg:p-2"
                 previousClassName="p-1 lg:p-2 border border-[#68686880]"
                 nextClassName="p-1 lg:p-2 border border-[#68686880]"

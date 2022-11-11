@@ -30,6 +30,7 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+
 # dotenv
 .env*.local
 
@@ -41,3 +42,6 @@ local
 
 #vs
 .vs
+
+#yarn
+yarn.lock
