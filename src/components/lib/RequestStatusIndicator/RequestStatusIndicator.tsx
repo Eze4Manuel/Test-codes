@@ -21,7 +21,7 @@ const RequestStatusIndicator: FC<StatusIndicatorProps> = memo(({ status }) => {
       >
         <p>{status}</p>
       </div>
-      {status === 'Budget Rejected' && (
+      {status === 'Budget rejected' && (
         <ToolTip
           header="Resident Pastor Feedback"
           subHeader="Adjust budget, review costs for SMS charges."
