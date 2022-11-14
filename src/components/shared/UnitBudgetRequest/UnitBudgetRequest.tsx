@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import ApprovedUnitBudgetRequestTable from '@/components/lib/ApprovedUnitBudgetRequestTable/ApprovedUnitBudgetRequestTable';
 import RequestStatusIndicator from '@/components/lib/RequestStatusIndicator/RequestStatusIndicator';
 import UnitBudgetRequestTable from '@/components/lib/UnitBudgetRequestTable/UnitBudgetRequestTable';
 
 const UnitBudgetrequest = () => {
+  const [status] = useState('Budget Approved');
+  const stateFullTable = true;
   return (
     <div>
       <div className="gap-4 md:flex ">
@@ -23,11 +26,15 @@ const UnitBudgetrequest = () => {
           />
         </div>
         <div className="my-4 ml-auto flex  items-center justify-between gap-3 md:basis-[35%] lg:basis-[25%]">
-          <RequestStatusIndicator status="Budget Rejected" />
+          <RequestStatusIndicator status={status} />
         </div>
       </div>
       <div>
-        <UnitBudgetRequestTable />
+        {stateFullTable && status === 'Budget Approved' ? (
+          <ApprovedUnitBudgetRequestTable />
+        ) : (
+          <UnitBudgetRequestTable />
+        )}
       </div>
     </div>
   );

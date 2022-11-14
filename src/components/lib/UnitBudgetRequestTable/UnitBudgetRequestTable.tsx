@@ -1,4 +1,3 @@
-import { Icon } from '@iconify/react';
 import type { FC } from 'react';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -13,10 +12,9 @@ const UnitBudgetRequestTable: FC = () => {
       id: uuidv4(),
       itemName: '',
       itemPrice: '',
-      itemImage: '',
     },
   ]);
-  const [fileName, setFileName] = useState('');
+  // const [fileName, setFileName] = useState('');
 
   // adds new entry  to the table
   const handleAddFields = () => {
@@ -27,7 +25,6 @@ const UnitBudgetRequestTable: FC = () => {
           id: uuidv4(),
           itemName: '',
           itemPrice: '',
-          itemImage: '',
         },
       ];
     });
@@ -39,12 +36,6 @@ const UnitBudgetRequestTable: FC = () => {
       if (id === item.id) {
         // when the value is text or number
         item[event.target.name] = event.target.value;
-        // when the value is image or file
-        const file = event.target?.files;
-        if (file) {
-          item[event.target.name] = file[0]!.name;
-          setFileName(file[0]!.name);
-        }
       }
 
       return item;
@@ -64,25 +55,22 @@ const UnitBudgetRequestTable: FC = () => {
     <div className="mt-12 w-full lg:mt-14">
       <table className="block border-collapse overflow-x-scroll border border-[#686868]  md:overflow-x-hidden">
         <thead className="block w-full">
-          <tr className="flex h-[40px] whitespace-nowrap text-xs font-[500] md:grid md:grid-cols-4 ">
+          <tr className="flex h-[40px] whitespace-nowrap text-xs font-[500] md:grid md:grid-cols-3 ">
             <th className="my-auto  min-w-[10%]  px-4 text-left">S/N</th>
-            <th className="my-auto min-w-[23%] px-4 text-left">Item Name</th>
-            <th className="my-auto min-w-[23%] px-4 text-left">Item Price</th>
-            <th className="my-auto min-w-[23%] px-4 text-left">
-              Proof of Payment
-            </th>
+            <th className="my-auto min-w-[40%] px-4 text-left">Item Name</th>
+            <th className="my-auto min-w-[40%] px-4 text-left">Item Price</th>
           </tr>
         </thead>
         <tbody className="block w-full">
           {inputFields.map((item, index) => (
             <tr
               key={index}
-              className="flex text-sm font-[500]  text-cci-grey-dim md:grid  md:grid-cols-4"
+              className="flex text-sm font-[500]  text-cci-grey-dim md:grid  md:grid-cols-3"
             >
               <td className="min-w-[10%] border border-[#68686880] px-2 py-1 text-left">
                 {index + 1}
               </td>
-              <td className="min-w-[30%] border border-[#68686880] px-2 py-1 text-left">
+              <td className="min-w-[40%] border border-[#68686880] px-2 py-1 text-left">
                 <input
                   className="h-full w-full bg-transparent outline-none"
                   value={item.itemName}
@@ -90,7 +78,7 @@ const UnitBudgetRequestTable: FC = () => {
                   onChange={(event) => handleChangeInput(item.id, event)}
                 />
               </td>
-              <td className="min-w-[30%] border border-[#68686880] px-2 py-1 text-left">
+              <td className="min-w-[40%] border border-[#68686880] px-2 py-1 text-left">
                 <input
                   className="h-full w-full border-none bg-transparent outline-none"
                   type="number"
@@ -98,25 +86,6 @@ const UnitBudgetRequestTable: FC = () => {
                   name="itemPrice"
                   onChange={(event) => handleChangeInput(item.id, event)}
                 />
-              </td>
-              <td className="grid min-w-[30%] place-items-center border border-[#68686880] px-2 py-1  text-left">
-                <label htmlFor="image">
-                  <input
-                    id="image"
-                    name="itemImage"
-                    className="hidden"
-                    type="file"
-                    onChange={(event) => handleChangeInput(item.id, event)}
-                  />
-                  {fileName === '' ? (
-                    <div className="flex cursor-pointer items-center gap-2">
-                      <Icon icon="carbon:add" className="text-2xl" />
-                      <p className=" text-xs">Upload JPEG/PDF</p>
-                    </div>
-                  ) : (
-                    <p className="text-xs">{fileName} </p>
-                  )}
-                </label>
               </td>
             </tr>
           ))}
