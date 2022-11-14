@@ -203,3 +203,59 @@ export const dummyUnitReports = [
     action: 'View Report',
   },
 ];
+
+export const dummyMeetingReports = [
+  {
+    index: 0,
+    report:
+      'Meeting took place on the 5th of June with all 7 members of the follow-u...',
+    action: 'View reports',
+  },
+  {
+    index: 1,
+    report:
+      'Meeting took place on the 5th of June with all 7 members of the follow-u...',
+    action: 'View reports',
+  },
+  {
+    index: 2,
+    report:
+      'Meeting took place on the 5th of June with all 7 members of the follow-u...',
+    action: 'View reports',
+  },
+
+  {
+    index: 3,
+    report:
+      'Meeting took place on the 5th of June with all 7 members of the follow-u...',
+    action: 'View reports',
+  },
+
+  {
+    index: 4,
+    report:
+      'Meeting took place on the 5th of June with all 7 members of the follow-u...',
+    action: 'View reports',
+  },
+
+  {
+    index: 5,
+    report:
+      'Meeting took place on the 5th of June with all 7 members of the follow-u...',
+    action: 'View reports',
+  },
+
+  {
+    index: 6,
+    report:
+      'Meeting took place on the 5th of June with all 7 members of the follow-u...',
+    action: 'View reports',
+  },
+
+  {
+    index: 7,
+    report:
+      'Meeting took place on the 5th of June with all 7 members of the follow-u...',
+    action: 'View reports',
+  },
+];
