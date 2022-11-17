@@ -27,25 +27,3 @@ export const attendanceData = {
     },
   ],
 };
-
-export const unitFinanceData = {
-  labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-  datasets: [
-    {
-      data: [225, 160, 190, 160],
-      backgroundColor: '#686868',
-      barThickness: 20,
-      borderWidth: 4,
-      borderColor: 'transparent',
-      borderRadius: 20,
-    },
-    {
-      data: [180, 140, 190, 150],
-      backgroundColor: '#b20000',
-      barThickness: 20,
-      borderWidth: 4,
-      borderColor: 'transparent',
-      borderRadius: 20,
-    },
-  ],
-};

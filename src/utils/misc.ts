@@ -20,6 +20,11 @@ export const processRole: (role: string) => {
         urlForm: 'lead-pastor',
         longForm: 'Lead Pastor',
       };
+    case 'LEAD':
+      return {
+        urlForm: 'follow-up-lead',
+        longForm: 'Service Unit Lead - Follow-up Unit',
+      };
 
     default:
       return {

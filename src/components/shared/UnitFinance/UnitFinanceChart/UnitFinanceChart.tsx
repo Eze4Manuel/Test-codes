@@ -1,13 +1,69 @@
+import type { FC } from 'react';
 import React from 'react';
 
 import BarChart from '@/components/lib/BarChart/BarChart';
 import ChartLabel from '@/components/lib/ChartLabel/ChartLabel';
 import SingleDonut from '@/components/lib/SingleDonut/SingleDonut';
-import { unitFinanceData } from '@/data/barChartData';
 import { unitFinance } from '@/data/chartLabelData';
-import { chartCardsData } from '@/data/unitFinance';
 
-const UnitFinanceChart = () => {
+import type { UnitFinancePros } from '../UnitFinance.props';
+
+const UnitFinanceChart: FC<UnitFinancePros> = ({ data }) => {
+  const chartCardsData = [
+    {
+      id: 1,
+      header: 'Balance',
+      price: data?.balance,
+      subHeader: '17% of cash inflow',
+      color: '#00B232',
+    },
+    {
+      id: 2,
+      header: 'Cash Inflow',
+      price: data?.totalInflow,
+      subHeader: '80% of requested budget',
+      color: '#686868',
+    },
+    {
+      id: 3,
+      header: 'Expenditure',
+      price: data?.totalExpenditure,
+      subHeader: 'Compared to last month',
+      color: ' #B20000',
+    },
+  ];
+
+  const unitFinanceData = {
+    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+    datasets: [
+      {
+        data: [
+          data?.histories[0]?.inflow,
+          data?.histories[1]?.inflow,
+          data?.histories[2]?.inflow,
+          data?.histories[3]?.inflow,
+        ],
+        backgroundColor: '#686868',
+        barThickness: 20,
+        borderWidth: 4,
+        borderColor: 'transparent',
+        borderRadius: 20,
+      },
+      {
+        data: [
+          data?.histories[0]?.expenditure,
+          data?.histories[1]?.expenditure,
+          data?.histories[2]?.expenditure,
+          data?.histories[3]?.expenditure,
+        ],
+        backgroundColor: '#b20000',
+        barThickness: 20,
+        borderWidth: 4,
+        borderColor: 'transparent',
+        borderRadius: 20,
+      },
+    ],
+  };
   return (
     <>
       <div className="flex flex-wrap justify-between gap-5">
@@ -22,7 +78,7 @@ const UnitFinanceChart = () => {
                 className="mt-4 text-2xl font-bold"
                 style={{ color: `${item.color}` }}
               >
-                {item.price}
+                NGN {item.price}
               </p>
               <p className="mt-6 text-cci-grey-dim2">{item.subHeader}</p>
             </div>
@@ -37,15 +93,22 @@ const UnitFinanceChart = () => {
           </div>
         ))}
       </div>
-      <div className="mt-10">
-        <div className="items-center justify-between font-bold md:flex">
-          <h1>Cash Inflow/Expenditure</h1>
-          <ChartLabel data={unitFinance} />
+      {data?.histories.length === 0 ? (
+        <div className="my-20 flex items-center justify-center">
+          <p className="text-2xl font-bold">No Finance history for the month</p>
         </div>
+      ) : (
         <div className="mt-10">
-          <BarChart data={unitFinanceData} />
+          <div className="items-center justify-between font-bold md:flex">
+            <h1>Cash Inflow/Expenditure</h1>
+            <ChartLabel data={unitFinance} />
+          </div>
+
+          <div className="mt-10">
+            <BarChart data={unitFinanceData} />
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

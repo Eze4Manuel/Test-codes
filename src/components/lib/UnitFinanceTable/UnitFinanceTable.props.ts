@@ -1,13 +1,7 @@
-interface TableData {
-  index: number;
-  date: string;
-  cashInflow: number;
-  expenditure: number;
-  action: string;
-}
+import type { MonthlyFinanceHistory } from '@/services/unitFinance/payload';
 
 export default interface UnitFinanceTableProps {
-  tableData: TableData[];
+  tableData: MonthlyFinanceHistory | undefined;
   page: number;
   pages: number;
   limit: number;
