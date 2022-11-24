@@ -9,17 +9,12 @@ export const processRole: (role: string) => {
         longForm: 'Member',
       };
 
-    case 'ADMIN':
-      return {
-        urlForm: 'follow-up-lead',
-        longForm: 'Service Unit Lead - Follow-up Unit',
-      };
-
     case 'OWNER':
       return {
         urlForm: 'lead-pastor',
         longForm: 'Lead Pastor',
       };
+
     case 'LEAD':
       return {
         urlForm: 'follow-up-lead',

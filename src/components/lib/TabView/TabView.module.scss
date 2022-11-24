@@ -35,13 +35,14 @@
     }
   }
 }
+
 .tab {
   &__container {
     @apply flex w-full items-center gap-10 lg:gap-16;
   }
 
-  @apply mb-0 flex w-auto flex-nowrap items-center justify-center whitespace-nowrap border-b-4 
-  border-transparent py-1 px-1 font-josefinSans font-bold;
+  @apply mb-0 flex w-auto  cursor-pointer flex-nowrap items-center 
+  justify-center whitespace-nowrap border-b-4 border-transparent py-1 px-1 font-josefinSans font-bold;
 
   &__active {
     @apply border-b-primary-main;

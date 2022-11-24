@@ -2,7 +2,7 @@ import { getRequest } from '@/utils/api/calls';
 
 const getAllWorkers = () => {
   return getRequest({
-    url: `/attendance/fetch-total-workers`,
+    url: `/unit-report/fetch-all-reports`,
   });
 };
 
