@@ -49,6 +49,8 @@ export const Login = () => {
           gender: data?.user?.gender,
           profile_picture: data?.user?.profile_picture,
           role: data?.user?.role,
+          campusId: data?.user?.campusId,
+          unit: data?.user?.unit,
         };
 
         localStorage.setItem('token', response?.token);

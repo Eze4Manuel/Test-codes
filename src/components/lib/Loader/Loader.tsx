@@ -3,9 +3,13 @@ import type { FC } from 'react';
 import styles from './Loader.module.scss';
 import type LoaderProps from './Loader.props';
 
-const Loader: FC<LoaderProps> = ({ color = '#fff', small = false }) => {
+const Loader: FC<LoaderProps> = ({
+  color = '#fff',
+  small = false,
+  className,
+}) => {
   return (
-    <div className={styles.container} style={{ color }}>
+    <div className={`${styles.container} ${className}`} style={{ color }}>
       <svg
         role="status"
         className={`${styles.svg} ${small ? 'mr-0' : 'mr-2'}`}

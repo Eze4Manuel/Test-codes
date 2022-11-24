@@ -15,6 +15,8 @@ interface IUser {
   phone_number?: string;
   profile_picture?: string;
   role?: string;
+  campusId?: string;
+  unit?: string;
 }
 
 export default IUser;
