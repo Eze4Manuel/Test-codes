@@ -1,4 +1,5 @@
 import { Icon } from '@iconify/react';
+import { useState } from 'react';
 
 import Avatar from '@/components/lib/Avatar';
 import Button from '@/components/lib/Button';
@@ -14,9 +15,12 @@ import TabViewLayout from '@/layouts/TabViewLayout';
 import followUpLeadUnitTabs from '@/layouts/TabViewLayout/followUpLead/followUpLeadUnitTabs';
 import Meta from '@/templates/Meta';
 
+type InputEvent = React.ChangeEvent<HTMLInputElement>;
+
 const Members = () => {
   const [modalIsOpen, toggleModalIsOpen] = useToggle(false);
   const [showMember, toggleShowMember] = useToggle(false);
+  const [searchValue, setSearchValue] = useState('');
 
   return (
     <AuthLayout
@@ -46,7 +50,12 @@ const Members = () => {
               <Text variant="caption" className="whitespace-nowrap font-bold">
                 Search Member:
               </Text>
-              <Input variant="contained" type="search" />
+              <Input
+                value={searchValue}
+                onChange={(e: InputEvent) => setSearchValue(e.target.value)}
+                variant="contained"
+                type="search"
+              />
             </div>
           </div>
 
@@ -62,7 +71,13 @@ const Members = () => {
             </Button>
           </div>
 
-          <MembersTable members={members} page={1} limit={10} pages={1} />
+          <MembersTable
+            members={members}
+            page={1}
+            limit={10}
+            pages={1}
+            searchValue={searchValue}
+          />
         </div>
       </TabViewLayout>
 

@@ -13,7 +13,7 @@ import TabViewLayout from '@/layouts/TabViewLayout';
 import memberDatabase from '@/layouts/TabViewLayout/leadPastor/memberDatabaseTabs';
 import { fetchAllUsers } from '@/services/member';
 import Meta from '@/templates/Meta';
-import { cciCampuses } from '@/utils/constants';
+import { cciCampuses, filterOptions } from '@/utils/constants';
 import { processResponse } from '@/utils/response/processResponse';
 
 const MemberDatabase = () => {
@@ -40,7 +40,10 @@ const MemberDatabase = () => {
         />
       }
     >
-      <TabViewLayout tabs={memberDatabase} rightComponent={<Dropdown2 />}>
+      <TabViewLayout
+        tabs={memberDatabase}
+        rightComponent={<Dropdown2 options={cciCampuses} />}
+      >
         <section className="mb-12 flex justify-between">
           <div className="flex w-[200px] justify-between">
             <span className="relative top-1 text-base font-bold">Show</span>
@@ -49,12 +52,12 @@ const MemberDatabase = () => {
             </div>
             <span className="relative top-1 text-base font-bold">entries</span>
           </div>
-          <Dropdown3 options={cciCampuses} defaultValue={'Filter Results'} />
+          <Dropdown3 options={filterOptions} defaultValue={'Filter Results'} />
         </section>
         <section className="">
           <div className="my-[2em] flex justify-between">
             <div className="w-[45%]">
-              <AttendanceCard />
+              <AttendanceCard data={undefined} loading={false} />
             </div>
             <div className="w-[43%]">
               <div className="flex justify-between">

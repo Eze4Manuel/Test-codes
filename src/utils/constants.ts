@@ -77,6 +77,16 @@ export const allUnits = [
   { name: 'Follow-up', size: 500, color: '#B17DDA' },
 ];
 
+export const allUnitsWithValue = [
+  { label: 'Pastors', value: 'Pastors' },
+  { label: 'Protocol', value: 'Protocol' },
+  { label: 'Celeb Kids', value: 'Celeb Kids' },
+  { label: 'Choir', value: 'Choir' },
+  { label: 'Media', value: 'Media' },
+  { label: 'Media', value: 'Media' },
+  { label: 'Follow-up', value: 'Follow-up' },
+];
+
 export const entries = [
   {
     entry: 10,
@@ -258,4 +268,16 @@ export const dummyMeetingReports = [
       'Meeting took place on the 5th of June with all 7 members of the follow-u...',
     action: 'View reports',
   },
+];
+
+export const filterOptions = [
+  { value: 'Show all', label: 'Show all' },
+  { value: 'Workers only', label: 'Workers only' },
+  { value: 'Members only', label: 'Members only' },
+  { value: 'Children only', label: 'Children only' },
+];
+
+export const createNewMemberTab = [
+  'Create CCI member profile',
+  'Upload Excel Spreedsheet',
 ];
