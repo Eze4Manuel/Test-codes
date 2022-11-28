@@ -1,3 +1,3 @@
 export interface StatusIndicatorProps {
-  status: string;
+  status: string | undefined;
 }
