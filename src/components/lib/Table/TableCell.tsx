@@ -7,9 +7,10 @@ import type { TableCellProps } from './TableProps';
 const TableCell: FC<PropsWithChildren<TableCellProps>> = ({
   children,
   url,
+  onClick,
 }) => {
   return (
-    <td className={styles.table__cell}>
+    <td onClick={onClick} className={styles.table__cell}>
       {url ? (
         <Link href={url} className="w-full" passHref>
           <a>{children}</a>
