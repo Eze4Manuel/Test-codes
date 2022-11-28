@@ -1,3 +1,4 @@
+import CCIGeneralMembership from '@/components/shared/GeneralMembership';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
 import followUpLeadUnitTabs from '@/layouts/TabViewLayout/followUpLead/followUpLeadUnitTabs';
@@ -13,7 +14,9 @@ const GeneralMembership = () => {
         />
       }
     >
-      <TabViewLayout tabs={followUpLeadUnitTabs}></TabViewLayout>
+      <TabViewLayout tabs={followUpLeadUnitTabs}>
+        <CCIGeneralMembership />
+      </TabViewLayout>
     </AuthLayout>
   );
 };

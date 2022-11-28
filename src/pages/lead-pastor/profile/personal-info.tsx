@@ -8,9 +8,13 @@ import type { Option } from '@/components/lib/Dropdown/Dropdown.props';
 import Input from '@/components/lib/Input';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
-import leadPastorProfileTabs from '@/layouts/TabViewLayout/leadPastor/leadPastorProfileTabs';
+import profileTabs from '@/layouts/TabViewLayout/shared/ProfileTabs';
 import Meta from '@/templates/Meta';
 import { genders, maritalStatuses } from '@/utils/constants';
+
+/// Remove this hardcoded data and utilize the PersonalProfile Component
+/// once the lead Pastor's account has been properly set by the backend.
+/// Refer to the: src/pages/member/profile/personal-info
 
 const memberState = {
   first_name: 'Emmanuel',
@@ -56,7 +60,7 @@ const PersonalInfo = () => {
       }
     >
       <TabViewLayout
-        tabs={leadPastorProfileTabs}
+        tabs={profileTabs}
         showActionButton
         onActionButtonClicked={toggleIsEditting}
         actionButtonTitle={isEditting ? 'Cancel' : 'Edit Info'}

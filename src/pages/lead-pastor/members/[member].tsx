@@ -1,8 +1,9 @@
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 import Dropdown3 from '@/components/lib/Dropdown3';
 import Input from '@/components/lib/Input';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
-import memberProfile from '@/layouts/TabViewLayout/leadPastor/memberProfileTabs';
+import profileTabs from '@/layouts/TabViewLayout/shared/ProfileTabs';
 import Meta from '@/templates/Meta';
 import { allUnitsWithValue } from '@/utils/constants';
 
@@ -17,7 +18,7 @@ const MemberProfile = () => {
       }
     >
       <TabViewLayout
-        tabs={memberProfile}
+        tabs={profileTabs}
         rightComponent={
           <Dropdown3
             options={allUnitsWithValue}
@@ -26,7 +27,7 @@ const MemberProfile = () => {
         }
       >
         <div className="grid w-full gap-10">
-          <div className="bg-opacity/20 h-[50px] w-[200px] bg-cci-red px-10 py-3 text-center font-bold text-cci-black">
+          <div className="h-[50px] w-[200px] bg-cci-red/20 px-10 py-3 text-center font-bold text-cci-black">
             Personal Info
           </div>
 
@@ -80,7 +81,7 @@ const MemberProfile = () => {
         </div>
 
         <div className="mt-12 grid w-full gap-10">
-          <div className="h-[50px] w-[200px] bg-cci-red px-10 py-3 text-center font-bold text-cci-black">
+          <div className="h-[50px] w-[200px] bg-cci-red/20 px-10 py-3 text-center font-bold text-cci-black">
             CCI Info
           </div>
 

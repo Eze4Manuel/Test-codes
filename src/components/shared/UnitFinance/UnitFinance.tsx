@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 
@@ -7,6 +8,7 @@ import ToggleTwoStates from '@/components/lib/ToggleTwoStates/ToggleTwoStates';
 import { monthData } from '@/data/unitFinance';
 import { useAppSelector } from '@/hooks';
 import { getAllFinanceHistory } from '@/services/unitFinance';
+import { processRole } from '@/utils/misc';
 import { processResponse } from '@/utils/response/processResponse';
 
 import type { MonthlyFinanceHistory } from '../../../services/unitFinance/payload';
@@ -15,6 +17,7 @@ import UnitFinanceData from './UnitFinanceData/UnitFinanceData';
 
 const UnitFinance = () => {
   const { user } = useAppSelector((state) => state.user);
+  const router = useRouter();
 
   const [activeID, setActiveID] = useState(0);
   const [allFinanceData, setAllFinanceData] = useState<MonthlyFinanceHistory>();
@@ -30,6 +33,11 @@ const UnitFinance = () => {
     },
     enabled: !!user?.ccid,
   });
+
+  const handleClick = () => {
+    const { urlForm } = processRole(user?.role, user?.unit);
+    router.push(`/${urlForm}/unit/finance/budget-request`);
+  };
 
   return (
     <div className="grid w-full gap-10">
@@ -57,7 +65,12 @@ const UnitFinance = () => {
         />
       </div>
       <div className="w-full md:w-[30%]">
-        <Button size="large" variant="outline" className=" w-full ">
+        <Button
+          size="large"
+          variant="outline"
+          className=" w-full"
+          onClick={handleClick}
+        >
           + Request Weekly Budget
         </Button>
       </div>

@@ -1,3 +1,6 @@
+import type RoleName from './Role.type';
+import type ServiceUnit from './ServiceUnit.type';
+
 interface IUser {
   id: string;
   active?: boolean;
@@ -14,9 +17,9 @@ interface IUser {
   membership_class?: boolean;
   phone_number?: string;
   profile_picture?: string;
-  role?: string;
+  role?: RoleName;
   campusId?: string;
-  unit?: string;
+  unit?: ServiceUnit;
 }
 
 export default IUser;
