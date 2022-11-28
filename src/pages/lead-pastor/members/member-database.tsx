@@ -40,7 +40,10 @@ const MemberDatabase = () => {
         />
       }
     >
-      <TabViewLayout tabs={memberDatabase} rightComponent={<Dropdown2 />}>
+      <TabViewLayout
+        tabs={memberDatabase}
+        rightComponent={<Dropdown2 options={cciCampuses} />}
+      >
         <section className="mb-12 flex justify-between">
           <div className="flex w-[200px] justify-between">
             <span className="relative top-1 text-base font-bold">Show</span>
@@ -54,7 +57,7 @@ const MemberDatabase = () => {
         <section className="">
           <div className="my-[2em] flex justify-between">
             <div className="w-[45%]">
-              <AttendanceCard />
+              <AttendanceCard data={undefined} loading={false} />
             </div>
             <div className="w-[43%]">
               <div className="flex justify-between">

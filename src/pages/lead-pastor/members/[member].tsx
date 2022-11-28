@@ -1,10 +1,11 @@
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 import Dropdown3 from '@/components/lib/Dropdown3';
 import Input from '@/components/lib/Input';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
 import memberProfile from '@/layouts/TabViewLayout/leadPastor/memberProfileTabs';
 import Meta from '@/templates/Meta';
-import { allUnits } from '@/utils/constants';
+import { allUnitsWithValue } from '@/utils/constants';
 
 const MemberProfile = () => {
   return (
@@ -19,7 +20,10 @@ const MemberProfile = () => {
       <TabViewLayout
         tabs={memberProfile}
         rightComponent={
-          <Dropdown3 options={allUnits} defaultValue={'Appoint as unit lead'} />
+          <Dropdown3
+            options={allUnitsWithValue}
+            defaultValue={'Appoint as unit lead'}
+          />
         }
       >
         <div className="grid w-full gap-10">

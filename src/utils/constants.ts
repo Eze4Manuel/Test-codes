@@ -77,6 +77,15 @@ export const allUnits = [
   { name: 'Follow-up', size: 500, color: '#B17DDA' },
 ];
 
+export const allUnitsWithValue = [
+  { label: 'Pastors', value: 'Pastors' },
+  { label: 'Protocol', value: 'Protocol' },
+  { label: 'Celeb Kids', value: 'Celeb Kids' },
+  { label: 'Choir', value: 'Choir' },
+  { label: 'Media', value: 'Media' },
+  { label: 'Media', value: 'Media' },
+  { label: 'Follow-up', value: 'Follow-up' },
+];
 export const entries = [
   {
     entry: 10,
