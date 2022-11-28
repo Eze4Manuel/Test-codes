@@ -12,8 +12,6 @@ const MeetingReportsTable: FC<MeetingReportsProps> = ({
 }) => {
   const router = useRouter();
 
-  console.log(tableData);
-
   return (
     <div className="mt-12 w-full lg:mt-14">
       <table className="block overflow-x-scroll md:overflow-x-hidden">

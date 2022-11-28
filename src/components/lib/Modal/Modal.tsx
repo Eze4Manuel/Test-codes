@@ -6,7 +6,6 @@ import styles from './Modal.module.scss';
 import type ModalProps from './Modal.props';
 
 const Modal: FC<PropsWithChildren<ModalProps>> = ({
-  open = true,
   children,
   size = 'normal',
   ...rest
@@ -16,12 +15,10 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
     small: styles.variant__small,
     default: '',
   });
-  return open ? (
+  return (
     <div className={styles.bg} {...rest}>
       <div className={`${styles.modal} ${sizeVariant}`}>{children}</div>
     </div>
-  ) : (
-    <></>
   );
 };
 export default Modal;

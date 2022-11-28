@@ -86,6 +86,7 @@ export const allUnitsWithValue = [
   { label: 'Media', value: 'Media' },
   { label: 'Follow-up', value: 'Follow-up' },
 ];
+
 export const entries = [
   {
     entry: 10,
@@ -266,6 +267,31 @@ export const dummyMeetingReports = [
     report:
       'Meeting took place on the 5th of June with all 7 members of the follow-u...',
     action: 'View reports',
+  },
+];
+
+export const dummyBudgetRequestTable = [
+  { name: 'Petrol', cost: 50000, POP: 'N/A' },
+  { name: 'Diesel', cost: 70000, POP: 'N/A' },
+  { name: 'SMS Charges', cost: 15000, POP: 'N/A' },
+];
+
+export const fixedPageItems = [
+  {
+    value: 10,
+    text: 10,
+  },
+  {
+    value: 20,
+    text: 20,
+  },
+  {
+    value: 25,
+    text: 25,
+  },
+  {
+    value: 50,
+    text: 50,
   },
 ];
 
