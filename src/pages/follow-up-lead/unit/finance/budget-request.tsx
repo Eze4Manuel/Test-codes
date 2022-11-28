@@ -4,7 +4,7 @@ import Dropdown3 from '@/components/lib/Dropdown3';
 import FollowUpUnitBudgetTable from '@/components/shared/BudgetReportsTable/FollowUpUnit/FollowUpUnit';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
-import budgetReportTabs from '@/layouts/TabViewLayout/followUpLead/budgetReportTabs';
+import budgetRequestTabs from '@/layouts/TabViewLayout/shared/budgetRequestTabs';
 import Meta from '@/templates/Meta';
 import { cciCampuses } from '@/utils/constants';
 
@@ -13,12 +13,12 @@ const BudgetReport = () => {
     <AuthLayout
       meta={
         <Meta
-          title="Budget Report"
-          description=" Follow up units budget reports"
+          title="Budget Request | Follow-up Lead"
+          description="Budget requests for the follow up unit."
         />
       }
     >
-      <TabViewLayout tabs={budgetReportTabs}>
+      <TabViewLayout tabs={budgetRequestTabs}>
         <section className="flex flex-col-reverse justify-between md:flex-row">
           <div className="grid w-[350px] justify-between sm:flex">
             <div className="grid w-[200px] sm:flex md:w-[150px]">
@@ -35,7 +35,7 @@ const BudgetReport = () => {
               <Dropdown3 options={cciCampuses} />
             </div>
           </div>
-          <div className="mb-[50px] h-[40px] w-[200px] rounded-3xl border-2 border-cci-green bg-cci-green2 bg-opacity-25 py-1 px-[30px] text-cci-green md:mb-0">
+          <div className="mb-[50px] h-[40px] w-[200px] rounded-3xl border-2 border-cci-green bg-cci-green2/25 py-1 px-[30px] text-cci-green md:mb-0">
             Budget Approved
           </div>
         </section>

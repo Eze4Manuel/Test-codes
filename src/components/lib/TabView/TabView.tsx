@@ -1,6 +1,9 @@
 import { useRouter } from 'next/router';
 import type { FC, PropsWithChildren } from 'react';
 
+import { useAppSelector } from '@/hooks';
+import { processRole } from '@/utils/misc';
+
 import styles from './TabView.module.scss';
 import type TabViewProps from './TabView.props';
 
@@ -12,10 +15,28 @@ const TabView: FC<PropsWithChildren<TabViewProps>> = ({
   rightComponent,
   children,
 }) => {
+  const { user } = useAppSelector((state) => state.user);
   const router = useRouter();
 
   const onTabClicked = (url: string) => {
     router.push(`${url}#active`);
+  };
+
+  const getResolvedUrl = (url: string) => {
+    // Shared tabs have their urls starting with "$".
+    // This helps prepend the approppriate unit lead prefix to shared tabs by replacing
+    // the "$" with the correct prefix.
+    const { urlForm } = processRole(user?.role, user?.unit);
+
+    if (url.startsWith('$')) {
+      return `/${urlForm}${url.split('$')[1]}`;
+    }
+
+    if (url.startsWith('/$')) {
+      return `/${urlForm}${url.split('/$')[1]}`;
+    }
+
+    return url;
   };
 
   return (
@@ -27,12 +48,17 @@ const TabView: FC<PropsWithChildren<TabViewProps>> = ({
               <div className={`${styles.tab__container}`}>
                 {tabs.map((tab, index) => (
                   <button
-                    id={router.pathname.startsWith(tab.url) ? 'active' : ''}
+                    id={
+                      router.pathname.startsWith(getResolvedUrl(tab.url))
+                        ? 'active'
+                        : ''
+                    }
                     key={index}
                     className={`${styles.tab} ${
-                      router.pathname.startsWith(tab.url) && styles.tab__active
+                      router.pathname.startsWith(getResolvedUrl(tab.url)) &&
+                      styles.tab__active
                     }`}
-                    onClick={() => onTabClicked(tab.url)}
+                    onClick={() => onTabClicked(getResolvedUrl(tab.url))}
                   >
                     {tab.title}
                   </button>

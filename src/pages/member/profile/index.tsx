@@ -1,20 +1,5 @@
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import ProfileRedirect from '@/components/shared/ProfileRedirect';
 
-import { useCheckAuth } from '@/hooks';
-import memberProfileTabs from '@/layouts/TabViewLayout/member/memberProfileTabs';
-
-const Profile = () => {
-  const router = useRouter();
-  const { isAuthenticated } = useCheckAuth();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      router.push(memberProfileTabs[0]?.url || '/');
-    }
-  }, [isAuthenticated]);
-
-  return <></>;
-};
+const Profile = () => <ProfileRedirect />;
 
 export default Profile;

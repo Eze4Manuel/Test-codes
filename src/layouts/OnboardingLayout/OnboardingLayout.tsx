@@ -23,10 +23,11 @@ const OnboardingLayout: FC<PropsWithChildren<OnboardingLayoutProps>> = ({
   const { isAuthenticated } = useCheckAuth({
     disableRedirect: true,
   });
+  const { urlForm } = processRole(user?.role, user?.unit);
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push(`/${processRole(user?.role || '').urlForm}/profile`);
+      router.push(`/${urlForm}/profile`);
     }
   }, [isAuthenticated]);
 

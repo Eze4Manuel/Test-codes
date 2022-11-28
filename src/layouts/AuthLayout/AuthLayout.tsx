@@ -3,34 +3,17 @@ import { useEffect, useState } from 'react';
 
 import NavBar from '@/components/auth/NavBar';
 import SideNav from '@/components/auth/SideNav';
-import { useAppSelector, useMediaQuery } from '@/hooks';
+import { useAppSelector, useCheckAuth, useMediaQuery } from '@/hooks';
 import { processRole } from '@/utils/misc';
 
 import type AuthLayoutProps from './AuthLayout.props';
-import { followUpLeadLinks, leadPastorLinks, memberLinks } from './data';
-
-const getLinks = (role: string) => {
-  switch (role) {
-    case 'member':
-      return memberLinks;
-
-    case 'follow-up-lead':
-      return followUpLeadLinks;
-
-    case 'lead-pastor':
-      return leadPastorLinks;
-
-    default:
-      return [];
-  }
-};
 
 const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
   const { user } = useAppSelector((state) => state.user);
   const [sideNavIsOpen, setSideNavIsOpen] = useState(false);
   const largeScreen = useMediaQuery('(min-width: 1200px)');
-  // const { isAuthenticated } = useCheckAuth();
-  const { isAuthenticated } = { isAuthenticated: true };
+  const { isAuthenticated } = useCheckAuth();
+  const { sideNavLinks } = processRole(user?.role, user?.unit);
 
   useEffect(() => {
     setSideNavIsOpen(false);
@@ -48,7 +31,7 @@ const Auth: FC<PropsWithChildren<AuthLayoutProps>> = ({ meta, children }) => {
         <SideNav
           isOpen={sideNavIsOpen}
           onClose={toggleSideNav}
-          links={getLinks(processRole(user?.role || '')?.urlForm)}
+          links={sideNavLinks}
         />
 
         <main className="relative flex h-full w-full flex-1 flex-col overflow-y-auto overflow-x-hidden">

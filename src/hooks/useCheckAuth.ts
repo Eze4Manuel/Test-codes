@@ -22,14 +22,12 @@ const useCheckAuth: (config?: { disableRedirect: boolean }) => {
       }
     } else {
       const parsedData = JSON.parse(userData);
+      const { urlForm } = processRole(parsedData?.role, parsedData?.unit);
       dispatch(setUserData(parsedData));
       setIsAuthenticated(true);
 
       if (!config?.disableRedirect && parsedData?.role) {
-        if (
-          router.pathname.split('/')?.[1] !==
-          processRole(parsedData.role).urlForm
-        ) {
+        if (router.pathname.split('/')?.[1] !== urlForm) {
           router.push('/login');
         }
       }

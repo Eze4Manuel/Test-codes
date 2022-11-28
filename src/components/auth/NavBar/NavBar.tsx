@@ -26,6 +26,7 @@ const NavBar: FC<NavBarProps> = ({ openSideNav }) => {
     modifiers: [{ name: 'arrow' }],
     placement: 'bottom-end',
   });
+  const { longForm } = processRole(user?.role, user?.unit);
 
   const onMenuClicked = () => {
     setMenuIsOpen((prevState) => !prevState);
@@ -50,7 +51,6 @@ const NavBar: FC<NavBarProps> = ({ openSideNav }) => {
         <Avatar
           className="h-20 w-20"
           name={`${user?.first_name} ${user?.last_name}`}
-          image={true}
         />
 
         <div className="flex flex-col items-center text-center lg:items-start">
@@ -58,11 +58,9 @@ const NavBar: FC<NavBarProps> = ({ openSideNav }) => {
             variant="subheading"
             className="-mb-1 font-josefinSans font-bold capitalize"
           >
-            Emmanuel Iren
+            {user?.first_name} {user?.first_name}
           </Text>
-          <Text className="capitalize text-gray-500">
-            {processRole(user?.role || '').longForm}
-          </Text>
+          <Text className="capitalize text-gray-500">{longForm}</Text>
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-import MemberLayout from '@/components/lib/MemberLayout';
+import UnitMember from '@/components/shared/UnitMember';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
 import followUpLeadUnitTabs from '@/layouts/TabViewLayout/followUpLead/followUpLeadUnitTabs';
@@ -15,7 +15,7 @@ const Member = () => {
       }
     >
       <TabViewLayout tabs={followUpLeadUnitTabs}>
-        <MemberLayout />
+        <UnitMember />
       </TabViewLayout>
     </AuthLayout>
   );
