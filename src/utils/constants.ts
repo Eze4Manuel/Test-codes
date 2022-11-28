@@ -86,7 +86,6 @@ export const allUnitsWithValue = [
   { label: 'Media', value: 'Media' },
   { label: 'Follow-up', value: 'Follow-up' },
 ];
-
 export const entries = [
   {
     entry: 10,
