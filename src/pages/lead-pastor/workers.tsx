@@ -15,7 +15,7 @@ import { cciCampuses } from '@/utils/constants';
 import { processResponse } from '@/utils/response/processResponse';
 
 const Workers = () => {
-  const { isLoading, data } = useQuery('fetchWorkers', getAllWorkers, {
+  const { isLoading, data } = useQuery('getAllWorkers', getAllWorkers, {
     onSuccess(response) {
       const tableData = processResponse(response);
       return tableData;

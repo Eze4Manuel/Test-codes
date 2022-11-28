@@ -268,3 +268,15 @@ export const dummyMeetingReports = [
     action: 'View reports',
   },
 ];
+
+export const filterOptions = [
+  { value: 'Show all', label: 'Show all' },
+  { value: 'Workers only', label: 'Workers only' },
+  { value: 'Members only', label: 'Members only' },
+  { value: 'Children only', label: 'Children only' },
+];
+
+export const createNewMemberTab = [
+  'Create CCI member profile',
+  'Upload Excel Spreedsheet',
+];

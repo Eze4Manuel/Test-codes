@@ -1,7 +1,8 @@
 interface TableData {
-  index: number;
-  date: string;
+  id: string;
   report: string;
+  start: string;
+  end: string;
 }
 
 export default interface UnitReportsTableProps {

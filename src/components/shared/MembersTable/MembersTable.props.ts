@@ -5,4 +5,5 @@ export default interface MembersTableProps {
   page: number;
   pages: number;
   limit: number;
+  searchValue?: string | undefined;
 }

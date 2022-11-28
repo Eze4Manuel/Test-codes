@@ -8,7 +8,9 @@ import TableCell from '@/components/lib/Table/TableCell';
 import TableHeader from '@/components/lib/Table/TableHeader';
 import TableRow from '@/components/lib/Table/TableRow';
 import Text from '@/components/lib/Text';
+import { setMemberData } from '@/store/slices/memberSlice';
 
+import useAppDispatch from '../../../hooks/useAppDispatch';
 import type MembersTableProps from './MembersTable.props';
 
 const MembersTable: FC<MembersTableProps> = ({
@@ -16,8 +18,24 @@ const MembersTable: FC<MembersTableProps> = ({
   page,
   limit,
   pages,
+  searchValue,
 }) => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const filteredMembersTable = members.filter((value) => {
+    if (searchValue === '') {
+      return value;
+    }
+    if (
+      value.first_name
+        .toLocaleLowerCase()
+        .includes(searchValue?.toLocaleLowerCase()!)
+    ) {
+      return value;
+    }
+    return false;
+  });
 
   return (
     <div className="flex w-full flex-col gap-3 overflow-x-hidden">
@@ -26,27 +44,35 @@ const MembersTable: FC<MembersTableProps> = ({
           items={['SN', 'Full Name', 'Gender', 'Phone Number', 'Action']}
         />
         <TableBody>
-          {members.map((member, index) => (
-            <TableRow key={index}>
-              <TableCell>{index + (page - 1) * limit + 1}</TableCell>
-              <TableCell>
-                <Text variant="caption">
-                  {member?.first_name} {member?.last_name}
-                </Text>
-              </TableCell>
-              <TableCell>
-                <Text variant="caption">{member?.gender}</Text>
-              </TableCell>
-              <TableCell>
-                <Text variant="caption">{member?.phone_number}</Text>
-              </TableCell>
-              <TableCell url={`${router.pathname}/${member?.id}`}>
-                <Text variant="caption" className="text-cci-green">
-                  View Profile
-                </Text>
-              </TableCell>
-            </TableRow>
-          ))}
+          {filteredMembersTable.map(
+            (
+              member,
+              index // when there is a search value
+            ) => (
+              <TableRow key={index}>
+                <TableCell>{index + (page - 1) * limit + 1}</TableCell>
+                <TableCell>
+                  <Text variant="caption">
+                    {member?.first_name} {member?.last_name}
+                  </Text>
+                </TableCell>
+                <TableCell>
+                  <Text variant="caption">{member?.gender}</Text>
+                </TableCell>
+                <TableCell>
+                  <Text variant="caption">{member?.phone_number}</Text>
+                </TableCell>
+                <TableCell
+                  onClick={() => dispatch(setMemberData(member))}
+                  url={`${router.pathname}/${member?.id}`}
+                >
+                  <Text variant="caption" className="text-cci-green">
+                    View Profile
+                  </Text>
+                </TableCell>
+              </TableRow>
+            )
+          )}
         </TableBody>
       </Table>
 

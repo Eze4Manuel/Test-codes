@@ -23,7 +23,7 @@ const WYSIWYGEditor: FC<WYSIWYGEditorProps> = ({
   return (
     <div className="w-full">
       <div className="w-full">
-        {label && <label className={styles.label}>{label} </label>}
+        {label && <label className={styles.label}>{label}</label>}
         <div
           className={`${styles.container} ${containerClass || ''} ${
             error ? 'border-red-500' : ''
@@ -31,7 +31,7 @@ const WYSIWYGEditor: FC<WYSIWYGEditorProps> = ({
         >
           <Editor
             wrapperClassName={`demo-wrapper w-full bg-[#F9FAFB]`}
-            editorClassName="demo-editor w-full px-5"
+            editorClassName="demo-editor w-full px-4 min-h-[300px] lg:min-h-[200px]"
             customStyleMap={customStyleMap}
             toolbar={toolbar}
             {...rest}

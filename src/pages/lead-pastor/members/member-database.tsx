@@ -13,7 +13,7 @@ import TabViewLayout from '@/layouts/TabViewLayout';
 import memberDatabase from '@/layouts/TabViewLayout/leadPastor/memberDatabaseTabs';
 import { fetchAllUsers } from '@/services/member';
 import Meta from '@/templates/Meta';
-import { cciCampuses } from '@/utils/constants';
+import { cciCampuses, filterOptions } from '@/utils/constants';
 import { processResponse } from '@/utils/response/processResponse';
 
 const MemberDatabase = () => {
@@ -52,7 +52,7 @@ const MemberDatabase = () => {
             </div>
             <span className="relative top-1 text-base font-bold">entries</span>
           </div>
-          <Dropdown3 options={cciCampuses} defaultValue={'Filter Results'} />
+          <Dropdown3 options={filterOptions} defaultValue={'Filter Results'} />
         </section>
         <section className="">
           <div className="my-[2em] flex justify-between">
