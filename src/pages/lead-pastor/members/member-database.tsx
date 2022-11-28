@@ -18,7 +18,6 @@ import { processResponse } from '@/utils/response/processResponse';
 
 const MemberDatabase = () => {
   const [members, setMembers] = useState([]);
-
   const { isLoading, data } = useQuery('fetcMembers', fetchAllUsers, {
     onSuccess(response) {
       const tableData = processResponse(response);
@@ -52,7 +51,7 @@ const MemberDatabase = () => {
             </div>
             <span className="relative top-1 text-base font-bold">entries</span>
           </div>
-          <Dropdown3 options={filterOptions} defaultValue={'Filter Results'} />
+          <Dropdown3 options={filterOptions} defaultValue={'Show all'} />
         </section>
         <section className="">
           <div className="my-[2em] flex justify-between">
