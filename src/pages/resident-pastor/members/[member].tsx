@@ -26,7 +26,7 @@ const MemberProfile = () => {
         }
       >
         <div className="grid w-full gap-10">
-          <div className="bg-opacity/20 h-[50px] w-[200px] bg-cci-red px-10 py-3 text-center font-bold text-cci-black">
+          <div className="h-[50px] w-[200px] bg-cci-red px-10 py-3 text-center font-bold text-cci-black">
             Personal Info
           </div>
 
