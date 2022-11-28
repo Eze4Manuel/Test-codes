@@ -1,1 +1,1 @@
-export { default } from './GeneralMembership';
+export { default } from './GeneralMembershipPage';

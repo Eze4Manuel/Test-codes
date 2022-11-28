@@ -56,9 +56,7 @@ const CreateNewMember = () => {
     const { errors: validateErrors, valid } =
       validatePersonalInfoInputs(member);
 
-    if (valid) {
-      console.log('yes');
-    } else {
+    if (!valid) {
       setErrors(validateErrors);
     }
   };
@@ -75,15 +73,17 @@ const CreateNewMember = () => {
       <TabViewLayout tabs={followUpLeadUnitTabs}>
         <div className=" items-center justify-center gap-6 md:flex">
           {createNewMemberTab.map((item, index) => (
-            <Button
+            <div
               key={index}
-              variant={active === index ? 'solid' : 'outline'}
-              size="medium"
-              className="mb-2 flex w-full items-center gap-2 text-center md:w-auto"
+              className={
+                index === active
+                  ? 'border-grey mb-2 flex w-full cursor-pointer items-center  gap-2 rounded-xl border-2 bg-primary-main/10 p-3 text-center hover:border-primary-main/10 hover:bg-primary-main/10 md:w-auto'
+                  : 'border-grey mb-2 flex w-full cursor-pointer items-center gap-2 rounded-xl border-2 p-3 text-center hover:bg-primary-main/10 md:w-auto'
+              }
               onClick={() => setActive(index)}
             >
               {item}
-            </Button>
+            </div>
           ))}
         </div>
         <div>
