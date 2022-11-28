@@ -26,10 +26,14 @@ const TabView: FC<PropsWithChildren<TabViewProps>> = ({
     // Shared tabs have their urls starting with "$".
     // This helps prepend the approppriate unit lead prefix to shared tabs by replacing
     // the "$" with the correct prefix.
-    if (url.startsWith('$') || url.startsWith('/$')) {
-      const { urlForm } = processRole(user?.role, user?.unit);
+    const { urlForm } = processRole(user?.role, user?.unit);
 
+    if (url.startsWith('$')) {
       return `/${urlForm}${url.split('$')[1]}`;
+    }
+
+    if (url.startsWith('/$')) {
+      return `/${urlForm}${url.split('/$')[1]}`;
     }
 
     return url;
