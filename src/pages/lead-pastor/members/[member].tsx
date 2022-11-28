@@ -1,10 +1,11 @@
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 import Dropdown3 from '@/components/lib/Dropdown3';
 import Input from '@/components/lib/Input';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
 import profileTabs from '@/layouts/TabViewLayout/shared/ProfileTabs';
 import Meta from '@/templates/Meta';
-import { allUnits } from '@/utils/constants';
+import { allUnitsWithValue } from '@/utils/constants';
 
 const MemberProfile = () => {
   return (
@@ -20,10 +21,7 @@ const MemberProfile = () => {
         tabs={profileTabs}
         rightComponent={
           <Dropdown3
-            options={allUnits.map((unit) => ({
-              label: unit.name,
-              value: unit.name,
-            }))}
+            options={allUnitsWithValue}
             defaultValue={'Appoint as unit lead'}
           />
         }

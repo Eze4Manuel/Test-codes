@@ -12,8 +12,8 @@ const followUpLeadUnitTabs = [
     url: '/follow-up-lead/unit/meeting-reports',
   },
   {
-    title: 'General Membership Database',
-    url: '/follow-up-lead/unit/general-membership-database',
+    title: 'CCI Membership Database',
+    url: '/follow-up-lead/unit/cci-membership-database',
   },
   {
     title: 'Finance',
