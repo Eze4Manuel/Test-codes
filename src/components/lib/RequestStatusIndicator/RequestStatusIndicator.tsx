@@ -12,9 +12,9 @@ const RequestStatusIndicator: FC<StatusIndicatorProps> = memo(({ status }) => {
     <div className="flex items-center gap-2">
       <div
         className={
-          status === 'Budget Approved'
+          status === 'APPROVED'
             ? 'w-full rounded-full border-2 border-cci-green bg-[#D5EFDC] px-2 py-1 text-center text-cci-green md:w-[166px]'
-            : status === 'Request Pending'
+            : status === 'PENDING'
             ? 'w-full rounded-full border-2 border-[#FFA471] bg-[#FFA471] bg-opacity-30 px-2 py-1 text-center text-[#FFA471] md:w-[166px]'
             : 'w-full rounded-full border-2 border-[#B20000] bg-[#B20000] bg-opacity-30 px-2 py-1 text-center text-[#B20000] md:w-[166px]'
         }

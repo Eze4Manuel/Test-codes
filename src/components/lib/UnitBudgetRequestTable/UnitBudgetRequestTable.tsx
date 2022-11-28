@@ -1,21 +1,46 @@
+import moment from 'moment';
 import type { FC } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useMutation } from 'react-query';
 import { v4 as uuidv4 } from 'uuid';
 
+import { createBudgetRequest } from '@/services/budgetrequest';
+import { processResponse } from '@/utils/response/processResponse';
+
 import Button from '../Button';
+import type { UnitBudgetRequestTableProps } from './UnitBudgetRequestTable.props';
 
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
-const UnitBudgetRequestTable: FC = () => {
+const UnitBudgetRequestTable: FC<UnitBudgetRequestTableProps> = ({
+  startDate,
+  endDate,
+  setEndDate,
+  setStartDate,
+  toggleTableType,
+}) => {
   const [inputFields, setInputFields] = useState([
     {
       id: uuidv4(),
-      itemName: '',
-      itemPrice: '',
+      name: '',
+      cost: '',
     },
   ]);
-  // const [fileName, setFileName] = useState('');
 
+  const { mutate, isLoading } = useMutation(createBudgetRequest, {
+    onSuccess(response) {
+      const data = processResponse(response);
+      if (data) {
+        toast.success('Budget requested successfully!');
+      }
+    },
+  });
+
+  useEffect(() => {
+    setStartDate('');
+    setEndDate('');
+  }, []);
   // adds new entry  to the table
   const handleAddFields = () => {
     setInputFields((prev) => {
@@ -23,8 +48,8 @@ const UnitBudgetRequestTable: FC = () => {
         ...prev,
         {
           id: uuidv4(),
-          itemName: '',
-          itemPrice: '',
+          name: '',
+          cost: '',
         },
       ];
     });
@@ -45,12 +70,25 @@ const UnitBudgetRequestTable: FC = () => {
 
   // get total of the items price
   const totalPrice = inputFields.reduce((accumulator, object) => {
-    return accumulator + parseInt(object.itemPrice, 10);
+    return accumulator + parseInt(object.cost, 10);
   }, 0);
 
   // check if total price is a number or not
   const isNotNumber = Number.isNaN(totalPrice);
 
+  const handleSubmit = () => {
+    if (startDate === '' || endDate === '') {
+      toast.error('Please specify a start and end date');
+    } else {
+      mutate({
+        start: `${moment(startDate).format('YYYY-MM-DD')}`,
+        campus: '3cece26c-e6c2-485a-9caa-9432be17b4be',
+        unit: 'PASTOR_UNIT',
+        end: `${moment(endDate).format('YYYY-MM-DD')}`,
+        items: inputFields,
+      });
+    }
+  };
   return (
     <div className="mt-12 w-full lg:mt-14">
       <table className="block border-collapse overflow-x-scroll border border-[#686868]  md:overflow-x-hidden">
@@ -73,8 +111,8 @@ const UnitBudgetRequestTable: FC = () => {
               <td className="min-w-[40%] border border-[#68686880] px-2 py-1 text-left">
                 <input
                   className="h-full w-full bg-transparent outline-none"
-                  value={item.itemName}
-                  name="itemName"
+                  value={item.name}
+                  name="name"
                   onChange={(event) => handleChangeInput(item.id, event)}
                 />
               </td>
@@ -82,8 +120,8 @@ const UnitBudgetRequestTable: FC = () => {
                 <input
                   className="h-full w-full border-none bg-transparent outline-none"
                   type="number"
-                  value={item.itemPrice}
-                  name="itemPrice"
+                  value={item.cost}
+                  name="cost"
                   onChange={(event) => handleChangeInput(item.id, event)}
                 />
               </td>
@@ -92,13 +130,16 @@ const UnitBudgetRequestTable: FC = () => {
         </tbody>
       </table>
 
-      <div className="mt-10 flex items-center justify-between font-bold md:w-[40%] ">
+      <div className="mt-10 flex items-center justify-between font-bold  ">
         <p>TOTAL</p>
         {isNotNumber ? (
           <p>NGN 0.00</p>
         ) : (
           <p>NGN {totalPrice.toLocaleString()}.00</p>
         )}
+        <p className="cursor-pointer text-cci-green" onClick={toggleTableType}>
+          Check a request
+        </p>
       </div>
 
       <div>
@@ -115,6 +156,8 @@ const UnitBudgetRequestTable: FC = () => {
             disabled={!!isNotNumber}
             variant="solid"
             className=" w-full "
+            onClick={handleSubmit}
+            loading={isLoading}
           >
             Send Budget for approval
           </Button>

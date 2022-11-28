@@ -1,38 +1,93 @@
 import { Icon } from '@iconify/react';
 import type { FC } from 'react';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useMutation } from 'react-query';
 
 import Checkbox from '@/components/lib/Checkbox';
-import { approvedUniTableData } from '@/data/unitTable';
+import { checkBudgetItem } from '@/services/budgetrequest';
+import { processResponse } from '@/utils/response/processResponse';
 
-const ApprovedUnitBudgetRequestTable: FC = () => {
-  const [file, setFile] = useState<File | null>();
+import Loader from '../Loader';
+import type { IApprovedUnitBudgetTableProps } from './ApprovedUnitBudgetrequestTable.props';
+
+type InputEvent = React.ChangeEvent<HTMLInputElement>;
+
+const ApprovedUnitBudgetRequestTable: FC<IApprovedUnitBudgetTableProps> = ({
+  data,
+  loading,
+  toggleTableType,
+}) => {
+  const [file, setFile] = useState<any>();
+  const [currentItem, setCurrentItem] = useState('');
   const [expenditure, setExpenditure] = useState<number>(0);
   const [ids, setIds] = useState<string[]>([]);
 
+  const { mutate } = useMutation(checkBudgetItem, {
+    onSuccess(response) {
+      const uploadData = processResponse(response);
+      if (uploadData) {
+        toast.success('Proof of payment upload  successfully!');
+      }
+    },
+  });
+
   // get total of the items price
-  const totalPrice = approvedUniTableData.reduce((accumulator, object) => {
-    return accumulator + parseInt(object.price, 10);
+  const totalPrice = data?.items.reduce((accumulator, object) => {
+    return accumulator + object.cost;
   }, 0);
 
-  const expenditureHandler = (arg: string, price: string) => {
+  const expenditureHandler = (arg: string, price: number) => {
     //   do no add if the item already exist in the array
     if (!ids.includes(arg)) {
       // add new item to the array
       setIds((prevValues) => [...prevValues, arg]);
       // converts the itemPrice from string to number and increase expenditure
-      setExpenditure((prev) => prev + parseInt(price, 10));
+      setExpenditure((prev) => prev + price);
     } else {
       //   get the index of the element
       const index = ids.indexOf(arg);
       // remove from the array
       ids.splice(index, 1);
       // converts the itemPrice from string to number and decrease expenditure
-      setExpenditure((prev) => prev - parseInt(price, 10));
+      setExpenditure((prev) => prev - price);
     }
   };
   // balance
-  const balance = totalPrice - expenditure;
+  const balance = totalPrice && totalPrice - expenditure;
+
+  const imageUploadHandler = (e: InputEvent, id: string) => {
+    setCurrentItem(id);
+
+    if (id === currentItem) {
+      if (e.currentTarget.files?.[0]) {
+        setFile(e.currentTarget.files?.[0]);
+      } else {
+        setCurrentItem('');
+      }
+    }
+    const formData = new FormData();
+    formData.append('image', file);
+    mutate({
+      query: currentItem,
+    });
+  };
+
+  if (loading) {
+    return (
+      <div className="my-20 flex items-center justify-center">
+        <Loader color="#000000" small={false} />
+      </div>
+    );
+  }
+
+  if (typeof data === undefined) {
+    return (
+      <div className="my-20 flex items-center justify-center">
+        <p>There is no budget for the selected date interval</p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -43,7 +98,7 @@ const ApprovedUnitBudgetRequestTable: FC = () => {
           <p>
             Cash Inflow :{' '}
             <span className="font-bold">
-              NGN {totalPrice.toLocaleString()}.00
+              NGN {totalPrice && totalPrice.toLocaleString()}.00
             </span>
           </p>
         </div>
@@ -53,7 +108,7 @@ const ApprovedUnitBudgetRequestTable: FC = () => {
           <p>
             Current Balance :{' '}
             <span className="font-bold text-cci-green">
-              NGN {balance.toLocaleString()}.00
+              NGN {balance && balance.toLocaleString()}.00
             </span>
           </p>
         </div>
@@ -87,7 +142,7 @@ const ApprovedUnitBudgetRequestTable: FC = () => {
             </tr>
           </thead>
           <tbody className="block w-full">
-            {approvedUniTableData.map((item, index) => (
+            {data?.items.map((item, index) => (
               <tr
                 key={index}
                 className="flex h-[50px] text-sm font-[500] text-cci-grey-dim md:grid  md:grid-cols-4"
@@ -100,7 +155,7 @@ const ApprovedUnitBudgetRequestTable: FC = () => {
                     <Checkbox
                       theme="darkBlack"
                       onClick={() => {
-                        expenditureHandler(item.id, item.price);
+                        expenditureHandler(item.id, item.cost);
                       }}
                       checked={ids.includes(item.id)}
                     />
@@ -108,28 +163,27 @@ const ApprovedUnitBudgetRequestTable: FC = () => {
                   </div>
                 </td>
                 <td className="flex min-w-[30%] items-center border border-[#68686880] px-2 py-1  text-center">
-                  <p>NGN {item.price}.00</p>
+                  <p>NGN {item.cost}.00</p>
                 </td>
                 <td className="flex   min-w-[30%] place-items-center items-center border border-[#68686880] px-2 py-1   text-center">
                   <label htmlFor="image">
                     <input
                       id="image"
                       name="itemImage"
-                      className="hidden"
+                      className="hidden w-full "
                       type="file"
-                      onChange={(event) => {
-                        if (event.currentTarget.files?.[0]) {
-                          setFile(event.currentTarget.files?.[0]);
-                        }
+                      onChange={(e) => {
+                        imageUploadHandler(e, item.id);
                       }}
+                      onClick={() => setCurrentItem(item.id)}
                     />
 
-                    {file && parseInt(item.id, 10) === index + 1 ? (
-                      <p> {file?.name}</p>
+                    {currentItem === item.id ? (
+                      <p className="w-full"> {file?.name}</p>
                     ) : (
                       <div className="flex cursor-pointer items-center gap-2">
                         <Icon icon="carbon:add" className="text-2xl" />
-                        <p className=" text-xs">Upload JPEG/PDF</p>
+                        <p className=" w-full text-xs">Upload JPEG/PDF</p>
                       </div>
                     )}
                   </label>
@@ -139,9 +193,15 @@ const ApprovedUnitBudgetRequestTable: FC = () => {
           </tbody>
         </table>
 
-        <div className="mt-10 flex items-center justify-between font-bold md:w-[40%] ">
+        <div className="mt-10 flex items-center justify-between font-bold  ">
           <p>TOTAL</p>
-          <p>NGN {totalPrice.toLocaleString()}.00</p>
+          <p>NGN {totalPrice && totalPrice.toLocaleString()}.00</p>
+          <p
+            className="cursor-pointer text-cci-green"
+            onClick={toggleTableType}
+          >
+            Request for new budget
+          </p>
         </div>
       </div>
     </div>
