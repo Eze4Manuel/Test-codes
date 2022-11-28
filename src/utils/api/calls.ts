@@ -44,7 +44,7 @@ export const deleteRequest = async ({
   data,
 }: {
   url: string;
-  data: any;
+  data?: any;
 }) => {
   const response = await baseAxiosMethod.delete(url, { data });
   return response?.data || response;

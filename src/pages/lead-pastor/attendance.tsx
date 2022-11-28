@@ -81,7 +81,7 @@ const Attendance = () => {
           />
         </div>
         <ChartLabel data={attendanceLabel} />
-        <div className="relative ">
+        <div className="relative">
           <BarChart data={attendanceData} />
           <Icon
             icon="ion:chevron-forward-circle-outline"
