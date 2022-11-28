@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import type { FC } from 'react';
 
-import PastorImage from '@/public/assets/images/pastor.jpg';
-
 import styles from './Avatar.module.scss';
 import type AvatarProps from './Avatar.props';
 
@@ -15,7 +13,7 @@ const Avatar: FC<AvatarProps> = ({ name, image, className }) => {
         } relative overflow-hidden`}
       >
         <Image
-          src={PastorImage}
+          src={image}
           alt=""
           layout="fill"
           className="h-full w-full object-cover"

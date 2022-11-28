@@ -8,7 +8,7 @@ import type { Option } from '@/components/lib/Dropdown/Dropdown.props';
 import Input from '@/components/lib/Input';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
-import leadPastorProfileTabs from '@/layouts/TabViewLayout/leadPastor/leadPastorProfileTabs';
+import profileTabs from '@/layouts/TabViewLayout/shared/ProfileTabs';
 import Meta from '@/templates/Meta';
 import {
   CCICampuses,
@@ -16,6 +16,10 @@ import {
   membershipClasses,
   serviceUnits,
 } from '@/utils/constants';
+
+/// Remove this hardcoded data and utilize the CCIProfile Component
+/// once the lead Pastor's account has been properly set by the backend.
+/// Refer to the: src/pages/member/profile/cci-info
 
 const CCIState = {
   ccid: 'CCI001',
@@ -63,7 +67,7 @@ const CCIProfile = () => {
       }
     >
       <TabViewLayout
-        tabs={leadPastorProfileTabs}
+        tabs={profileTabs}
         onActionButtonClicked={toggleIsEditting}
         actionButtonTitle={isEditting ? 'Cancel' : 'Edit Info'}
       >

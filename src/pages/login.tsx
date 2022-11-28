@@ -31,7 +31,8 @@ export const Login = () => {
 
   useEffect(() => {
     if (user) {
-      router.push(`/${processRole(user?.role || '').urlForm}/profile`);
+      const { urlForm } = processRole(user?.role, user?.unit);
+      router.push(`/${urlForm}/profile`);
     }
   }, [user]);
 
@@ -56,7 +57,8 @@ export const Login = () => {
         localStorage.setItem('token', response?.token);
         localStorage.setItem('user', JSON.stringify(userData));
         dispatch(setUserData(userData));
-        router.push(`/${processRole(data?.user?.role || '').urlForm}/profile`);
+        const { urlForm } = processRole(data?.user?.role, data?.user?.unit);
+        router.push(`/${urlForm}/profile`);
       }
     },
   });
