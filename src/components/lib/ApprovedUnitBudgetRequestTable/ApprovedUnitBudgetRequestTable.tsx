@@ -22,6 +22,7 @@ const ApprovedUnitBudgetRequestTable: FC<IApprovedUnitBudgetTableProps> = ({
   const [currentItem, setCurrentItem] = useState('');
   const [expenditure, setExpenditure] = useState<number>(0);
   const [ids, setIds] = useState<string[]>([]);
+  const budgetApproved = data?.status === 'APPROVED';
 
   const { mutate } = useMutation(checkBudgetItem, {
     onSuccess(response) {
@@ -81,10 +82,18 @@ const ApprovedUnitBudgetRequestTable: FC<IApprovedUnitBudgetTableProps> = ({
     );
   }
 
-  if (typeof data === undefined) {
+  if (data === null) {
     return (
-      <div className="my-20 flex items-center justify-center">
-        <p>There is no budget for the selected date interval</p>
+      <div className="my-20 flex items-center justify-center text-xl">
+        <p>
+          There is no budget for the selected date interval,{' '}
+          <span
+            className="cursor-pointer text-cci-green"
+            onClick={toggleTableType}
+          >
+            Please Request for new budget
+          </span>
+        </p>
       </div>
     );
   }
@@ -124,70 +133,127 @@ const ApprovedUnitBudgetRequestTable: FC<IApprovedUnitBudgetTableProps> = ({
         </div>
       </div>
       <div className="mt-12 w-full lg:mt-14">
-        <table className="block border-collapse overflow-x-scroll border border-[#686868]  md:overflow-x-hidden">
-          <thead className="block w-full">
-            <tr className="flex h-[50px] whitespace-nowrap text-xs font-[500] md:grid md:grid-cols-4 ">
-              <th className="min-w-[10%]text-center  my-auto flex items-center  px-4 ">
-                S/N
-              </th>
-              <th className="items-centerpx-4 my-auto flex min-w-[23%]  text-center">
-                Item Name
-              </th>
-              <th className="my-auto flex min-w-[23%] items-center px-4  text-center">
-                Item Price
-              </th>
-              <th className="my-auto flex min-w-[23%] items-center px-4  text-center">
-                Proof of Payment
-              </th>
+        <table className="block overflow-x-scroll md:overflow-x-hidden">
+          <thead className=" block w-full">
+            <tr className="flex border-b border-cci-grey font-bold">
+              <td
+                className={
+                  budgetApproved
+                    ? 'min-w-[6%] border-r-2 border-cci-grey py-3 text-left'
+                    : 'min-w-[20%] border-r-2 border-cci-grey py-3 text-left'
+                }
+              >
+                SN
+              </td>
+              <td
+                className={
+                  budgetApproved
+                    ? 'min-w-[32%] border-r-2 border-cci-grey py-3 '
+                    : 'min-w-[40%] border-r-2 border-cci-grey py-3 '
+                }
+              >
+                <span className="relative left-1 sm:left-12">Item Name</span>
+              </td>
+              <td
+                className={
+                  budgetApproved
+                    ? 'min-w-[32%] border-r-2 border-cci-grey py-3 '
+                    : 'min-w-[40%] border-r-2 border-cci-grey py-3 '
+                }
+              >
+                <span className="relative left-1 sm:left-12 ">
+                  Cost of Item
+                </span>
+              </td>
+              {budgetApproved && (
+                <td className="min-w-[30%] border-r-2 border-cci-grey py-3 ">
+                  <span className="relative left-1 sm:left-12 ">
+                    Proof of Payment
+                  </span>
+                </td>
+              )}
             </tr>
           </thead>
           <tbody className="block w-full">
             {data?.items.map((item, index) => (
               <tr
                 key={index}
-                className="flex h-[50px] text-sm font-[500] text-cci-grey-dim md:grid  md:grid-cols-4"
+                className="flex h-[70px] border-b border-cci-grey"
               >
-                <td className="flex min-w-[10%] items-center border border-[#68686880] px-2 py-1  text-center">
-                  {index + 1}
+                <td
+                  className={
+                    budgetApproved
+                      ? 'min-w-[6%] border-r-2 border-cci-grey py-3 text-left'
+                      : 'min-w-[20%] border-r-2 border-cci-grey py-3 text-left'
+                  }
+                >
+                  <span className="relative top-2 text-cci-grey">
+                    {index + 1}
+                  </span>
                 </td>
-                <td className="flex min-w-[30%] items-center border border-[#68686880] px-2 py-1  text-center">
-                  <div className="flex items-center gap-3 ">
-                    <Checkbox
-                      theme="darkBlack"
-                      onClick={() => {
-                        expenditureHandler(item.id, item.cost);
-                      }}
-                      checked={ids.includes(item.id)}
-                    />
+                <td
+                  className={
+                    budgetApproved
+                      ? 'min-w-[32%] border-r-2 border-cci-grey py-3'
+                      : 'min-w-[40%] border-r-2 border-cci-grey py-3'
+                  }
+                >
+                  <div className="relative left-1 top-2 flex items-center gap-3 text-[15px] text-cci-grey sm:left-12 ">
+                    {budgetApproved && (
+                      <Checkbox
+                        theme="darkBlack"
+                        onChange={() => {
+                          expenditureHandler(item.id, item.cost);
+                        }}
+                        checked={ids.includes(item.id)}
+                      />
+                    )}
                     <p> {item.name}</p>
                   </div>
                 </td>
-                <td className="flex min-w-[30%] items-center border border-[#68686880] px-2 py-1  text-center">
-                  <p>NGN {item.cost}.00</p>
+                <td
+                  className={
+                    budgetApproved
+                      ? 'min-w-[32%] border-r-2 border-cci-grey py-3'
+                      : 'min-w-[40%] border-r-2 border-cci-grey py-3'
+                  }
+                >
+                  <span className="relative left-1 top-2 text-[15px] text-cci-grey sm:left-12">
+                    NGN {item.cost}.00
+                  </span>
                 </td>
-                <td className="flex   min-w-[30%] place-items-center items-center border border-[#68686880] px-2 py-1   text-center">
-                  <label htmlFor="image">
-                    <input
-                      id="image"
-                      name="itemImage"
-                      className="hidden w-full "
-                      type="file"
-                      onChange={(e) => {
-                        imageUploadHandler(e, item.id);
-                      }}
-                      onClick={() => setCurrentItem(item.id)}
-                    />
+                {budgetApproved && (
+                  <td className="flex   min-w-[30%] border-r-2 border-cci-grey py-3">
+                    <div className="relative left-1 top-2 flex text-cci-grey sm:left-12">
+                      <label htmlFor="image">
+                        <input
+                          id="image"
+                          name="itemImage"
+                          className="hidden w-full "
+                          type="file"
+                          onChange={(e) => {
+                            imageUploadHandler(e, item.id);
+                          }}
+                          onClick={() => setCurrentItem(item.id)}
+                        />
 
-                    {currentItem === item.id ? (
-                      <p className="w-full"> {file?.name}</p>
-                    ) : (
-                      <div className="flex cursor-pointer items-center gap-2">
-                        <Icon icon="carbon:add" className="text-2xl" />
-                        <p className=" w-full text-xs">Upload JPEG/PDF</p>
-                      </div>
-                    )}
-                  </label>
-                </td>
+                        {currentItem === item.id ? (
+                          <p className="w-full"> {file?.name}</p>
+                        ) : (
+                          <div className="relative left-1 top-2 flex items-center text-cci-grey sm:left-12">
+                            <Icon
+                              icon="akar-icons:plus"
+                              className="relative text-[10px]  md:text-[17px]"
+                            />
+                            <div className="relative left-1 text-[10px] md:text-[17px]">
+                              Upload JPEG/PDF
+                            </div>
+                          </div>
+                        )}
+                      </label>
+                    </div>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
