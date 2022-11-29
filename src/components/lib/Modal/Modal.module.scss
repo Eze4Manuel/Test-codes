@@ -4,7 +4,7 @@
 }
 
 .modal {
-  @apply max-w-[400px] rounded-[5px] bg-white text-center;
+  @apply z-20 max-w-[400px] rounded-[5px] bg-white text-center;
 }
 
 .variant {
@@ -15,4 +15,8 @@
   &__small {
     @apply w-[80%];
   }
+}
+
+.overlay {
+  @apply absolute top-0 left-0 h-full w-full;
 }

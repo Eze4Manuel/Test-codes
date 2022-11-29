@@ -9,6 +9,12 @@ const fetchAllUsers = () => {
 };
 
 const fetchUser = (query: FetchUserQuery) => {
+  if (query.type === 'params') {
+    return getRequest({
+      url: `/user/fetch-profile?search_param_type=${query.search_param_type}&search_param=${query.search_param}`,
+    });
+  }
+
   return getRequest({
     url: `/user/fetch-profile?search_type=${query.search_type}&search_option=${query.search_option}`,
   });

@@ -98,6 +98,7 @@ const PersonalProfile: FC<PersonalProfileProps> = ({ isEditting }) => {
           gender: data?.gender,
           profile_picture: data?.profile_picture,
           role: data?.role,
+          unit: data?.unit,
         };
 
         localStorage.setItem('user', JSON.stringify(userData));

@@ -18,7 +18,8 @@ const MembersTable: FC<MembersTableProps> = ({
   page,
   limit,
   pages,
-  searchValue,
+  searchValue = '',
+  setPage,
 }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -76,12 +77,20 @@ const MembersTable: FC<MembersTableProps> = ({
         </TableBody>
       </Table>
 
+      {members.length === 0 && (
+        <div className="gird w-full place-items-center p-20">
+          <Text className="text-center font-bold">
+            There are no members to display.
+          </Text>
+        </div>
+      )}
+
       <div className="flex flex-wrap items-center justify-between gap-5">
         <Text variant="caption">
           Showing {(page - 1) * limit + 1} to {limit * page} of {members.length}{' '}
           entries
         </Text>
-        <Pagination count={pages} page={page} setPage={() => {}} />
+        <Pagination count={pages} page={page} setPage={setPage || (() => {})} />
       </div>
     </div>
   );
