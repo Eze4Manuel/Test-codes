@@ -3,7 +3,7 @@ import Dropdown3 from '@/components/lib/Dropdown3';
 import Input from '@/components/lib/Input';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
-import profileTabs from '@/layouts/TabViewLayout/shared/ProfileTabs';
+import memberProfile from '@/layouts/TabViewLayout/leadPastor/memberProfileTabs';
 import Meta from '@/templates/Meta';
 import { allUnitsWithValue } from '@/utils/constants';
 
@@ -18,7 +18,7 @@ const MemberProfile = () => {
       }
     >
       <TabViewLayout
-        tabs={profileTabs}
+        tabs={memberProfile}
         rightComponent={
           <Dropdown3
             options={allUnitsWithValue}

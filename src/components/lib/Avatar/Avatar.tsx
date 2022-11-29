@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import type { FC } from 'react';
 
 import styles from './Avatar.module.scss';
@@ -12,12 +11,7 @@ const Avatar: FC<AvatarProps> = ({ name, image, className }) => {
           className || ''
         } relative overflow-hidden`}
       >
-        <Image
-          src={image}
-          alt=""
-          layout="fill"
-          className="h-full w-full object-cover"
-        />
+        <img src={image} alt="" className="h-full w-full object-cover" />
       </figure>
     );
 

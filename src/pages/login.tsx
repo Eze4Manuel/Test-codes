@@ -32,6 +32,8 @@ export const Login = () => {
   useEffect(() => {
     if (user) {
       const { urlForm } = processRole(user?.role, user?.unit);
+      // TODO: Check if the urlForm is empty, redirect to the member profile if it is
+      // and redirect to the correct role of not.
       router.push(`/${urlForm}/profile`);
     }
   }, [user]);
@@ -58,6 +60,8 @@ export const Login = () => {
         localStorage.setItem('user', JSON.stringify(userData));
         dispatch(setUserData(userData));
         const { urlForm } = processRole(data?.user?.role, data?.user?.unit);
+        // TODO: Check if the urlForm is empty, redirect to the member profile if it is
+        // and redirect to the correct role of not.
         router.push(`/${urlForm}/profile`);
       }
     },
