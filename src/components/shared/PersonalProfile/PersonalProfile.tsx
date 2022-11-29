@@ -46,8 +46,8 @@ const PersonalProfile: FC<PersonalProfileProps> = ({ isEditting }) => {
   const [gender, setGender] = useState<SingleValue<Option>>(option);
 
   const query = {
-    search_type: 'EMAIL',
-    search_option: user?.email_address,
+    search_param_type: 'EMAIL',
+    search_param: user?.email_address,
   };
 
   const { isFetching: infoLoading } = useQuery(

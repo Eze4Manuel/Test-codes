@@ -1,16 +1,7 @@
-type UserQuery1 = {
-  type?: 'type';
-  search_type?: string;
-  search_option?: string;
-};
-
-type UserQuery2 = {
-  type: 'params';
+export type FetchUserQuery = {
   search_param_type?: string;
   search_param?: string;
 };
-
-export type FetchUserQuery = UserQuery1 | UserQuery2;
 
 export type UserPayload = {
   first_name?: string;

@@ -30,7 +30,7 @@ const AddMemberModal: FC<AddMemberModalProps> = ({ isOpen, onClose }) => {
   const queryClient = useQueryClient();
 
   const { mutate, isLoading } = useMutation(
-    () => fetchUser({ search_option: ccid, search_type: 'CCID' }),
+    () => fetchUser({ search_param: ccid, search_param_type: 'CCID' }),
     {
       onSuccess(response) {
         const data = processResponse(response);
