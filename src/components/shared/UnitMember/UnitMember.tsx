@@ -37,7 +37,6 @@ const UnitMember = () => {
     [queryKeys.getUnitMember, router.query?.id],
     () =>
       fetchUser({
-        type: 'params',
         search_param: router.query?.id as string,
         search_param_type: 'USER_ID',
       }),
