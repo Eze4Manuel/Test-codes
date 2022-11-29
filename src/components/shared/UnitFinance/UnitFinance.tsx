@@ -8,6 +8,7 @@ import ToggleTwoStates from '@/components/lib/ToggleTwoStates/ToggleTwoStates';
 import { monthData } from '@/data/unitFinance';
 import { useAppSelector } from '@/hooks';
 import { getAllFinanceHistory } from '@/services/unitFinance';
+import queryKeys from '@/utils/api/queryKeys';
 import { processRole } from '@/utils/misc';
 import { processResponse } from '@/utils/response/processResponse';
 
@@ -23,16 +24,20 @@ const UnitFinance = () => {
   const [allFinanceData, setAllFinanceData] = useState<MonthlyFinanceHistory>();
   const [month, setMonth] = useState('JANUARY');
 
-  const { isLoading } = useQuery([month], () => getAllFinanceHistory(month), {
-    onSuccess(response) {
-      const data = processResponse(response);
+  const { isLoading } = useQuery(
+    [queryKeys.getAllFinanceHistory, month],
+    () => getAllFinanceHistory(month),
+    {
+      onSuccess(response) {
+        const data = processResponse(response);
 
-      if (data) {
-        setAllFinanceData(data);
-      }
-    },
-    enabled: !!user?.ccid,
-  });
+        if (data) {
+          setAllFinanceData(data);
+        }
+      },
+      enabled: !!user?.ccid,
+    }
+  );
 
   const handleClick = () => {
     const { urlForm } = processRole(user?.role, user?.unit);
