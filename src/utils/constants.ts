@@ -269,6 +269,11 @@ export const dummyMeetingReports = [
   },
 ];
 
+export const celebKidsfilterOptions = [
+  { value: 'Kids and Parents', label: 'Kids and Parents' },
+  { value: 'Kids Attendance Data', label: 'Kids Attendance Data' },
+];
+
 export const filterOptions = [
   { value: 'Show all', label: 'Show all' },
   { value: 'Workers only', label: 'Workers only' },

@@ -1,3 +1,4 @@
+import CelebKidsGeneralMembership from '@/components/shared/CelebKidsMembership';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
 import celebKidsUnitTabs from '@/layouts/TabViewLayout/celebKidsLead/celebKidsUnitTabs';
@@ -13,7 +14,9 @@ const GeneralMembership = () => {
         />
       }
     >
-      <TabViewLayout tabs={celebKidsUnitTabs}></TabViewLayout>
+      <TabViewLayout tabs={celebKidsUnitTabs}>
+        <CelebKidsGeneralMembership />
+      </TabViewLayout>
     </AuthLayout>
   );
 };
