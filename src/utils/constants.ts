@@ -22,6 +22,28 @@ export const maritalStatuses = [
   },
 ];
 
+export const groupStatuses = [
+  {
+    label: '0-100',
+    value: '0-100',
+  },
+  {
+    label: '100-200',
+    value: '100-200',
+  },
+];
+
+export const haveSiblings = [
+  {
+    label: 'Yes',
+    value: 'YES',
+  },
+  {
+    label: 'No',
+    value: 'NO',
+  },
+];
+
 export const CCICampuses = [
   {
     label: 'Ikeja, Lagos',
@@ -285,3 +307,5 @@ export const createNewMemberTab = [
   'Create CCI member profile',
   'Upload Excel Spreedsheet',
 ];
+
+export const kidsPersonalInfo = ['Kids Personal Info'];

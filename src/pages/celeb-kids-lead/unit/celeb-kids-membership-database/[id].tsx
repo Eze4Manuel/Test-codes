@@ -1,7 +1,7 @@
 import MemberLayout from '@/components/lib/MemberLayout';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
-import followUpLeadUnitTabs from '@/layouts/TabViewLayout/followUpLead/followUpLeadUnitTabs';
+import celebKidsUnitTabs from '@/layouts/TabViewLayout/celebKidsLead/celebKidsUnitTabs';
 import Meta from '@/templates/Meta';
 
 const Member = () => {
@@ -9,12 +9,12 @@ const Member = () => {
     <AuthLayout
       meta={
         <Meta
-          title="Unit Member | Follow-up Unit Lead"
-          description="Unit Member of the follow up unit."
+          title="Unit Member | Celeb-Kids Unit Lead"
+          description="Unit Member of the celeb kids unit."
         />
       }
     >
-      <TabViewLayout tabs={followUpLeadUnitTabs}>
+      <TabViewLayout tabs={celebKidsUnitTabs}>
         <MemberLayout />
       </TabViewLayout>
     </AuthLayout>

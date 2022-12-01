@@ -57,6 +57,61 @@ export const validatePersonalInfoInputs = ({
   };
 };
 
+export const validateKidPersonalInfoInputs = ({
+  surname,
+  other_names,
+  gender,
+  dob,
+  celeb_kid_number,
+  group,
+  house_address,
+  father,
+  mother,
+}: {
+  surname: string;
+  other_names: string;
+  gender: string;
+  dob: string;
+  celeb_kid_number: string;
+  group: string;
+  house_address: string;
+  father: string;
+  mother: string;
+  siblings: string;
+  sibling_name: string;
+}) => {
+  const errors = {
+    surname: '',
+    other_names: '',
+    gender: '',
+    dob: '',
+    celeb_kid_number: '',
+    group: '',
+    house_address: '',
+    father: '',
+    mother: '',
+    siblings: '',
+    sibling_name: '',
+  };
+
+  if (isEmpty(surname)) errors.surname = 'Surname cannot be empty';
+  if (isEmpty(other_names)) errors.other_names = 'Other Names cannot be empty';
+  if (isEmpty(gender)) errors.gender = 'Gender cannot be empty';
+  if (isEmpty(dob)) errors.dob = 'Date of Birth cannot be empty';
+  if (isEmpty(group)) errors.group = 'Group cannot be empty';
+  if (isEmpty(celeb_kid_number))
+    errors.celeb_kid_number = 'Celeb Kid Number cannot be empty';
+  if (isEmpty(house_address))
+    errors.house_address = 'House Address cannot be empty';
+  if (isEmpty(father)) errors.father = 'Father cannot be empty';
+  if (isEmpty(mother)) errors.mother = 'Mother cannot be empty';
+
+  return {
+    valid: isValid(errors),
+    errors,
+  };
+};
+
 export const validateCCIInfoInputs = ({
   ccid,
   membership_class,

@@ -1,4 +1,5 @@
 import { Icon } from '@iconify/react';
+import router from 'next/router';
 import React, { useState } from 'react';
 import Select from 'react-select';
 
@@ -38,17 +39,15 @@ const CelebKidsMembership = () => {
         </div>
       </div>
       <div className="mt-6 w-full md:w-[30%]">
-        <div>
-          <Button
-            variant="outline"
-            size="medium"
-            className="flex items-center gap-2"
-            onClick={toggleModalIsOpen}
-          >
-            <Icon icon="akar-icons:plus" className="text-lg" />
-            Add New Celeb Kid Profile
-          </Button>
-        </div>
+        <Button
+          variant="outline"
+          size="medium"
+          className="flex w-full items-center gap-2 text-center"
+          onClick={() => router.push(`${router.pathname}/create-new-celeb-kid`)}
+        >
+          <Icon icon="akar-icons:plus" className="text-lg" />
+          Create A Celeb Kid Profile
+        </Button>
       </div>
       <div className="grid w-full gap-10">
         <CelebKidsAndParentsTable
