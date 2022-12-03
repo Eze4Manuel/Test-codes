@@ -1,10 +1,12 @@
-import MemberLayout from '@/components/lib/MemberLayout';
+import Button from '@/components/lib/Button';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
-import celebKidsUnitTabs from '@/layouts/TabViewLayout/celebKidsLead/celebKidsUnitTabs';
+import celebKidsUnitMemberShipTabs from '@/layouts/TabViewLayout/celebKidsLead/celebKidsMembershipTab';
 import Meta from '@/templates/Meta';
 
-const Member = () => {
+import CelebKidIndividualProfile from './CelebKidsMembership/celebKidEditProfile/CelebKidEditProfile';
+
+const IndividualProfile = () => {
   return (
     <AuthLayout
       meta={
@@ -14,11 +16,18 @@ const Member = () => {
         />
       }
     >
-      <TabViewLayout tabs={celebKidsUnitTabs}>
-        <MemberLayout />
+      <TabViewLayout
+        tabs={celebKidsUnitMemberShipTabs}
+        rightComponent={
+          <Button size="small" variant="outline">
+            Edit Profile
+          </Button>
+        }
+      >
+        <CelebKidIndividualProfile />
       </TabViewLayout>
     </AuthLayout>
   );
 };
 
-export default Member;
+export default IndividualProfile;

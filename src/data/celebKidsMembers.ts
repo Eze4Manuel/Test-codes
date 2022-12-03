@@ -56,3 +56,55 @@ export const celebKidsAndParentData = [
     parent_name: 'Juliet Olufunke',
   },
 ];
+
+export const logAttendanceData = [
+  {
+    id: 1,
+    date_of_service: '22-05-2022',
+    total_attendance: '100 - 50M, 50F',
+    total_kids_checked_in: '100',
+    total_kids_checked_out: '100',
+  },
+  {
+    id: 2,
+    date_of_service: '19-06-2022',
+    total_attendance: '120 - 50M, 70F',
+    total_kids_checked_in: '120',
+    total_kids_checked_out: '120',
+  },
+  {
+    id: 3,
+    date_of_service: '05-07-2022',
+    total_attendance: '80 - 30M, 50F',
+    total_kids_checked_in: '80',
+    total_kids_checked_out: '80',
+  },
+  {
+    id: 4,
+    date_of_service: '22-05-2022',
+    total_attendance: '100 - 50M, 50F',
+    total_kids_checked_in: '100',
+    total_kids_checked_out: '100',
+  },
+  {
+    id: 5,
+    date_of_service: '22-05-2022',
+    total_attendance: '100 - 50M, 50F',
+    total_kids_checked_in: '100',
+    total_kids_checked_out: '100',
+  },
+  {
+    id: 6,
+    date_of_service: '22-05-2022',
+    total_attendance: '100 - 50M, 50F',
+    total_kids_checked_in: '100',
+    total_kids_checked_out: '100',
+  },
+  {
+    id: 7,
+    date_of_service: '22-05-2022',
+    total_attendance: '100 - 50M, 50F',
+    total_kids_checked_in: '100',
+    total_kids_checked_out: '100',
+  },
+];

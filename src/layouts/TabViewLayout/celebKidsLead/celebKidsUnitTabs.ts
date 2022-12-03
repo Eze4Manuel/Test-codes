@@ -20,5 +20,4 @@ const celebKidsUnitTabs = [
     url: '/celeb-kids-lead/unit/finance',
   },
 ];
-
 export default celebKidsUnitTabs;

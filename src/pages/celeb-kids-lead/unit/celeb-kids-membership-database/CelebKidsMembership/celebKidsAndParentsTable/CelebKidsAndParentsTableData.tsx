@@ -9,8 +9,6 @@ import TableHeader from '@/components/lib/Table/TableHeader';
 import TableRow from '@/components/lib/Table/TableRow';
 import Text from '@/components/lib/Text';
 
-// import { setMemberData } from '@/store/slices/memberSlice';
-// import useAppDispatch from '../../../hooks/useAppDispatch';
 import type CelebKidsAndParentsTableProps from './CelebKidsAndParentsTable.props';
 
 const CelebKidsAndParentsTableData: FC<CelebKidsAndParentsTableProps> = ({
@@ -55,28 +53,28 @@ const CelebKidsAndParentsTableData: FC<CelebKidsAndParentsTableProps> = ({
         <TableBody>
           {filteredCelebKidAndParentTable.map(
             (
-              member,
+              celeb_kid,
               index // when there is a search value
             ) => (
               <TableRow key={index}>
                 <TableCell>{index + (page - 1) * limit + 1}</TableCell>
                 <TableCell>
                   <Text variant="caption">
-                    {member?.first_name} {member?.last_name}
+                    {celeb_kid?.first_name} {celeb_kid?.last_name}
                   </Text>
                 </TableCell>
                 <TableCell>
-                  <Text variant="caption">{member?.gender}</Text>
+                  <Text variant="caption">{celeb_kid?.gender}</Text>
                 </TableCell>
                 <TableCell>
-                  <Text variant="caption">{member?.group}</Text>
+                  <Text variant="caption">{celeb_kid?.group}</Text>
                 </TableCell>
                 <TableCell>
-                  <Text variant="caption">{member?.parent_name}</Text>
+                  <Text variant="caption">{celeb_kid?.parent_name}</Text>
                 </TableCell>
                 <TableCell
                   onClick={() => {}}
-                  url={`${router.pathname}/${member?.id}`}
+                  url={`${router.pathname}/${celeb_kid?.id}`}
                 >
                   <Text variant="caption" className="text-cci-green">
                     View Profile
