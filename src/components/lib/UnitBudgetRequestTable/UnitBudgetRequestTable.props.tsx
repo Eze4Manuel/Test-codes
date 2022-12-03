@@ -1,3 +1,6 @@
 export interface UnitBudgetRequestTableProps {
-  status: string;
+  status?: string;
+  endDate: string;
+  startDate: string;
+  toggleTableType: () => void;
 }

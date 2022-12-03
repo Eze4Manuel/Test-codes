@@ -52,8 +52,8 @@ const CCIProfile: FC<CCIProfileProps> = ({ isEditting }) => {
   const { user } = useAppSelector((state) => state.user);
 
   const query = {
-    search_type: 'CCID',
-    search_option: user?.ccid,
+    search_param_type: 'CCID',
+    search_param: user?.ccid,
   };
 
   const { isFetching: infoLoading } = useQuery(

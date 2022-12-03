@@ -1,7 +1,7 @@
 const memberProfile = [
   {
     title: 'Member Profile',
-    url: '/lead-pastor/member',
+    url: '/lead-pastor/member-database',
   },
 ];
 

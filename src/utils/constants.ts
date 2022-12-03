@@ -1,3 +1,5 @@
+import ServiceUnit from '@/types/ServiceUnit.type';
+
 export const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const genders = [
@@ -108,6 +110,7 @@ export const allUnitsWithValue = [
   { label: 'Media', value: 'Media' },
   { label: 'Follow-up', value: 'Follow-up' },
 ];
+
 export const entries = [
   {
     entry: 10,
@@ -296,6 +299,31 @@ export const celebKidsfilterOptions = [
   { value: 'Kids Attendance Data', label: 'Kids Attendance Data' },
 ];
 
+export const dummyBudgetRequestTable = [
+  { name: 'Petrol', cost: 50000, POP: 'N/A' },
+  { name: 'Diesel', cost: 70000, POP: 'N/A' },
+  { name: 'SMS Charges', cost: 15000, POP: 'N/A' },
+];
+
+export const fixedPageItems = [
+  {
+    value: 10,
+    text: 10,
+  },
+  {
+    value: 20,
+    text: 20,
+  },
+  {
+    value: 25,
+    text: 25,
+  },
+  {
+    value: 50,
+    text: 50,
+  },
+];
+
 export const filterOptions = [
   { value: 'Show all', label: 'Show all' },
   { value: 'Workers only', label: 'Workers only' },
@@ -309,3 +337,56 @@ export const createNewMemberTab = [
 ];
 
 export const kidsPersonalInfo = ['Kids Personal Info'];
+export const units: {
+  value: ServiceUnit;
+  label: string;
+}[] = [
+  {
+    value: ServiceUnit.AMBIENCE_UNIT,
+    label: 'Ambience Unit',
+  },
+  {
+    value: ServiceUnit.CELEB_KIDS_UNIT,
+    label: 'Celeb Kids Unit',
+  },
+  {
+    value: ServiceUnit.COMMS_AND_CULTURE_UNIT,
+    label: 'Communications and Culture Unit',
+  },
+  {
+    value: ServiceUnit.CREATIVE_UNIT,
+    label: 'Crative Unit',
+  },
+  {
+    value: ServiceUnit.FOLLOW_UP_UNIT,
+    label: 'Follow-up Unit',
+  },
+  {
+    value: ServiceUnit.MEDIA_AND_TECHNICAL_UNIT,
+    label: 'Media and Technical Unit',
+  },
+  {
+    value: ServiceUnit.OUTBURST_MUSIC_GROUP_UNIT,
+    label: 'Outburst Music Group Unit',
+  },
+  {
+    value: ServiceUnit.PASTOR_UNIT,
+    label: 'Pastor Unit',
+  },
+  {
+    value: ServiceUnit.PHOTOGRAPHY_AND_STORYTELLING_UNIT,
+    label: 'Photography and Story Telling Unit',
+  },
+  {
+    value: ServiceUnit.PROTOCOL_UNIT,
+    label: 'Protocol Unit',
+  },
+  {
+    value: ServiceUnit.SANCTUARY_KEEPERS_UNIT,
+    label: 'Sanctuary Keepers Unit',
+  },
+  {
+    value: ServiceUnit.SOCIAL_MEDIA_UNIT,
+    label: 'Social Media Unit',
+  },
+];

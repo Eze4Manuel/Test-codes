@@ -2,7 +2,7 @@ import type React from 'react';
 import { useEffect } from 'react';
 
 export function useHandleOutsideClicks(
-  ref: React.MutableRefObject<HTMLElement | null>,
+  ref: React.MutableRefObject<HTMLElement | HTMLDivElement | null>,
   close: () => void
 ) {
   useEffect(() => {

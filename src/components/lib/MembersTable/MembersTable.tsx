@@ -11,7 +11,7 @@ const MembersTable: FC<MembersTableProps> = ({ tableData }) => {
   const router = useRouter();
 
   const viewMember = () => {
-    router.push('/lead-pastor/members/1');
+    router.push('/lead-pastor/member-database/1');
   };
 
   return (

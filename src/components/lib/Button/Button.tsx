@@ -25,6 +25,7 @@ const Button: FC<ButtonProps> = ({
   const buttonVariant = match(variant, {
     solid: styles.variant__solid,
     outline: styles.variant__outline,
+    outline_red: styles.variant__outline_red,
     default: '',
   });
 

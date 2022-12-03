@@ -1,20 +1,38 @@
 import type { FC } from 'react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useMutation } from 'react-query';
 import { v4 as uuidv4 } from 'uuid';
 
+import { createBudgetRequest } from '@/services/budgetrequest';
+import { processResponse } from '@/utils/response/processResponse';
+
 import Button from '../Button';
+import type { UnitBudgetRequestTableProps } from './UnitBudgetRequestTable.props';
 
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
-const UnitBudgetRequestTable: FC = () => {
+const UnitBudgetRequestTable: FC<UnitBudgetRequestTableProps> = ({
+  startDate,
+  endDate,
+  toggleTableType,
+}) => {
   const [inputFields, setInputFields] = useState([
     {
       id: uuidv4(),
-      itemName: '',
-      itemPrice: '',
+      name: '',
+      cost: '',
     },
   ]);
-  // const [fileName, setFileName] = useState('');
+
+  const { mutate, isLoading } = useMutation(createBudgetRequest, {
+    onSuccess(response) {
+      const data = processResponse(response);
+      if (data) {
+        toast.success('Budget requested successfully!');
+      }
+    },
+  });
 
   // adds new entry  to the table
   const handleAddFields = () => {
@@ -23,8 +41,8 @@ const UnitBudgetRequestTable: FC = () => {
         ...prev,
         {
           id: uuidv4(),
-          itemName: '',
-          itemPrice: '',
+          name: '',
+          cost: '',
         },
       ];
     });
@@ -45,61 +63,101 @@ const UnitBudgetRequestTable: FC = () => {
 
   // get total of the items price
   const totalPrice = inputFields.reduce((accumulator, object) => {
-    return accumulator + parseInt(object.itemPrice, 10);
+    return accumulator + parseInt(object.cost, 10);
   }, 0);
 
   // check if total price is a number or not
   const isNotNumber = Number.isNaN(totalPrice);
 
+  const handleSubmit = useCallback(() => {
+    if (startDate === '' || endDate === '') {
+      toast.error('Please specify a start and end date');
+    } else {
+      mutate({
+        start: startDate,
+        campus: '3cece26c-e6c2-485a-9caa-9432be17b4be',
+        unit: 'FOLLOW_UP_UNIT',
+        end: endDate,
+        items: inputFields,
+      });
+    }
+  }, []);
   return (
     <div className="mt-12 w-full lg:mt-14">
-      <table className="block border-collapse overflow-x-scroll border border-[#686868]  md:overflow-x-hidden">
-        <thead className="block w-full">
-          <tr className="flex h-[40px] whitespace-nowrap text-xs font-[500] md:grid md:grid-cols-3 ">
-            <th className="my-auto  min-w-[10%]  px-4 text-left">S/N</th>
-            <th className="my-auto min-w-[40%] px-4 text-left">Item Name</th>
-            <th className="my-auto min-w-[40%] px-4 text-left">Item Price</th>
+      <table className=" block overflow-x-scroll md:overflow-x-hidden">
+        <thead className=" block w-full">
+          <tr className="flex border-b border-cci-grey font-bold">
+            <td className="min-w-[16%] border-r-2 border-cci-grey py-3 text-left">
+              SN
+            </td>
+            <td className="min-w-[42%] border-r-2 border-cci-grey py-3 ">
+              <span className="relative left-1 sm:left-12">Item Name</span>
+            </td>
+            <td className="min-w-[42%] border-r-2 border-cci-grey py-3 ">
+              <span className="relative left-1 sm:left-12 ">Cost of Item</span>
+            </td>
           </tr>
         </thead>
         <tbody className="block w-full">
           {inputFields.map((item, index) => (
-            <tr
-              key={index}
-              className="flex text-sm font-[500]  text-cci-grey-dim md:grid  md:grid-cols-3"
-            >
-              <td className="min-w-[10%] border border-[#68686880] px-2 py-1 text-left">
-                {index + 1}
+            <tr key={index} className="flex h-[70px] border-b border-cci-grey">
+              <td className="min-w-[16%] border-r-2 border-cci-grey py-3 text-left">
+                <span className="relative top-2 text-cci-grey">
+                  {index + 1}
+                </span>
               </td>
-              <td className="min-w-[40%] border border-[#68686880] px-2 py-1 text-left">
-                <input
-                  className="h-full w-full bg-transparent outline-none"
-                  value={item.itemName}
-                  name="itemName"
-                  onChange={(event) => handleChangeInput(item.id, event)}
-                />
+              <td className="min-w-[42%] border-r-2 border-cci-grey py-3">
+                <span className="relative left-1 top-2 text-[15px] text-cci-grey sm:left-12">
+                  <input
+                    className="h-full w-full bg-transparent outline-none"
+                    value={item.name}
+                    name="name"
+                    onChange={(event) => handleChangeInput(item.id, event)}
+                  />
+                </span>
               </td>
-              <td className="min-w-[40%] border border-[#68686880] px-2 py-1 text-left">
-                <input
-                  className="h-full w-full border-none bg-transparent outline-none"
-                  type="number"
-                  value={item.itemPrice}
-                  name="itemPrice"
-                  onChange={(event) => handleChangeInput(item.id, event)}
-                />
+              <td className="min-w-[42%] border-r-2 border-cci-grey py-3">
+                <span className="relative left-1 top-2 text-[15px] text-cci-grey sm:left-12">
+                  <input
+                    className="h-full w-full border-none bg-transparent outline-none"
+                    type="number"
+                    value={item.cost}
+                    name="cost"
+                    onChange={(event) => handleChangeInput(item.id, event)}
+                  />
+                </span>
               </td>
             </tr>
           ))}
         </tbody>
+        <tbody className="block w-full">
+          <tr className=" flex h-[70px] border-b border-cci-grey">
+            <td className="min-w-[16%] border-r-2 border-cci-grey py-3 text-left"></td>
+            <td className="min-w-[42%] border-r-2 border-cci-grey py-3 ">
+              <span className="relative left-1 text-sm font-bold text-cci-black sm:left-12 sm:text-xl">
+                Total
+              </span>
+            </td>
+            <td className="min-w-[42%] border-r-2 border-cci-grey py-3">
+              <span className="relative left-1 text-sm font-bold text-cci-black sm:left-12 sm:text-xl">
+                {isNotNumber ? (
+                  <p>NGN 0.00</p>
+                ) : (
+                  <p>NGN {totalPrice.toLocaleString()}.00</p>
+                )}
+              </span>
+            </td>
+            <td className="min-w-[30%] py-3"></td>
+          </tr>
+        </tbody>
       </table>
 
-      <div className="mt-10 flex items-center justify-between font-bold md:w-[40%] ">
-        <p>TOTAL</p>
-        {isNotNumber ? (
-          <p>NGN 0.00</p>
-        ) : (
-          <p>NGN {totalPrice.toLocaleString()}.00</p>
-        )}
-      </div>
+      <p
+        className=" mt-4 cursor-pointer text-right font-bold text-cci-green"
+        onClick={toggleTableType}
+      >
+        Check a request
+      </p>
 
       <div>
         <p
@@ -115,6 +173,8 @@ const UnitBudgetRequestTable: FC = () => {
             disabled={!!isNotNumber}
             variant="solid"
             className=" w-full "
+            onClick={handleSubmit}
+            loading={isLoading}
           >
             Send Budget for approval
           </Button>

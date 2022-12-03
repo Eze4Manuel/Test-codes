@@ -10,14 +10,11 @@ import { useToggle } from '@/hooks';
 
 import type AddNewCelebKidsProps from './addNewCelebKid.props';
 
-const AddCelebKid: FC<AddNewCelebKidsProps> = ({
-  isOpen,
-  toggleModalIsOpen,
-}) => {
+const AddCelebKid: FC<AddNewCelebKidsProps> = ({ toggleModalIsOpen }) => {
   const [showMember, toggleShowMember] = useToggle(false);
 
   return (
-    <Modal open={isOpen}>
+    <Modal>
       <div className="grid w-full justify-items-center gap-3 p-5 text-center md:p-10">
         {showMember ? (
           <>

@@ -6,9 +6,9 @@ import styles from './Modal.module.scss';
 import type ModalProps from './Modal.props';
 
 const Modal: FC<PropsWithChildren<ModalProps>> = ({
-  open = true,
   children,
   size = 'normal',
+  onClose,
   ...rest
 }) => {
   const sizeVariant = match(size, {
@@ -16,12 +16,16 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
     small: styles.variant__small,
     default: '',
   });
-  return open ? (
+  return (
     <div className={styles.bg} {...rest}>
+      <div
+        onClick={() => {
+          if (onClose) onClose();
+        }}
+        className={styles.overlay}
+      />
       <div className={`${styles.modal} ${sizeVariant}`}>{children}</div>
     </div>
-  ) : (
-    <></>
   );
 };
 export default Modal;

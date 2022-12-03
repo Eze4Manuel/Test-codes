@@ -1,38 +1,102 @@
 import { Icon } from '@iconify/react';
 import type { FC } from 'react';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useMutation } from 'react-query';
 
 import Checkbox from '@/components/lib/Checkbox';
-import { approvedUniTableData } from '@/data/unitTable';
+import { checkBudgetItem } from '@/services/budgetrequest';
+import { processResponse } from '@/utils/response/processResponse';
 
-const ApprovedUnitBudgetRequestTable: FC = () => {
-  const [file, setFile] = useState<File | null>();
+import Loader from '../Loader';
+import type { IApprovedUnitBudgetTableProps } from './ApprovedUnitBudgetrequestTable.props';
+
+type InputEvent = React.ChangeEvent<HTMLInputElement>;
+
+const ApprovedUnitBudgetRequestTable: FC<IApprovedUnitBudgetTableProps> = ({
+  data,
+  loading,
+  toggleTableType,
+}) => {
+  const [file, setFile] = useState<any>();
+  const [currentItem, setCurrentItem] = useState('');
   const [expenditure, setExpenditure] = useState<number>(0);
   const [ids, setIds] = useState<string[]>([]);
+  const budgetApproved = data?.status === 'APPROVED';
+
+  const { mutate } = useMutation(checkBudgetItem, {
+    onSuccess(response) {
+      const uploadData = processResponse(response);
+      if (uploadData) {
+        toast.success('Proof of payment upload  successfully!');
+      }
+    },
+  });
 
   // get total of the items price
-  const totalPrice = approvedUniTableData.reduce((accumulator, object) => {
-    return accumulator + parseInt(object.price, 10);
+  const totalPrice = data?.items.reduce((accumulator, object) => {
+    return accumulator + object.cost;
   }, 0);
 
-  const expenditureHandler = (arg: string, price: string) => {
+  const expenditureHandler = (arg: string, price: number) => {
     //   do no add if the item already exist in the array
     if (!ids.includes(arg)) {
       // add new item to the array
       setIds((prevValues) => [...prevValues, arg]);
       // converts the itemPrice from string to number and increase expenditure
-      setExpenditure((prev) => prev + parseInt(price, 10));
+      setExpenditure((prev) => prev + price);
     } else {
       //   get the index of the element
       const index = ids.indexOf(arg);
       // remove from the array
       ids.splice(index, 1);
       // converts the itemPrice from string to number and decrease expenditure
-      setExpenditure((prev) => prev - parseInt(price, 10));
+      setExpenditure((prev) => prev - price);
     }
   };
   // balance
-  const balance = totalPrice - expenditure;
+  const balance = totalPrice && totalPrice - expenditure;
+
+  const imageUploadHandler = (e: InputEvent, id: string) => {
+    setCurrentItem(id);
+
+    if (id === currentItem) {
+      if (e.currentTarget.files?.[0]) {
+        setFile(e.currentTarget.files?.[0]);
+      } else {
+        setCurrentItem('');
+      }
+    }
+    const formData = new FormData();
+    formData.append('image', file);
+    mutate({
+      query: currentItem,
+    });
+  };
+
+  if (loading) {
+    return (
+      <div className="my-20 flex items-center justify-center">
+        <Loader color="#000000" small={false} />
+      </div>
+    );
+  }
+
+  if (data === null) {
+    return (
+      <div className="my-20 flex items-center justify-center text-xl">
+        <p>
+          There is no budget for the selected date interval,{' '}
+          <span
+            className="cursor-pointer text-cci-green"
+            onClick={toggleTableType}
+          >
+            Please Request for new budget
+          </span>
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -43,7 +107,7 @@ const ApprovedUnitBudgetRequestTable: FC = () => {
           <p>
             Cash Inflow :{' '}
             <span className="font-bold">
-              NGN {totalPrice.toLocaleString()}.00
+              NGN {totalPrice && totalPrice.toLocaleString()}.00
             </span>
           </p>
         </div>
@@ -53,7 +117,7 @@ const ApprovedUnitBudgetRequestTable: FC = () => {
           <p>
             Current Balance :{' '}
             <span className="font-bold text-cci-green">
-              NGN {balance.toLocaleString()}.00
+              NGN {balance && balance.toLocaleString()}.00
             </span>
           </p>
         </div>
@@ -69,79 +133,141 @@ const ApprovedUnitBudgetRequestTable: FC = () => {
         </div>
       </div>
       <div className="mt-12 w-full lg:mt-14">
-        <table className="block border-collapse overflow-x-scroll border border-[#686868]  md:overflow-x-hidden">
-          <thead className="block w-full">
-            <tr className="flex h-[50px] whitespace-nowrap text-xs font-[500] md:grid md:grid-cols-4 ">
-              <th className="min-w-[10%]text-center  my-auto flex items-center  px-4 ">
-                S/N
-              </th>
-              <th className="items-centerpx-4 my-auto flex min-w-[23%]  text-center">
-                Item Name
-              </th>
-              <th className="my-auto flex min-w-[23%] items-center px-4  text-center">
-                Item Price
-              </th>
-              <th className="my-auto flex min-w-[23%] items-center px-4  text-center">
-                Proof of Payment
-              </th>
+        <table className="block overflow-x-scroll md:overflow-x-hidden">
+          <thead className=" block w-full">
+            <tr className="flex border-b border-cci-grey font-bold">
+              <td
+                className={
+                  budgetApproved
+                    ? 'min-w-[6%] border-r-2 border-cci-grey py-3 text-left'
+                    : 'min-w-[20%] border-r-2 border-cci-grey py-3 text-left'
+                }
+              >
+                SN
+              </td>
+              <td
+                className={
+                  budgetApproved
+                    ? 'min-w-[32%] border-r-2 border-cci-grey py-3 '
+                    : 'min-w-[40%] border-r-2 border-cci-grey py-3 '
+                }
+              >
+                <span className="relative left-1 sm:left-12">Item Name</span>
+              </td>
+              <td
+                className={
+                  budgetApproved
+                    ? 'min-w-[32%] border-r-2 border-cci-grey py-3 '
+                    : 'min-w-[40%] border-r-2 border-cci-grey py-3 '
+                }
+              >
+                <span className="relative left-1 sm:left-12 ">
+                  Cost of Item
+                </span>
+              </td>
+              {budgetApproved && (
+                <td className="min-w-[30%] border-r-2 border-cci-grey py-3 ">
+                  <span className="relative left-1 sm:left-12 ">
+                    Proof of Payment
+                  </span>
+                </td>
+              )}
             </tr>
           </thead>
           <tbody className="block w-full">
-            {approvedUniTableData.map((item, index) => (
+            {data?.items.map((item, index) => (
               <tr
                 key={index}
-                className="flex h-[50px] text-sm font-[500] text-cci-grey-dim md:grid  md:grid-cols-4"
+                className="flex h-[70px] border-b border-cci-grey"
               >
-                <td className="flex min-w-[10%] items-center border border-[#68686880] px-2 py-1  text-center">
-                  {index + 1}
+                <td
+                  className={
+                    budgetApproved
+                      ? 'min-w-[6%] border-r-2 border-cci-grey py-3 text-left'
+                      : 'min-w-[20%] border-r-2 border-cci-grey py-3 text-left'
+                  }
+                >
+                  <span className="relative top-2 text-cci-grey">
+                    {index + 1}
+                  </span>
                 </td>
-                <td className="flex min-w-[30%] items-center border border-[#68686880] px-2 py-1  text-center">
-                  <div className="flex items-center gap-3 ">
-                    <Checkbox
-                      theme="darkBlack"
-                      onClick={() => {
-                        expenditureHandler(item.id, item.price);
-                      }}
-                      checked={ids.includes(item.id)}
-                    />
+                <td
+                  className={
+                    budgetApproved
+                      ? 'min-w-[32%] border-r-2 border-cci-grey py-3'
+                      : 'min-w-[40%] border-r-2 border-cci-grey py-3'
+                  }
+                >
+                  <div className="relative left-1 top-2 flex items-center gap-3 text-[15px] text-cci-grey sm:left-12 ">
+                    {budgetApproved && (
+                      <Checkbox
+                        theme="darkBlack"
+                        onChange={() => {
+                          expenditureHandler(item.id, item.cost);
+                        }}
+                        checked={ids.includes(item.id)}
+                      />
+                    )}
                     <p> {item.name}</p>
                   </div>
                 </td>
-                <td className="flex min-w-[30%] items-center border border-[#68686880] px-2 py-1  text-center">
-                  <p>NGN {item.price}.00</p>
+                <td
+                  className={
+                    budgetApproved
+                      ? 'min-w-[32%] border-r-2 border-cci-grey py-3'
+                      : 'min-w-[40%] border-r-2 border-cci-grey py-3'
+                  }
+                >
+                  <span className="relative left-1 top-2 text-[15px] text-cci-grey sm:left-12">
+                    NGN {item.cost}.00
+                  </span>
                 </td>
-                <td className="flex   min-w-[30%] place-items-center items-center border border-[#68686880] px-2 py-1   text-center">
-                  <label htmlFor="image">
-                    <input
-                      id="image"
-                      name="itemImage"
-                      className="hidden"
-                      type="file"
-                      onChange={(event) => {
-                        if (event.currentTarget.files?.[0]) {
-                          setFile(event.currentTarget.files?.[0]);
-                        }
-                      }}
-                    />
+                {budgetApproved && (
+                  <td className="flex   min-w-[30%] border-r-2 border-cci-grey py-3">
+                    <div className="relative left-1 top-2 flex text-cci-grey sm:left-12">
+                      <label htmlFor="image">
+                        <input
+                          id="image"
+                          name="itemImage"
+                          className="hidden w-full "
+                          type="file"
+                          onChange={(e) => {
+                            imageUploadHandler(e, item.id);
+                          }}
+                          onClick={() => setCurrentItem(item.id)}
+                        />
 
-                    {file && parseInt(item.id, 10) === index + 1 ? (
-                      <p> {file?.name}</p>
-                    ) : (
-                      <div className="flex cursor-pointer items-center gap-2">
-                        <Icon icon="carbon:add" className="text-2xl" />
-                        <p className=" text-xs">Upload JPEG/PDF</p>
-                      </div>
-                    )}
-                  </label>
-                </td>
+                        {currentItem === item.id ? (
+                          <p className="w-full"> {file?.name}</p>
+                        ) : (
+                          <div className="relative left-1 top-2 flex items-center text-cci-grey sm:left-12">
+                            <Icon
+                              icon="akar-icons:plus"
+                              className="relative text-[10px]  md:text-[17px]"
+                            />
+                            <div className="relative left-1 text-[10px] md:text-[17px]">
+                              Upload JPEG/PDF
+                            </div>
+                          </div>
+                        )}
+                      </label>
+                    </div>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
         </table>
 
-        <div className="mt-10 flex items-center justify-between font-bold md:w-[40%] ">
+        <div className="mt-10 flex items-center justify-between font-bold  ">
           <p>TOTAL</p>
-          <p>NGN {totalPrice.toLocaleString()}.00</p>
+          <p>NGN {totalPrice && totalPrice.toLocaleString()}.00</p>
+          <p
+            className="cursor-pointer text-cci-green"
+            onClick={toggleTableType}
+          >
+            Request for new budget
+          </p>
         </div>
       </div>
     </div>

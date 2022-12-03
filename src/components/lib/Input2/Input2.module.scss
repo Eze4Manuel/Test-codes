@@ -1,5 +1,5 @@
 .base {
-  @apply block h-full w-full rounded-[10px]  border bg-white px-0 px-3 pb-1 
+  @apply block h-full w-full rounded-[10px] border bg-white px-3 pb-1 
   font-lato text-cci-grey focus:border-2 focus:border-cci-grey 
   focus:outline-0 disabled:cursor-not-allowed disabled:bg-gray-100;
 }
