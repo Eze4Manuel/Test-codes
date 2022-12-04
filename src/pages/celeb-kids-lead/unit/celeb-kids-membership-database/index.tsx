@@ -1,6 +1,7 @@
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
 import celebKidsUnitTabs from '@/layouts/TabViewLayout/celebKidsLead/celebKidsUnitTabs';
+import CelebKidsMembership from '@/pages/celeb-kids-lead/unit/celeb-kids-membership-database/CelebKidsMembership';
 import Meta from '@/templates/Meta';
 
 const GeneralMembership = () => {
@@ -13,7 +14,9 @@ const GeneralMembership = () => {
         />
       }
     >
-      <TabViewLayout tabs={celebKidsUnitTabs}></TabViewLayout>
+      <TabViewLayout tabs={celebKidsUnitTabs}>
+        <CelebKidsMembership />
+      </TabViewLayout>
     </AuthLayout>
   );
 };
