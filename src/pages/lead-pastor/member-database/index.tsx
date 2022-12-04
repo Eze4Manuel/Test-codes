@@ -18,7 +18,7 @@ import { processResponse } from '@/utils/response/processResponse';
 
 const MemberDatabase = () => {
   const [members, setMembers] = useState([]);
-  const { isLoading, data } = useQuery('fetcMembers', fetchAllUsers, {
+  const { isLoading, data } = useQuery('fetchMembers', fetchAllUsers, {
     onSuccess(response) {
       const tableData = processResponse(response);
       return tableData;
