@@ -24,6 +24,28 @@ export const maritalStatuses = [
   },
 ];
 
+export const groupStatuses = [
+  {
+    label: '0-100',
+    value: '0-100',
+  },
+  {
+    label: '100-200',
+    value: '100-200',
+  },
+];
+
+export const haveSiblings = [
+  {
+    label: 'Yes',
+    value: 'YES',
+  },
+  {
+    label: 'No',
+    value: 'NO',
+  },
+];
+
 export const CCICampuses = [
   {
     label: 'Ikeja, Lagos',
@@ -307,6 +329,11 @@ export const dummyMeetingReports = [
   },
 ];
 
+export const celebKidsfilterOptions = [
+  { value: 'Kids and Parents', label: 'Kids and Parents' },
+  { value: 'Kids Attendance Data', label: 'Kids Attendance Data' },
+];
+
 export const dummyBudgetRequestTable = [
   { name: 'Petrol', cost: 50000, POP: 'N/A' },
   { name: 'Diesel', cost: 70000, POP: 'N/A' },
@@ -482,6 +509,8 @@ export const cardDisbursed = [
   { value: '30D', label: 'Last 30 days' },
   { value: '6M', label: 'Last 6 months' },
 ];
+
+export const kidsPersonalInfo = ['Kids Personal Info'];
 
 export const units: {
   value: ServiceUnit;
