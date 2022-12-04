@@ -7,7 +7,7 @@ const ChartLabel: FC<DataProps> = ({ data }) => {
     <div className="my-8 flex gap-[1.5em]">
       {data.map((item, index) => (
         <div className="flex items-center" key={index}>
-          <div className={`h-4 w-4 rotate-45 ${item.color}`}></div>
+          <div className={`h-2 w-2 rotate-45 ${item.color}`}></div>
           <span className="ml-2">{item.label}</span>
         </div>
       ))}

@@ -1,0 +1,7 @@
+.base {
+  @apply mt-4 flex items-baseline justify-between;
+}
+
+.bars {
+  @apply w-[8px] rounded-[4px] bg-white/[0.64];
+}

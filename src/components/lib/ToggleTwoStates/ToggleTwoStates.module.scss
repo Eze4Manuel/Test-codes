@@ -5,4 +5,11 @@
   width: max-content;
   padding: 0.3em 0.4em;
   color: rgba(104, 104, 104, 0.8);
+  font-size: 14px;
+}
+
+@media only screen and (min-width: 768px) {
+  .base {
+    font-size: 16px;
+  }
 }

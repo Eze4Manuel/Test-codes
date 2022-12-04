@@ -21,6 +21,9 @@ module.exports = {
       '6xl': '4rem',
     },
     extend: {
+      gridTemplateRows: {
+        layout: 'auto 50px auto 50px auto',
+      },
       colors: {
         'cci-black': '#101318',
         'cci-black-dim': 'rgba(16, 19, 24, 0.6)',
@@ -29,9 +32,11 @@ module.exports = {
         'cci-grey': '#686868',
         'cci-grey-dim': '#686868CC',
         'cci-grey-dim2': '#68686880',
+        'cci-grey-border': 'rgba(104, 104, 104, 0.5)',
         'cci-green': '#00B232',
         'cci-green2': ' #02C94F',
         'cci-red': '#b20000',
+        'cci-red-light': 'rgba(178, 0, 0, 0.09)',
 
         primary: {
           main: '#b20000',
@@ -40,6 +45,8 @@ module.exports = {
         },
       },
       screens: {
+        xxl: '1280px',
+        xxxl: '1440px',
         '2xl': '1440px',
       },
     },

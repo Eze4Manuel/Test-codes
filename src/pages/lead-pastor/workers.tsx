@@ -53,7 +53,7 @@ const Workers = () => {
           tabs={leadPastorWorkersTabs}
           rightComponent={
             <div className="md:py-2 lg:absolute lg:top-[1.25rem] lg:right-[1.25rem] lg:py-0">
-              <Dropdown2 options={cciCampuses} />
+              <Dropdown2 options={cciCampuses} placeholder="Select a campus" />
             </div>
           }
         >

@@ -26,8 +26,8 @@ const MemberProfile = () => {
         }
       >
         <div className="grid w-full gap-10">
-          <div className="h-[50px] w-[200px] bg-cci-red px-10 py-3 text-center font-bold text-cci-black">
-            Personal Info
+          <div className="h-[50px] w-max bg-cci-red-light px-10 py-3 text-center font-bold text-cci-black">
+            Member Personal Info
           </div>
 
           <div className="flex w-full flex-col items-center gap-10 md:flex-row">
@@ -80,8 +80,8 @@ const MemberProfile = () => {
         </div>
 
         <div className="mt-12 grid w-full gap-10">
-          <div className="h-[50px] w-[200px] bg-cci-red px-10 py-3 text-center font-bold text-cci-black">
-            CCI Info
+          <div className="h-[50px] w-max bg-cci-red-light px-10 py-3 text-center font-bold text-cci-black">
+            Member CCI Info
           </div>
 
           <Input
@@ -101,6 +101,13 @@ const MemberProfile = () => {
           <Input
             labelText="Membership Class"
             name="membership_class"
+            type="text"
+            disabled={true}
+          />
+
+          <Input
+            labelText="Service Unit"
+            name="service_unit"
             type="text"
             disabled={true}
           />
