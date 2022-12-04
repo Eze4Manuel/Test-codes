@@ -40,7 +40,7 @@ const Reports = () => {
             <select className="w-full rounded-[5px] border-[1.5px] border-cci-grey-dim2 bg-white p-1 px-2 font-[600] text-cci-grey focus:border-cci-grey-dim2 md:w-[200px]">
               {units.map((item, index) => (
                 <option key={index} value={item.value} className="my-2">
-                  {item.text}
+                  {item.label}
                 </option>
               ))}
             </select>

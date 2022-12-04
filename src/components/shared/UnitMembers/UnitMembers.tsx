@@ -1,19 +1,54 @@
 import { Icon } from '@iconify/react';
+import { useState } from 'react';
+import { useQuery } from 'react-query';
 
-import Avatar from '@/components/lib/Avatar';
 import Button from '@/components/lib/Button';
-import Heading from '@/components/lib/Heading';
+import FullPageLoader from '@/components/lib/FullPageLoader';
 import Input from '@/components/lib/Input';
-import Modal from '@/components/lib/Modal';
 import Text from '@/components/lib/Text';
-import { members } from '@/data/members';
-import { useToggle } from '@/hooks';
+import { useAppSelector, useDebounce, useToggle } from '@/hooks';
+import { getUnitMembers } from '@/services/unit';
+import type Member from '@/types/Member.type';
+import queryKeys from '@/utils/api/queryKeys';
+import { processResponse } from '@/utils/response/processResponse';
 
 import MembersTable from '../MembersTable';
+import AddMemberModal from './AddMemberModal';
 
 const UnitMembers = () => {
+  const { user } = useAppSelector((state) => state.user);
   const [modalIsOpen, toggleModalIsOpen] = useToggle(false);
-  const [showMember, toggleShowMember] = useToggle(false);
+  const [search, setSearch] = useState('');
+  const debouncedSearch = useDebounce(search, 1000);
+  const [members, setMembers] = useState<Member[]>([]);
+  const [page, setPage] = useState(1);
+  const [requestMeta] = useState({
+    current_page: 1,
+    items_per_page: 20,
+    total_items: 0,
+    total_pages: 0,
+    has_previous_page: false,
+    has_next_page: false,
+  });
+
+  const { isFetching } = useQuery(
+    [queryKeys.getUnitMembers, page, user?.unit],
+    () =>
+      getUnitMembers({
+        unit: user?.unit,
+        page,
+      }),
+    {
+      enabled: !!user?.unit,
+      onSuccess(response) {
+        const data = processResponse(response);
+
+        if (data) {
+          setMembers(data || []);
+        }
+      },
+    }
+  );
 
   return (
     <>
@@ -35,7 +70,12 @@ const UnitMembers = () => {
             <Text variant="caption" className="whitespace-nowrap font-bold">
               Search Member:
             </Text>
-            <Input variant="contained" type="search" />
+            <Input
+              variant="contained"
+              type="search"
+              value={search}
+              onChange={(event) => setSearch(event.currentTarget.value)}
+            />
           </div>
         </div>
 
@@ -51,55 +91,19 @@ const UnitMembers = () => {
           </Button>
         </div>
 
-        <MembersTable members={members} page={1} limit={10} pages={1} />
+        <MembersTable
+          members={members}
+          page={page}
+          setPage={setPage}
+          limit={requestMeta.items_per_page}
+          pages={requestMeta.total_pages}
+          searchValue={String(debouncedSearch)}
+        />
       </div>
 
-      {modalIsOpen && (
-        // TODO: Make this a component of its own and handle queris there. Also pass an onClose
-        // prop to be called after member has been added to unit successfully
-        <Modal>
-          <div className="grid w-full justify-items-center gap-3 p-5 text-center md:p-10">
-            {showMember ? (
-              <>
-                <Avatar
-                  className="h-20 w-20"
-                  image="https://loremflickr.com/100/100"
-                />
-                <Text variant="subheading">
-                  Linda Isime Yolanda | <span className="italic">CCI00110</span>
-                </Text>
-                <Text className="text-cci-green" variant="caption">
-                  View Profile
-                </Text>
+      <AddMemberModal isOpen={modalIsOpen} onClose={toggleModalIsOpen} />
 
-                <Button
-                  size="medium"
-                  className="mt-5 w-full"
-                  onClick={() => {
-                    toggleModalIsOpen();
-                    toggleShowMember();
-                  }}
-                >
-                  Add To Unit
-                </Button>
-              </>
-            ) : (
-              <>
-                <Heading>Add to Unit</Heading>
-                <Text>Enter name or CCI ID number to find member</Text>
-                <Input />
-                <Button
-                  size="medium"
-                  className="mt-10 w-full"
-                  onClick={toggleShowMember}
-                >
-                  Search
-                </Button>
-              </>
-            )}
-          </div>
-        </Modal>
-      )}
+      {isFetching && <FullPageLoader />}
     </>
   );
 };

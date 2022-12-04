@@ -8,6 +8,7 @@ import type ModalProps from './Modal.props';
 const Modal: FC<PropsWithChildren<ModalProps>> = ({
   children,
   size = 'normal',
+  onClose,
   ...rest
 }) => {
   const sizeVariant = match(size, {
@@ -17,6 +18,12 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
   });
   return (
     <div className={styles.bg} {...rest}>
+      <div
+        onClick={() => {
+          if (onClose) onClose();
+        }}
+        className={styles.overlay}
+      />
       <div className={`${styles.modal} ${sizeVariant}`}>{children}</div>
     </div>
   );

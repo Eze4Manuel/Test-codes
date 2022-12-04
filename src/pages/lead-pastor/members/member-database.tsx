@@ -7,39 +7,45 @@ import Dropdown2 from '@/components/lib/Dropdown2';
 import Dropdown3 from '@/components/lib/Dropdown3';
 import Input2 from '@/components/lib/Input2';
 import Loader from '@/components/lib/Loader';
-import MembersTable from '@/components/lib/MembersTable/MembersTable';
+import MembersTable from '@/components/shared/MembersTable';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
 import memberDatabase from '@/layouts/TabViewLayout/leadPastor/memberDatabaseTabs';
 import { fetchAllUsers } from '@/services/member';
 import Meta from '@/templates/Meta';
-import { cciCampuses, filterOptions } from '@/utils/constants';
+import {
+  cciCampuses,
+  filterOptions,
+  genders,
+  serviceUnits,
+} from '@/utils/constants';
 import { processResponse } from '@/utils/response/processResponse';
+
+type InputEvent = React.ChangeEvent<HTMLInputElement>;
+
+const mockData = {
+  Men: 100,
+  Women: 50,
+  Kids: 20,
+  Total_Attendance: 170,
+};
 
 const MemberDatabase = () => {
   const [members, setMembers] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
-  const { isLoading, data } = useQuery('fetchMembers', fetchAllUsers, {
+  const [searchValue, setSearchValue] = useState('');
+
+  const { isLoading, data } = useQuery('fetcMembers', fetchAllUsers, {
     onSuccess(response) {
       const tableData = processResponse(response);
       return tableData;
     },
   });
 
-  const handlePageClick = (event: any) => {
-    const newOffset = (event.selected * 10) % data.data.data.length;
-    setItemOffset(newOffset);
-  };
-
   useEffect(() => {
     if (data) {
-      const endOffset = itemOffset + 10;
-      setMembers(data.data.data.slice(itemOffset, endOffset));
-      setPageCount(Math.ceil(data.data.data.length / 10));
+      setMembers(data.data.data);
     }
-  }, [itemOffset, data]);
-
+  }, [data]);
   return (
     <AuthLayout
       meta={
@@ -63,25 +69,24 @@ const MemberDatabase = () => {
             </div>
             <span className="relative top-1 text-base font-bold">entries</span>
           </div>
-          <Dropdown3 options={filterOptions} defaultValue={'Show all'} />
+          <Dropdown3 options={filterOptions} defaultValue={'Filter Results'} />
         </section>
-
         <section className="">
           <div className="my-[2em] flex justify-between">
             <div className="w-[45%]">
-              <AttendanceCard data={undefined} loading={false} />
+              <AttendanceCard data={mockData} loading={false} />
             </div>
             <div className="w-[43%]">
-              <div className="flex justify-between gap-4">
+              <div className="flex justify-between">
                 <div className="border-cci-grey-light flex w-[250px] justify-around rounded-xl border-2 p-3">
-                  <div className="bg-cci-grey-light relative h-14 w-14 rounded-full bg-[#68686899]">
+                  <div className="bg-cci-grey-light relative h-14 w-14 rounded-full bg-cci-grey-dim">
                     <Icon
                       icon="akar-icons:people-group"
-                      className="relative top-[10px] mx-auto h-8 w-8 text-white"
+                      className="relative top-[10px] mx-auto h-8 w-8 text-white "
                     />
                   </div>
                   <div className="relative">
-                    <div className="text-base text-cci-grey-dim ">Worker</div>
+                    <div className="text-base text-cci-grey-dim  ">Worker</div>
                     <div className="mt-1 text-lg font-bold">3000</div>
                   </div>
                 </div>
@@ -114,28 +119,36 @@ const MemberDatabase = () => {
             </div>
           </div>
         </section>
+        <div className="border-cci-grey-light flex justify-between border-b-2 py-4 text-base text-cci-grey-dim">
+          <div className="min-w-[5%]">#</div>
+          <div className="min-w-[30%]">
+            <Input2
+              onChange={(e: InputEvent) => setSearchValue(e.target.value)}
+              placeholder="search for member"
+            />
+          </div>
+          <div className="min-w-[20%]">
+            <Dropdown3 options={genders} />
+          </div>
+          <div className="min-w-[20%]">
+            <Dropdown3 options={cciCampuses} />
+          </div>
+          <div className="min-w-[20%]">
+            <Dropdown3 options={serviceUnits} />
+          </div>
+        </div>
 
         {isLoading ? (
           <Loader color="grey" />
         ) : (
           <MembersTable
             members={members}
-            handlePageClick={handlePageClick}
-            itemOffset={itemOffset}
-            pageCount={pageCount}
+            searchValue={searchValue}
+            page={1}
+            limit={10}
+            pages={1}
           />
         )}
-
-        <section className="mt-6 flex justify-between">
-          <div className=" relative top-5">Showing 1 to 7 of 7 entries</div>
-          <div className="border-cci-grey-light flex h-[60px] rounded-lg border-2 text-cci-grey">
-            <span className="relative top-4 px-6">Previous</span>
-            <div className="bg-cci-black px-5 text-white">
-              <span className="relative top-4">1</span>
-            </div>
-            <span className="relative top-4 px-6">Next</span>
-          </div>
-        </section>
       </TabViewLayout>
     </AuthLayout>
   );

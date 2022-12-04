@@ -6,6 +6,9 @@ const queryKeys = {
   getAllUnitReports: 'getAllUnitReports',
   getUnitReportById: 'getUnitReportById',
   getAllMeetingReport: 'getAllMeetingReport',
+  getUnitMembers: 'getUnitMembers',
+  getUnitMember: 'getUnitMember',
+  getAllBudgetRequest: 'getAllBudgetRequest',
 };
 
 export default queryKeys;

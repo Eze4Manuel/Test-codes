@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import AttendanceCard from '@/components/lib/AttendanceCard/Main/index';
 import Dropdown3 from '@/components/lib/Dropdown3';
 import Loader from '@/components/lib/Loader';
-import MembersTable from '@/components/lib/MembersTable/MembersTable';
+import MembersTable from '@/components/lib/MembersTable2/MembersTable2';
 import { useMediaQuery } from '@/hooks';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';

@@ -8,6 +8,7 @@ import UnitBudgetRequestTable from '@/components/lib/UnitBudgetRequestTable/Unit
 import { useAppSelector } from '@/hooks';
 import { getSingleBudgetRequest } from '@/services/budgetrequest';
 import type { SingleBudgetRequestData } from '@/services/budgetrequest/payload';
+import queryKeys from '@/utils/api/queryKeys';
 import { processResponse } from '@/utils/response/processResponse';
 
 import useGetDate from '../../../hooks/useGetDate';
@@ -21,10 +22,11 @@ const UnitBudgetrequest = () => {
   const [endDate, setEndDate] = useState(moment(lastDay).format('YYYY-MM-DD'));
   const [table, setTable] = useState(true);
 
-  const [budgetData, setBudgetData] = useState<SingleBudgetRequestData>();
+  const [budgetData, setBudgetData] =
+    useState<SingleBudgetRequestData | null>();
 
   const { isLoading } = useQuery(
-    [(startDate && endDate) || (endDate && startDate)],
+    [queryKeys.getAllBudgetRequest, startDate, endDate],
     () =>
       getSingleBudgetRequest({
         start: startDate,
@@ -36,6 +38,8 @@ const UnitBudgetrequest = () => {
 
         if (data) {
           setBudgetData(data);
+        } else {
+          setBudgetData(null);
         }
       },
       enabled: !!user?.ccid,
@@ -75,10 +79,12 @@ const UnitBudgetrequest = () => {
       <div>
         {table ? (
           <div>
-            <div className="my-10 text-xl">
-              <p>
-                Budget request from {startDate} to {endDate}
-              </p>
+            <div className="my-10 text-lg">
+              {startDate !== '' && endDate !== '' && (
+                <p>
+                  Budget request from {startDate} to {endDate}
+                </p>
+              )}
             </div>
             <ApprovedUnitBudgetRequestTable
               data={budgetData}
@@ -90,8 +96,6 @@ const UnitBudgetrequest = () => {
           <UnitBudgetRequestTable
             startDate={startDate}
             endDate={endDate}
-            setStartDate={setStartDate}
-            setEndDate={setEndDate}
             toggleTableType={toggleTableType}
           />
         )}

@@ -1,3 +1,5 @@
+import ServiceUnit from '@/types/ServiceUnit.type';
+
 export const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const genders = [
@@ -75,21 +77,6 @@ export const allUnits = [
   { name: 'Media', size: 500, color: ' #007DB2' },
   { name: 'Ambience', size: 500, color: '#00B232' },
   { name: 'Follow-up', size: 500, color: '#B17DDA' },
-];
-
-export const units = [
-  {
-    value: 'Protocol Unit',
-    text: 'Protocol Unit',
-  },
-  {
-    value: 'Ambience Unit',
-    text: 'Ambience Unit',
-  },
-  {
-    value: 'Media Unit',
-    text: 'Media Unit',
-  },
 ];
 
 export const allUnitsWithValue = [
@@ -494,4 +481,58 @@ export const dummyNotifications = [
 export const cardDisbursed = [
   { value: '30D', label: 'Last 30 days' },
   { value: '6M', label: 'Last 6 months' },
+];
+
+export const units: {
+  value: ServiceUnit;
+  label: string;
+}[] = [
+  {
+    value: ServiceUnit.AMBIENCE_UNIT,
+    label: 'Ambience Unit',
+  },
+  {
+    value: ServiceUnit.CELEB_KIDS_UNIT,
+    label: 'Celeb Kids Unit',
+  },
+  {
+    value: ServiceUnit.COMMS_AND_CULTURE_UNIT,
+    label: 'Communications and Culture Unit',
+  },
+  {
+    value: ServiceUnit.CREATIVE_UNIT,
+    label: 'Crative Unit',
+  },
+  {
+    value: ServiceUnit.FOLLOW_UP_UNIT,
+    label: 'Follow-up Unit',
+  },
+  {
+    value: ServiceUnit.MEDIA_AND_TECHNICAL_UNIT,
+    label: 'Media and Technical Unit',
+  },
+  {
+    value: ServiceUnit.OUTBURST_MUSIC_GROUP_UNIT,
+    label: 'Outburst Music Group Unit',
+  },
+  {
+    value: ServiceUnit.PASTOR_UNIT,
+    label: 'Pastor Unit',
+  },
+  {
+    value: ServiceUnit.PHOTOGRAPHY_AND_STORYTELLING_UNIT,
+    label: 'Photography and Story Telling Unit',
+  },
+  {
+    value: ServiceUnit.PROTOCOL_UNIT,
+    label: 'Protocol Unit',
+  },
+  {
+    value: ServiceUnit.SANCTUARY_KEEPERS_UNIT,
+    label: 'Sanctuary Keepers Unit',
+  },
+  {
+    value: ServiceUnit.SOCIAL_MEDIA_UNIT,
+    label: 'Social Media Unit',
+  },
 ];
