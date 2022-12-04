@@ -21,7 +21,6 @@ export const options = {
 
 const DonutChart: FC<AttendanceCardExtraProps> = ({ donutData }) => {
   const data = {
-    labels: ['Men', 'Women', 'Children'],
     datasets: [
       {
         data: [donutData?.Men, donutData?.Women, donutData?.Kids],
@@ -41,10 +40,10 @@ const DonutChart: FC<AttendanceCardExtraProps> = ({ donutData }) => {
       },
     ],
   };
+
   return (
     <div>
-      {' '}
-      <Doughnut data={data} />
+      <Doughnut data={data} className="w-full" />
     </div>
   );
 };

@@ -4,10 +4,14 @@ interface TableData {
   first_name: string;
   last_name: string;
   gender: string;
-  role: string;
-  serviceUnit: string;
+  map_group_name: string;
+  unit: string;
 }
 
 export default interface MembersTableProps {
-  tableData?: TableData[];
+  itemOffset: number;
+  members: TableData[];
+  data?: any;
+  handlePageClick?: (event: any) => void;
+  pageCount: number;
 }

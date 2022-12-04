@@ -77,6 +77,21 @@ export const allUnits = [
   { name: 'Follow-up', size: 500, color: '#B17DDA' },
 ];
 
+export const units = [
+  {
+    value: 'Protocol Unit',
+    text: 'Protocol Unit',
+  },
+  {
+    value: 'Ambience Unit',
+    text: 'Ambience Unit',
+  },
+  {
+    value: 'Media Unit',
+    text: 'Media Unit',
+  },
+];
+
 export const allUnitsWithValue = [
   { label: 'Pastors', value: 'Pastors' },
   { label: 'Protocol', value: 'Protocol' },
@@ -85,6 +100,41 @@ export const allUnitsWithValue = [
   { label: 'Media', value: 'Media' },
   { label: 'Media', value: 'Media' },
   { label: 'Follow-up', value: 'Follow-up' },
+];
+
+export const dummyUnits = [
+  {
+    label: 'All Units',
+    value: 'all_units',
+  },
+  {
+    label: 'Follow-up',
+    value: 'follow_up_unit',
+  },
+  {
+    label: 'Protocol',
+    value: 'protocol_unit',
+  },
+  {
+    label: 'Celeb Kids',
+    value: 'celeb_kids',
+  },
+  {
+    label: 'OMG choir',
+    value: 'omg_choir',
+  },
+  {
+    label: 'Media',
+    value: 'media',
+  },
+  {
+    label: 'Ambience',
+    value: 'ambience',
+  },
+  {
+    label: 'Sanctuary Keepers',
+    value: 'sanctuary keepers',
+  },
 ];
 
 export const entries = [
@@ -305,4 +355,143 @@ export const filterOptions = [
 export const createNewMemberTab = [
   'Create CCI member profile',
   'Upload Excel Spreedsheet',
+];
+
+export const dummyReportsResident = [
+  {
+    service_unit: 'Protocol Unit',
+    date: 'Apr 1 - Apr 7',
+    report: 'The team onboarded...',
+    action: 'View Report',
+    id: '3cece26c-e6c2-485a-9caa-9432be17b4be',
+  },
+  {
+    service_unit: 'Outburst Music Group (Choir) Unit',
+    date: 'Apr 1 - Apr 7',
+    report: 'The team onboarded...',
+    action: 'View Report',
+    id: '2',
+  },
+  {
+    service_unit: 'Ambience Unit',
+    date: 'Apr 1 - Apr 7',
+    report: 'The team onboarded...',
+    action: 'View Report',
+    id: '3',
+  },
+  {
+    service_unit: 'Protocol Unit',
+    date: 'Apr 1 - Apr 7',
+    report: 'The team onboarded...',
+    action: 'View Report',
+    id: '4',
+  },
+  {
+    service_unit: 'Outburst Music Group (Choir) Unit',
+    date: 'Apr 1 - Apr 7',
+    report: 'The team onboarded...',
+    action: 'View Report',
+    id: '5',
+  },
+  {
+    service_unit: 'Ambience Unit',
+    date: 'Apr 1 - Apr 7',
+    report: 'The team onboarded...',
+    action: 'View Report',
+    id: '6',
+  },
+  {
+    service_unit: 'Protocol Unit',
+    date: 'Apr 1 - Apr 7',
+    report: 'The team onboarded...',
+    action: 'View Report',
+    id: '7',
+  },
+  {
+    service_unit: 'Outburst Music Group (Choir) Unit',
+    date: 'Apr 1 - Apr 7',
+    report: 'The team onboarded...',
+    action: 'View Report',
+    id: '8',
+  },
+  {
+    service_unit: 'Ambience Unit',
+    date: 'Apr 1 - Apr 7',
+    report: 'The team onboarded...',
+    action: 'View Report',
+    id: '9',
+  },
+  {
+    service_unit: 'Outburst Music Group (Choir) Unit',
+    date: 'Apr 1 - Apr 7',
+    report: 'The team onboarded...',
+    action: 'View Report',
+    id: '10',
+  },
+  {
+    service_unit: 'Ambience Unit',
+    date: 'Apr 1 - Apr 7',
+    report: 'The team onboarded...',
+    action: 'View Report',
+    id: '11',
+  },
+];
+
+export const dummyBudgetRequest = [
+  {
+    unit: 'Protocol Unit',
+    request: 100000,
+  },
+  {
+    unit: 'Celeb kids Unit',
+    request: 100000,
+  },
+  {
+    unit: 'Santuary keepers Unit',
+    request: 100000,
+  },
+  {
+    unit: 'Protocol Unit',
+    request: 100000,
+  },
+  {
+    unit: 'Celeb kids Unit',
+    request: 100000,
+  },
+  {
+    unit: 'Santuary keepers Unit',
+    request: 100000,
+  },
+];
+
+export const dummyExpenditure = {
+  labels: ['35.0% Protocol Unit', '20.0% Celeb K', '45.0% Follow-up'],
+  datasets: [
+    {
+      label: '# of Votes',
+      data: [700, 100, 900],
+      backgroundColor: ['#00B232', '#FFA471', '#B20000'],
+      borderWidth: 2,
+    },
+  ],
+};
+
+export const dummyNotifications = [
+  {
+    unit: 'Ambience',
+    title: 'Unit Lead Feedback',
+  },
+  {
+    unit: 'Celeb Kids',
+    title: 'Unit Report',
+  },
+  {
+    unit: 'Protocol Unit',
+    title: 'Unit Report',
+  },
+];
+
+export const cardDisbursed = [
+  { value: '30D', label: 'Last 30 days' },
+  { value: '6M', label: 'Last 6 months' },
 ];

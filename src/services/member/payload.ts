@@ -1,6 +1,6 @@
 export type FetchUserQuery = {
   search_type?: string;
-  search_option?: string;
+  search_option?: string | string[] | undefined;
 };
 
 export type UserPayload = {

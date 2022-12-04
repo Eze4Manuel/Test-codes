@@ -18,18 +18,28 @@ import { processResponse } from '@/utils/response/processResponse';
 
 const MemberDatabase = () => {
   const [members, setMembers] = useState([]);
-  const { isLoading, data } = useQuery('fetcMembers', fetchAllUsers, {
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const { isLoading, data } = useQuery('fetchMembers', fetchAllUsers, {
     onSuccess(response) {
       const tableData = processResponse(response);
       return tableData;
     },
   });
 
+  const handlePageClick = (event: any) => {
+    const newOffset = (event.selected * 10) % data.data.data.length;
+    setItemOffset(newOffset);
+  };
+
   useEffect(() => {
     if (data) {
-      setMembers(data.data.data);
+      const endOffset = itemOffset + 10;
+      setMembers(data.data.data.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(data.data.data.length / 10));
     }
-  }, [data]);
+  }, [itemOffset, data]);
+
   return (
     <AuthLayout
       meta={
@@ -41,7 +51,9 @@ const MemberDatabase = () => {
     >
       <TabViewLayout
         tabs={memberDatabase}
-        rightComponent={<Dropdown2 options={cciCampuses} />}
+        rightComponent={
+          <Dropdown2 options={cciCampuses} placeholder="Select a campus" />
+        }
       >
         <section className="mb-12 flex justify-between">
           <div className="flex w-[200px] justify-between">
@@ -53,6 +65,7 @@ const MemberDatabase = () => {
           </div>
           <Dropdown3 options={filterOptions} defaultValue={'Show all'} />
         </section>
+
         <section className="">
           <div className="my-[2em] flex justify-between">
             <div className="w-[45%]">
@@ -105,7 +118,12 @@ const MemberDatabase = () => {
         {isLoading ? (
           <Loader color="grey" />
         ) : (
-          <MembersTable tableData={members} />
+          <MembersTable
+            members={members}
+            handlePageClick={handlePageClick}
+            itemOffset={itemOffset}
+            pageCount={pageCount}
+          />
         )}
 
         <section className="mt-6 flex justify-between">

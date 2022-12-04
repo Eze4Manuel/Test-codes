@@ -12,7 +12,7 @@ import TabViewLayout from '@/layouts/TabViewLayout';
 import {
   residentPastorTabs,
   residentPastorTabsBig,
-} from '@/layouts/TabViewLayout/residentPastor';
+} from '@/layouts/TabViewLayout/residentPastor/budgets';
 import { Caution } from '@/public/assets/icons/caution';
 import Meta from '@/templates/Meta';
 import { dummyBudgetRequestTable } from '@/utils/constants';

@@ -7,6 +7,7 @@ import {
 import draftToHtml from 'draftjs-to-html';
 import moment from 'moment';
 import { useRouter } from 'next/router';
+import type { FC } from 'react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useMutation, useQuery } from 'react-query';
@@ -21,7 +22,9 @@ import { Caution } from '@/public/assets/icons/caution';
 import { getUnitReportById, updateReport } from '@/services/reports';
 import { processResponse } from '@/utils/response/processResponse';
 
-const UnitViewReport = () => {
+import type UnitViewReportProps from './UnitViewReport.props';
+
+const UnitViewReport: FC<UnitViewReportProps> = ({ role }) => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -132,34 +135,48 @@ const UnitViewReport = () => {
             </div>
           ) : (
             <div className="my-4">
-              <WYSIWYGEditor
-                error={error}
-                helperText={error ? 'Body cannot be empty' : ''}
-                editorState={editorState}
-                onEditorStateChange={setEditorState}
-              />
+              {role ? (
+                <WYSIWYGEditor
+                  error={error}
+                  helperText={error ? 'Body cannot be empty' : ''}
+                  editorState={editorState}
+                  onEditorStateChange={setEditorState}
+                  readOnly
+                />
+              ) : (
+                <WYSIWYGEditor
+                  error={error}
+                  helperText={error ? 'Body cannot be empty' : ''}
+                  editorState={editorState}
+                  onEditorStateChange={setEditorState}
+                />
+              )}
             </div>
           )}
 
-          <div className="mt-8 flex gap-4">
-            <Button
-              type="submit"
-              size="medium"
-              className="basis-[48%] md:basis-1"
-              loading={isPatching}
-            >
-              Save
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              size="medium"
-              className="basis-[48%] md:basis-1"
-              // onClick={handleDeletion}
-            >
-              Delete
-            </Button>
-          </div>
+          {role ? (
+            <></>
+          ) : (
+            <div className="mt-8 flex gap-4">
+              <Button
+                type="submit"
+                size="medium"
+                className="basis-[48%] md:basis-1"
+                loading={isPatching}
+              >
+                Save
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                size="medium"
+                className="basis-[48%] md:basis-1"
+                // onClick={handleDeletion}
+              >
+                Delete
+              </Button>
+            </div>
+          )}
         </form>
       </section>
 
