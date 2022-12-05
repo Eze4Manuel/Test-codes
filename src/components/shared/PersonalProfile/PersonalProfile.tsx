@@ -5,6 +5,7 @@ import { useMutation, useQuery } from 'react-query';
 import type { SingleValue } from 'react-select';
 
 import Button from '@/components/lib/Button';
+import CheckOutRequest from '@/components/lib/CheckOutRequest';
 import Dropdown from '@/components/lib/Dropdown';
 import type { Option } from '@/components/lib/Dropdown/Dropdown.props';
 import FullPageLoader from '@/components/lib/FullPageLoader';
@@ -40,6 +41,7 @@ const PersonalProfile: FC<PersonalProfileProps> = ({ isEditting }) => {
   const dispatch = useAppDispatch();
   const [member, setMember] = useState(memberState);
   const [errors, setErrors] = useState(memberState);
+  const [checkoutRequestModal, setCheckoutRequestModal] = useState(false);
   const { user } = useAppSelector((state) => state.user);
   const [maritalStatus, setMaritalStatus] =
     useState<SingleValue<Option>>(option);
@@ -247,6 +249,9 @@ const PersonalProfile: FC<PersonalProfileProps> = ({ isEditting }) => {
       </div>
 
       {infoLoading && <FullPageLoader />}
+      {checkoutRequestModal && (
+        <CheckOutRequest setCheckoutRequestModal={setCheckoutRequestModal} />
+      )}
     </>
   );
 };
