@@ -5,13 +5,18 @@ import Select from 'react-select';
 
 import type Dropdown3Props from './Dropdown3.props';
 
-const Dropdown3: FC<Dropdown3Props> = ({ options, defaultValue, ...rest }) => {
+const Dropdown3: FC<Dropdown3Props> = ({
+  options,
+  defaultValue,
+  className,
+  ...rest
+}) => {
   const customStyles = {
     control: (provided: any) => ({
       ...provided,
       color: 'white',
       outline: 'none',
-      border: ' 1.43745px solid rgba(104, 104, 104, 0.5);',
+      border: ' 1.43745px solid rgba(104, 104, 104, 0.5)',
       boxShadow: 'none',
       cursor: 'pointer',
       borderRadius: '10px',
@@ -25,7 +30,7 @@ const Dropdown3: FC<Dropdown3Props> = ({ options, defaultValue, ...rest }) => {
 
     singleValue: (provided: any) => ({
       ...provided,
-      color: 'white',
+      color: '#686868',
       textAlign: 'center',
     }),
 
@@ -52,14 +57,12 @@ const Dropdown3: FC<Dropdown3Props> = ({ options, defaultValue, ...rest }) => {
   };
 
   return (
-    <div className="md:w-[220px]">
+    <div className={`${className}`}>
       <Select
         options={options}
         styles={customStyles}
         placeholder={
-          <span className="mx-auto flex w-max items-center">
-            {defaultValue}
-          </span>
+          <span className="flex w-max font-[400]">{defaultValue}</span>
         }
         {...rest}
       />

@@ -23,8 +23,14 @@ import { processResponse } from '@/utils/response/processResponse';
 const Attendance = () => {
   // const { user } = useAppSelector((state) => state.user);
   const [activeID, setActiveID] = useState(0);
-  const [allAttendanceData, setAllAttendanceData] =
-    useState<AttendancePayload>();
+  const [allAttendanceData, setAllAttendanceData] = useState<AttendancePayload>(
+    {
+      Men: 4000,
+      Women: 2000,
+      Kids: 700,
+      Total_Attendance: 6700,
+    }
+  );
 
   const { isLoading } = useQuery(
     [queryKeys.getAllAttendance],
@@ -34,7 +40,12 @@ const Attendance = () => {
         const data = processResponse(response);
 
         if (data) {
-          setAllAttendanceData(data);
+          setAllAttendanceData({
+            Men: 4000,
+            Women: 2000,
+            Kids: 700,
+            Total_Attendance: 6700,
+          });
         }
       },
       // enabled: !!user?.ccid,
@@ -52,7 +63,7 @@ const Attendance = () => {
     >
       <section>
         <div className="lg:flex lg:justify-between">
-          <Dropdown2 options={cciCampuses} />
+          <Dropdown2 options={cciCampuses} placeholder="Select a campus" />
 
           <div className="my-4 flex flex-col gap-3 sm:flex-row md:gap-[4em] lg:my-0">
             <Checkbox theme="darkBlack" label="Sunday Service" />

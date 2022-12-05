@@ -1,7 +1,7 @@
 const allMembers = [
   {
     title: 'All Members',
-    url: '/resident-pastor/members/member-database',
+    url: '/resident-pastor/members/all',
   },
 ];
 

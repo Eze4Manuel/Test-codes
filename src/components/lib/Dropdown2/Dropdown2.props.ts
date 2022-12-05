@@ -8,6 +8,9 @@ interface Dropdown2Props {
   textColor?: string;
   border?: string;
   background?: string;
+  placeholder: string;
+  fontWeight?: number;
+  fontSize?: string;
 }
 
 export default Dropdown2Props;

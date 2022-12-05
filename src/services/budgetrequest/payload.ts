@@ -15,6 +15,7 @@ export interface CreateBudgetRequestPayload {
 export interface GetBudgetRequestQueryPayload {
   start: string;
   end: string;
+  unit: string | undefined;
 }
 
 interface IBudgetItems {
