@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import type { FC } from 'react';
 
 import Pagination from '@/components/lib/Pagination';
@@ -9,18 +8,16 @@ import TableHeader from '@/components/lib/Table/TableHeader';
 import TableRow from '@/components/lib/Table/TableRow';
 import Text from '@/components/lib/Text';
 
-import type KidsAttendanceTableProps from './kidsAttendanceTable.props';
+import type kidsIndividualLogAttendanceProps from './kidsIndividualLogAttendance.props';
 
-const KidsAttendanceTableData: FC<KidsAttendanceTableProps> = ({
-  kidsAttendanceTableData,
+const KidsIndividualLogAttendance: FC<kidsIndividualLogAttendanceProps> = ({
+  kidsIndividualLogAttendanceData,
   page,
   limit,
   pages,
   searchValue,
 }) => {
-  const router = useRouter();
-
-  const filteredKidAttendanceTable = kidsAttendanceTableData.filter(
+  const filteredKidAttendanceTable = kidsIndividualLogAttendanceData.filter(
     (value: any) => {
       if (searchValue === '') {
         return value;
@@ -42,11 +39,10 @@ const KidsAttendanceTableData: FC<KidsAttendanceTableProps> = ({
         <TableHeader
           items={[
             'SN',
-            'Date of Service',
-            'Total Attendance',
-            'Total Kids Checked In',
-            'Total Kids Checked Out',
-            'Action',
+            'Kids Full Name',
+            'Celeb Kid Number',
+            'Check-In Time',
+            'Checked-Out Time',
           ]}
         />
         <TableBody>
@@ -58,28 +54,16 @@ const KidsAttendanceTableData: FC<KidsAttendanceTableProps> = ({
               <TableRow key={index}>
                 <TableCell>{index + (page - 1) * limit + 1}</TableCell>
                 <TableCell>
-                  <Text variant="caption">{celeb_kid?.date_of_service}</Text>
+                  <Text variant="caption">{celeb_kid?.kids_full_name}</Text>
                 </TableCell>
                 <TableCell>
-                  <Text variant="caption">{celeb_kid?.total_attendance}</Text>
+                  <Text variant="caption">{celeb_kid?.celeb_kid_number}</Text>
                 </TableCell>
                 <TableCell>
-                  <Text variant="caption">
-                    {celeb_kid?.total_kids_checked_in}
-                  </Text>
+                  <Text variant="caption">{celeb_kid?.check_in_time}</Text>
                 </TableCell>
                 <TableCell>
-                  <Text variant="caption">
-                    {celeb_kid?.total_kids_checked_out}
-                  </Text>
-                </TableCell>
-                <TableCell
-                  onClick={() => {}}
-                  url={`${router.pathname}/${celeb_kid?.id}`}
-                >
-                  <Text variant="caption" className="text-cci-green">
-                    View Profile
-                  </Text>
+                  <Text variant="caption">{celeb_kid?.check_out_time}</Text>
                 </TableCell>
               </TableRow>
             )
@@ -94,8 +78,12 @@ const KidsAttendanceTableData: FC<KidsAttendanceTableProps> = ({
         </Text>
         <Pagination count={pages} page={page} setPage={() => {}} />
       </div>
+
+      <div>
+        <Text variant="body2">Total Kids Attendance: 7</Text>
+      </div>
     </div>
   );
 };
 
-export default KidsAttendanceTableData;
+export default KidsIndividualLogAttendance;

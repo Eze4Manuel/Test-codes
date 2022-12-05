@@ -24,3 +24,15 @@ export const unitFinance = [
     color: 'bg-cci-red',
   },
 ];
+
+export const kidsAttendance = [
+  {
+    label: 'Female',
+    color: 'bg-cci-grey',
+  },
+
+  {
+    label: 'Male',
+    color: 'bg-cci-red',
+  },
+];

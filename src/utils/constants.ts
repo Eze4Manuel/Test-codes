@@ -299,6 +299,21 @@ export const celebKidsfilterOptions = [
   { value: 'Kids Attendance Data', label: 'Kids Attendance Data' },
 ];
 
+export const celebKidsMonthfilterOptions = [
+  { value: 'january', label: 'January' },
+  { value: 'febuary', label: 'Febuary' },
+  { value: 'march', label: 'March' },
+  { value: 'april', label: 'April' },
+  { value: 'may', label: 'May' },
+  { value: 'june', label: 'June' },
+  { value: 'july', label: 'July' },
+  { value: 'august', label: 'August' },
+  { value: 'september', label: 'September' },
+  { value: 'october', label: 'October' },
+  { value: 'november', label: 'November' },
+  { value: 'december', label: 'December' },
+];
+
 export const dummyBudgetRequestTable = [
   { name: 'Petrol', cost: 50000, POP: 'N/A' },
   { name: 'Diesel', cost: 70000, POP: 'N/A' },

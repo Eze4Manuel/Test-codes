@@ -8,35 +8,60 @@ import Input2 from '@/components/lib/Input2';
 import Text from '@/components/lib/Text';
 import ToggleTwoStates from '@/components/lib/ToggleTwoStates/ToggleTwoStates';
 import { celebKidsAndParentData } from '@/data/celebKidsMembers';
-import { celebKidsfilterOptions } from '@/utils/constants';
+import {
+  celebKidsfilterOptions,
+  celebKidsMonthfilterOptions,
+} from '@/utils/constants';
 
-import CelebKidsAndParentsTable from './celebKidsAndParentsTable';
-import LogAttendance from './kidsAttendanceTable/index';
+import CelebKidsCheckBoxes from '../celebKidsCheckBoxes';
+import CelebKidsAndParentsTable from './celeb-kids-and-parents-table';
+import KidAttendanceChart from './kid-attendance-chart/kidAttendanceChart';
+import LogAttendance from './kids-attendance-table/index';
 
 const CelebKidsMembership = () => {
   const [searchValue] = useState('');
   const [selectOption, setSelectOption] = useState(
     celebKidsfilterOptions[0]?.value
   );
+  const [, setSelectMonthOption] = useState(
+    celebKidsMonthfilterOptions[0]?.value
+  );
   const [activeID, setActiveID] = useState(0);
 
   return (
     <div>
       <div className="w-full justify-between md:flex">
-        <div className="mb-4 flex w-full items-center  gap-1 md:mb-0 ">
-          <span className="whitespace-nowrap font-[700] text-cci-black">
-            Show:
-          </span>
-
-          <Select
-            className="w-full md:w-[35%] lg:w-[30%]"
-            options={celebKidsfilterOptions}
-            defaultValue={celebKidsfilterOptions[0]}
-            onChange={(e: any) => {
-              setSelectOption(e?.value);
-            }}
-          />
-        </div>
+        {activeID === 0 ? (
+          <div className="mb-4 flex w-full items-center  gap-1 md:mb-0 ">
+            <span className="whitespace-nowrap font-[700] text-cci-black">
+              Show:
+            </span>
+            <Select
+              className="w-full md:w-[35%] lg:w-[30%]"
+              options={celebKidsfilterOptions}
+              defaultValue={celebKidsfilterOptions[0]}
+              onChange={(e: any) => {
+                setSelectOption(e?.value);
+              }}
+            />
+          </div>
+        ) : (
+          <>
+            <div className="flex w-full items-center gap-3">
+              <Text variant="caption" className="whitespace-nowrap font-bold">
+                Search Month:
+              </Text>
+              <Select
+                className="w-full md:w-[35%] lg:w-[30%]"
+                options={celebKidsMonthfilterOptions}
+                defaultValue={celebKidsMonthfilterOptions[0]}
+                onChange={(e: any) => {
+                  setSelectMonthOption(e?.value);
+                }}
+              />
+            </div>
+          </>
+        )}
 
         {selectOption === celebKidsfilterOptions[0]?.value ? (
           <div className="flex items-center gap-3">
@@ -81,9 +106,18 @@ const CelebKidsMembership = () => {
           </div>
         </>
       ) : (
-        <div className="grid w-full gap-10">
-          <LogAttendance />
-        </div>
+        <>
+          {activeID === 0 ? (
+            <div className="grid w-full gap-10">
+              <CelebKidsCheckBoxes />
+              <LogAttendance />
+            </div>
+          ) : (
+            <>
+              <KidAttendanceChart data={undefined} />
+            </>
+          )}
+        </>
       )}
     </div>
   );

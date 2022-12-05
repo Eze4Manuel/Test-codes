@@ -225,9 +225,8 @@ const CreateNewMember = () => {
                 </div>
                 <div className="justify-left items-center gap-2  md:flex lg:flex-col xl:flex-row ">
                   <Button
-                    size="large"
+                    size="small"
                     onClick={handleSubmit}
-                    // loading={isLoading}
                     className="mb-2 flex w-14 items-center gap-1 text-center md:w-auto"
                   >
                     Save Profile

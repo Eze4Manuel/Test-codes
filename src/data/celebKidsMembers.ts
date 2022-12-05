@@ -108,3 +108,48 @@ export const logAttendanceData = [
     total_kids_checked_out: '100',
   },
 ];
+
+export const logIndvidualAttendanceData = [
+  {
+    id: 1,
+    kids_full_name: 'Babatunde Damilola Princess',
+    celeb_kid_number: 'CCIK001',
+    check_in_time: '9:50 AM',
+    check_out_time: '12:00 PM',
+  },
+  {
+    id: 2,
+    kids_full_name: 'Ojo Kayode David',
+    celeb_kid_number: 'CCIK002',
+    check_in_time: '10:00 AM',
+    check_out_time: '12:00 PM',
+  },
+  {
+    id: 3,
+    kids_full_name: 'Soji Beatrice Priscillia',
+    celeb_kid_number: 'CCIK003',
+    check_in_time: '10:20 AM',
+    check_out_time: '12:00 PM',
+  },
+  {
+    id: 4,
+    kids_full_name: 'Babatunde Damilola Princess',
+    celeb_kid_number: 'CCIK001',
+    check_in_time: '9:50 AM',
+    check_out_time: '12:00 PM',
+  },
+  {
+    id: 5,
+    kids_full_name: 'Babatunde Damilola Princess',
+    celeb_kid_number: 'CCIK001',
+    check_in_time: '9:50 AM',
+    check_out_time: '12:00 PM',
+  },
+  {
+    id: 6,
+    kids_full_name: 'Babatunde Damilola Princess',
+    celeb_kid_number: 'CCIK001',
+    check_in_time: '9:50 AM',
+    check_out_time: '12:00 PM',
+  },
+];
