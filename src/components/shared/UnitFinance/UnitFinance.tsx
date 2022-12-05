@@ -26,7 +26,11 @@ const UnitFinance = () => {
 
   const { isLoading } = useQuery(
     [queryKeys.getAllFinanceHistory, month],
-    () => getAllFinanceHistory(month),
+    () =>
+      getAllFinanceHistory({
+        month,
+        unit: user?.unit,
+      }),
     {
       onSuccess(response) {
         const data = processResponse(response);
@@ -42,6 +46,10 @@ const UnitFinance = () => {
   const handleClick = () => {
     const { urlForm } = processRole(user?.role, user?.unit);
     router.push(`/${urlForm}/unit/finance/budget-request`);
+  };
+  const handleBudgetReportClick = () => {
+    const { urlForm } = processRole(user?.role, user?.unit);
+    router.push(`/${urlForm}/unit/finance/budget-report`);
   };
 
   return (
@@ -69,15 +77,27 @@ const UnitFinance = () => {
           list={['Data', 'Chart']}
         />
       </div>
-      <div className="w-full md:w-[30%]">
-        <Button
-          size="large"
-          variant="outline"
-          className=" w-full"
-          onClick={handleClick}
-        >
-          + Request Weekly Budget
-        </Button>
+      <div className="justify-between md:flex">
+        <div className="w-full md:w-[30%]">
+          <Button
+            size="large"
+            variant="outline"
+            className=" w-full"
+            onClick={handleClick}
+          >
+            + Request Weekly Budget
+          </Button>
+        </div>
+        <div className="mt-4 w-full md:mt-0 md:w-[30%]">
+          <Button
+            size="large"
+            variant="outline"
+            className=" w-full"
+            onClick={handleBudgetReportClick}
+          >
+            Budget Report
+          </Button>
+        </div>
       </div>
 
       {isLoading ? (

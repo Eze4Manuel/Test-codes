@@ -15,7 +15,6 @@ type InputEvent = React.ChangeEvent<HTMLInputElement>;
 const UnitBudgetRequestTable: FC<UnitBudgetRequestTableProps> = ({
   startDate,
   endDate,
-  toggleTableType,
 }) => {
   const [inputFields, setInputFields] = useState([
     {
@@ -30,6 +29,7 @@ const UnitBudgetRequestTable: FC<UnitBudgetRequestTableProps> = ({
       const data = processResponse(response);
       if (data) {
         toast.success('Budget requested successfully!');
+        setInputFields([]);
       }
     },
   });
@@ -151,13 +151,6 @@ const UnitBudgetRequestTable: FC<UnitBudgetRequestTableProps> = ({
           </tr>
         </tbody>
       </table>
-
-      <p
-        className=" mt-4 cursor-pointer text-right font-bold text-cci-green"
-        onClick={toggleTableType}
-      >
-        Check a request
-      </p>
 
       <div>
         <p
