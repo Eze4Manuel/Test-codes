@@ -19,7 +19,7 @@ const Input: FC<InputProps> = ({
   });
 
   return (
-    <div className="h-full w-full">
+    <div className="w-full">
       <input
         name={name}
         id={name}

@@ -7,7 +7,7 @@ import Dropdown2 from '@/components/lib/Dropdown2';
 import Dropdown3 from '@/components/lib/Dropdown3';
 import Input2 from '@/components/lib/Input2';
 import Loader from '@/components/lib/Loader';
-import MembersTable from '@/components/lib/MembersTable/MembersTable';
+import MembersTable from '@/components/shared/MembersTable';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
 import memberDatabase from '@/layouts/TabViewLayout/leadPastor/memberDatabaseTabs';
@@ -18,7 +18,7 @@ import { processResponse } from '@/utils/response/processResponse';
 
 const MemberDatabase = () => {
   const [members, setMembers] = useState([]);
-  const { isLoading, data } = useQuery('fetcMembers', fetchAllUsers, {
+  const { isLoading, data } = useQuery('fetchMembers', fetchAllUsers, {
     onSuccess(response) {
       const tableData = processResponse(response);
       return tableData;
@@ -30,6 +30,7 @@ const MemberDatabase = () => {
       setMembers(data.data.data);
     }
   }, [data]);
+
   return (
     <AuthLayout
       meta={
@@ -41,7 +42,9 @@ const MemberDatabase = () => {
     >
       <TabViewLayout
         tabs={memberDatabase}
-        rightComponent={<Dropdown2 options={cciCampuses} />}
+        rightComponent={
+          <Dropdown2 options={cciCampuses} placeholder="Select campus" />
+        }
       >
         <section className="mb-12 flex justify-between">
           <div className="flex w-[200px] justify-between">
@@ -105,7 +108,7 @@ const MemberDatabase = () => {
         {isLoading ? (
           <Loader color="grey" />
         ) : (
-          <MembersTable tableData={members} />
+          <MembersTable members={members} page={0} pages={0} limit={0} />
         )}
 
         <section className="mt-6 flex justify-between">

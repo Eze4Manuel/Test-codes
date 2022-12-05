@@ -57,7 +57,9 @@ const MemberDatabase = () => {
     >
       <TabViewLayout
         tabs={memberDatabase}
-        rightComponent={<Dropdown2 options={cciCampuses} />}
+        rightComponent={
+          <Dropdown2 options={cciCampuses} placeholder="Select a campus" />
+        }
       >
         <section className="mb-12 flex justify-between">
           <div className="flex w-[200px] justify-between">

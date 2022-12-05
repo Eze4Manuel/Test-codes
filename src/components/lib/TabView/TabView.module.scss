@@ -1,6 +1,6 @@
 .container {
-  @apply relative grid w-full gap-5 rounded-md border 
-  border-cci-black/20 bg-[#fafafa] p-5 lg:gap-10 lg:p-10;
+  @apply block w-full rounded-md border 
+  border-cci-black/20 bg-[#fafafa] p-5 lg:p-10;
 
   @media only screen and (max-width: 376px) {
     @apply p-3;
@@ -10,12 +10,17 @@
 .wrapper {
   width: 100%;
   display: grid;
+  margin-bottom: 1.25rem;
   justify-items: center;
   grid-template-columns: 1fr auto;
 
   @media screen and (max-width: 767px) {
     grid-template-columns: 1fr;
     justify-items: start;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin-bottom: 2.5rem;
   }
 }
 

@@ -12,13 +12,12 @@ const celebKidsUnitTabs = [
     url: '/celeb-kids-lead/unit/meeting-reports',
   },
   {
-    title: 'General Membership Database',
-    url: '/celeb-kids-lead/unit/general-membership-database',
+    title: 'Celeb Kids Membership Database',
+    url: '/celeb-kids-lead/unit/celeb-kids-membership-database',
   },
   {
     title: 'Finance',
     url: '/celeb-kids-lead/unit/finance',
   },
 ];
-
 export default celebKidsUnitTabs;

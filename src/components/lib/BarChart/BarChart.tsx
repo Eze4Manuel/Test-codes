@@ -31,7 +31,7 @@ export const options = {
 };
 
 const BarChart = ({ data }: any) => {
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={data} className="h-full w-full" />;
 };
 
 export default BarChart;

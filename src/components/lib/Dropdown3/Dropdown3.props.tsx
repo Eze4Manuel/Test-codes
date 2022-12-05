@@ -6,6 +6,7 @@ interface Option {
 interface Dropdown3Props {
   options: Option[];
   defaultValue?: string;
+  className?: string;
 }
 
 export default Dropdown3Props;

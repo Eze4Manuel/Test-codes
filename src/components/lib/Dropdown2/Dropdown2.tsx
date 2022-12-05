@@ -8,6 +8,9 @@ const Dropdown2: FC<Dropdown2Props> = ({
   textColor = 'white',
   border = '1.43745px solid rgba(104, 104, 104, 0.5)',
   background = '#101318',
+  placeholder,
+  fontWeight = 600,
+  fontSize = '16px',
 }) => {
   const customStyles = {
     control: (provided: any) => ({
@@ -19,7 +22,8 @@ const Dropdown2: FC<Dropdown2Props> = ({
       boxShadow: 'none',
       cursor: 'pointer',
       borderRadius: '47.915px',
-      fontWeight: 600,
+      fontWeight,
+      fontSize,
     }),
 
     options: (provided: any) => ({
@@ -67,7 +71,7 @@ const Dropdown2: FC<Dropdown2Props> = ({
         options={options}
         styles={customStyles}
         placeholder={
-          <span className="mx-auto flex items-center">Select Campus</span>
+          <span className="mx-auto flex items-center">{placeholder}</span>
         }
       />
     </div>
