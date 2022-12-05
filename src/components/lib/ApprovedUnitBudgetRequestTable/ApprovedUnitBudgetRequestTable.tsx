@@ -16,7 +16,6 @@ type InputEvent = React.ChangeEvent<HTMLInputElement>;
 const ApprovedUnitBudgetRequestTable: FC<IApprovedUnitBudgetTableProps> = ({
   data,
   loading,
-  toggleTableType,
 }) => {
   const [file, setFile] = useState<any>();
   const [currentItem, setCurrentItem] = useState('');
@@ -82,25 +81,17 @@ const ApprovedUnitBudgetRequestTable: FC<IApprovedUnitBudgetTableProps> = ({
     );
   }
 
-  if (data === null) {
+  if (data === null || !data) {
     return (
       <div className="my-20 flex items-center justify-center text-xl">
-        <p>
-          There is no budget for the selected date interval,{' '}
-          <span
-            className="cursor-pointer text-cci-green"
-            onClick={toggleTableType}
-          >
-            Please Request for new budget
-          </span>
-        </p>
+        <p>There is no budget for the selected date interval</p>
       </div>
     );
   }
 
   return (
     <div>
-      <div className="flex flex-wrap justify-between gap-6 md:w-[60%]">
+      <div className="mt-4 flex flex-wrap justify-between gap-6 md:w-[60%]">
         <div className="flex items-center gap-2">
           <Icon icon="ci:dot-03-m" className="text-2xl" />
 
@@ -262,12 +253,6 @@ const ApprovedUnitBudgetRequestTable: FC<IApprovedUnitBudgetTableProps> = ({
         <div className="mt-10 flex items-center justify-between font-bold  ">
           <p>TOTAL</p>
           <p>NGN {totalPrice && totalPrice.toLocaleString()}.00</p>
-          <p
-            className="cursor-pointer text-cci-green"
-            onClick={toggleTableType}
-          >
-            Request for new budget
-          </p>
         </div>
       </div>
     </div>

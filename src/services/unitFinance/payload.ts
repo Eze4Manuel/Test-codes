@@ -22,3 +22,8 @@ export interface MonthlyFinanceHistoryPayload {
   message: string;
   data: MonthlyFinanceHistory;
 }
+
+export interface GetFinanceHistoryPayload {
+  month: string;
+  unit: string | undefined;
+}
