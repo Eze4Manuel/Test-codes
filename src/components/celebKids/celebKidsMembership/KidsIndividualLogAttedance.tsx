@@ -78,7 +78,6 @@ const KidsIndividualLogAttendance: FC<kidsIndividualLogAttendanceProps> = ({
         </Text>
         <Pagination count={pages} page={page} setPage={() => {}} />
       </div>
-
       <div>
         <Text variant="body2">Total Kids Attendance: 7</Text>
       </div>

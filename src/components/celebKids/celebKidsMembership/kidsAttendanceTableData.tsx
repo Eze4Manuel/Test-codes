@@ -75,7 +75,7 @@ const KidsAttendanceTableData: FC<KidsAttendanceTableProps> = ({
                 </TableCell>
                 <TableCell
                   onClick={() => {}}
-                  url={`${router.pathname}/CelebKidsMembership/kids-attendance-table/${celeb_kid?.id}`}
+                  url={`${router.pathname}/kids-attendance-table/${celeb_kid?.id}`}
                 >
                   <Text variant="caption" className="text-cci-green">
                     View Details

@@ -74,7 +74,7 @@ const CelebKidsAndParentsTableData: FC<CelebKidsAndParentsTableProps> = ({
                 </TableCell>
                 <TableCell
                   onClick={() => {}}
-                  url={`${router.pathname}/${celeb_kid?.id}`}
+                  url={`${router.pathname}/celeb-kid-view-profile/${celeb_kid?.id}`}
                 >
                   <Text variant="caption" className="text-cci-green">
                     View Profile

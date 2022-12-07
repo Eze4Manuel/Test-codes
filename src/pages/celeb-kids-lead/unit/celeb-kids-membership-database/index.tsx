@@ -1,7 +1,7 @@
+import CelebKidsMembership from '@/components/celebKids/celebKidsMembership/celebKidsMembership';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
 import celebKidsUnitTabs from '@/layouts/TabViewLayout/celebKidsLead/celebKidsUnitTabs';
-import CelebKidsMembership from '@/pages/celeb-kids-lead/unit/celeb-kids-membership-database/CelebKidsMembership';
 import Meta from '@/templates/Meta';
 
 const GeneralMembership = () => {

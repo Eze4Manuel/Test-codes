@@ -13,10 +13,10 @@ import {
   celebKidsMonthfilterOptions,
 } from '@/utils/constants';
 
-import CelebKidsCheckBoxes from '../celebKidsCheckBoxes';
-import CelebKidsAndParentsTable from './celeb-kids-and-parents-table';
-import KidAttendanceChart from './kid-attendance-chart/kidAttendanceChart';
-import LogAttendance from './kids-attendance-table/index';
+import CelebKidsAndParentsTableData from './CelebKidsAndParentsTableData';
+import CelebKidsCheckBoxes from './celebKidsCheckBoxes';
+import KidAttendanceChart from './kidAttendanceChart';
+import LogAttendance from './logAttendance';
 
 const CelebKidsMembership = () => {
   const [searchValue] = useState('');
@@ -96,7 +96,7 @@ const CelebKidsMembership = () => {
             </Button>
           </div>
           <div className="grid w-full gap-10">
-            <CelebKidsAndParentsTable
+            <CelebKidsAndParentsTableData
               celebKidsAndParentsTableData={celebKidsAndParentData}
               page={1}
               limit={10}

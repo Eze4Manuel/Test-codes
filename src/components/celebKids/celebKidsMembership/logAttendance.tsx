@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-// import router from 'next/router';
+import router from 'next/router';
 import React, { useState } from 'react';
 
 import Button from '@/components/lib/Button';
@@ -17,7 +17,7 @@ const LogAttendance = () => {
           variant="outline"
           size="medium"
           className="flex w-full items-center gap-2 text-center"
-          // onClick={() => router.push(`${router.pathname}/create-new-celeb-kid`)}
+          onClick={() => router.push(`${router.pathname}/add-log-attendance`)}
         >
           <Icon icon="akar-icons:plus" className="text-lg" />
           Log Attendance Data

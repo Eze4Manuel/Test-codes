@@ -5,7 +5,7 @@ import BarChart from '@/components/lib/BarChart/BarChart';
 import ChartLabel from '@/components/lib/ChartLabel/ChartLabel';
 import { kidsAttendance } from '@/data/chartLabelData';
 
-import CelebKidsCheckBoxes from '../../celebKidsCheckBoxes';
+import CelebKidsCheckBoxes from './celebKidsCheckBoxes';
 import type { KidAttendancePros } from './kidAttendance.props';
 
 const KidAttendanceChart: FC<KidAttendancePros> = ({ data }) => {

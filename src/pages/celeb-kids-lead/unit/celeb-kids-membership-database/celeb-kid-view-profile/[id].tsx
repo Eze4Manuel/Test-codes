@@ -1,10 +1,9 @@
+import CelebKidIndividualProfile from '@/components/celebKids/celebKidsMembership/CelebKidEditProfile';
 import Button from '@/components/lib/Button';
 import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
 import celebKidsUnitMemberShipTabs from '@/layouts/TabViewLayout/celebKidsLead/celebKidsMembershipTab';
 import Meta from '@/templates/Meta';
-
-import CelebKidIndividualProfile from '../../../../components/celebKids/celebKidsMembership/CelebKidEditProfile';
 
 const IndividualProfile = () => {
   return (

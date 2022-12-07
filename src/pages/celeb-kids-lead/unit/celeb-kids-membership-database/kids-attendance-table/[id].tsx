@@ -1,3 +1,4 @@
+import KidsIndividualLogAttendance from '@/components/celebKids/celebKidsMembership/KidsIndividualLogAttedance';
 import Button from '@/components/lib/Button';
 import Checkbox from '@/components/lib/Checkbox';
 import { logIndvidualAttendanceData } from '@/data/celebKidsMembers';
@@ -5,8 +6,6 @@ import AuthLayout from '@/layouts/AuthLayout';
 import TabViewLayout from '@/layouts/TabViewLayout';
 import celebKidsUnitTabs from '@/layouts/TabViewLayout/celebKidsLead/celebKidsUnitTabs';
 import Meta from '@/templates/Meta';
-
-import KidsIndividualLogAttendance from './KidsIndividualLogAttedance';
 
 const IndividualAttendanceProfile = () => {
   return (
